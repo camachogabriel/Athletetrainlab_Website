@@ -194,58 +194,141 @@ p { color: var(--gray); margin-bottom: 1rem; }
 .mobile-menu .btn { margin-top: 16px; width: 100%; justify-content: center; }
 .mobile-menu.open { display: flex; }
 
-/* ── Dropdown Servicios ── */
-.nav-dropdown { position: relative; }
-.nav-dropdown-toggle {
+/* ── Mega Menu Servicios ── */
+.has-mega { position: static; }
+.mega-toggle {
   display: flex;
   align-items: center;
-  gap: 4px;
-  cursor: pointer;
-}
-.nav-dropdown-toggle .arrow {
-  font-size: 0.7rem;
-  transition: transform var(--transition);
-}
-.nav-dropdown:hover .arrow { transform: rotate(180deg); }
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  min-width: 220px;
-  padding: 8px 0;
-  z-index: 200;
-}
-.nav-dropdown:hover .dropdown-menu { display: block; }
-.dropdown-menu li a {
-  display: block;
-  padding: 10px 20px;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.87rem;
   font-weight: 600;
   color: var(--dark);
-  border-radius: 0;
-  white-space: nowrap;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
 }
-.dropdown-menu li a:hover { color: var(--blue); background: var(--blue-light); }
-/* Mobile sub-items */
-.mobile-group-label {
-  padding: 12px 0 4px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.mega-toggle:hover { color: var(--blue); background: var(--blue-light); }
+.mega-toggle svg {
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+.has-mega.open .mega-toggle { color: var(--blue); }
+.has-mega.open .mega-toggle svg { transform: rotate(180deg); }
+
+.mega-panel {
+  position: absolute;
+  top: 72px;
+  left: 0; right: 0;
+  background: var(--white);
+  border-top: 2px solid var(--blue);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+  z-index: 999;
+  padding: 32px 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.has-mega.open .mega-panel {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.mega-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.mega-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.mega-card:hover {
+  background: var(--gray-light);
+  border-color: var(--border);
+  transform: translateY(-2px);
+}
+.mega-card:hover .mega-card-title { color: var(--blue); }
+.mega-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   color: var(--blue);
 }
-.mobile-sub {
-  padding-left: 16px !important;
-  font-size: 0.92rem !important;
+.mega-icon svg { width: 22px; height: 22px; }
+.mega-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--dark);
+  margin-bottom: 4px;
+  transition: color var(--transition);
+}
+.mega-card-desc {
+  font-size: 0.82rem;
+  color: var(--gray);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Mobile accordion */
+.mobile-services-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--dark);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  text-align: left;
+}
+.mobile-services-toggle svg { transition: transform 0.2s ease; }
+.mobile-services-toggle.open svg { transform: rotate(180deg); }
+.mobile-services-list {
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+.mobile-services-list.open { display: flex; }
+.mobile-services-list a {
+  padding: 10px 0 10px 20px !important;
+  font-size: 0.9rem !important;
   color: var(--gray) !important;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mobile-services-list a::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
 }
 
 /* ========================================

@@ -4,32 +4,81 @@ window.addEventListener('scroll', () => {
   navbar?.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// Mobile menu
-const hamburger = document.querySelector('.hamburger');
-const mobileMenu = document.querySelector('.mobile-menu');
-hamburger?.addEventListener('click', () => {
-  mobileMenu?.classList.toggle('open');
-  const spans = hamburger.querySelectorAll('span');
-  spans[0].style.transform = mobileMenu?.classList.contains('open') ? 'rotate(45deg) translate(5px,5px)' : '';
-  spans[1].style.opacity = mobileMenu?.classList.contains('open') ? '0' : '1';
-  spans[2].style.transform = mobileMenu?.classList.contains('open') ? 'rotate(-45deg) translate(5px,-5px)' : '';
+// ── Mega Menu ──────────────────────────────────────────
+const hasMega = document.querySelector('.has-mega');
+const megaToggle = document.querySelector('.mega-toggle');
+const megaPanel = document.querySelector('.mega-panel');
+
+function openMega() {
+  hasMega?.classList.add('open');
+  megaToggle?.setAttribute('aria-expanded', 'true');
+}
+function closeMega() {
+  hasMega?.classList.remove('open');
+  megaToggle?.setAttribute('aria-expanded', 'false');
+}
+
+// Toggle on click (works on touch too)
+megaToggle?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  hasMega?.classList.contains('open') ? closeMega() : openMega();
 });
 
-// Close mobile menu on link click
+// Close when clicking outside
+document.addEventListener('click', (e) => {
+  if (!hasMega?.contains(e.target)) closeMega();
+});
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMega();
+});
+
+// ── Mobile Menu ────────────────────────────────────────
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+function toggleHamburger(open) {
+  const spans = hamburger?.querySelectorAll('span');
+  if (!spans) return;
+  spans[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
+  spans[1].style.opacity   = open ? '0' : '1';
+  spans[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
+}
+
+hamburger?.addEventListener('click', () => {
+  const isOpen = mobileMenu?.classList.toggle('open');
+  toggleHamburger(isOpen);
+});
+
+// Mobile Servicios accordion
+const mobileServicesToggle = document.querySelector('.mobile-services-toggle');
+const mobileServicesList   = document.querySelector('.mobile-services-list');
+
+mobileServicesToggle?.addEventListener('click', () => {
+  const isOpen = mobileServicesList?.classList.toggle('open');
+  mobileServicesToggle.classList.toggle('open', isOpen);
+  mobileServicesToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+// Close mobile menu on link click (non-toggle links)
 document.querySelectorAll('.mobile-menu a').forEach(link => {
   link.addEventListener('click', () => {
     mobileMenu?.classList.remove('open');
+    toggleHamburger(false);
   });
 });
 
-// Set active nav link
+// ── Active nav link ────────────────────────────────────
 const currentPath = window.location.pathname.replace(/\/$/, '') || '/index';
-document.querySelectorAll('.navbar-links a, .mobile-menu a').forEach(link => {
-  const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '') || '/index';
-  if (linkPath === currentPath) link.classList.add('active');
+document.querySelectorAll('.navbar-links a, .mobile-menu a, .mega-card').forEach(link => {
+  try {
+    const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '') || '/index';
+    if (linkPath === currentPath) link.classList.add('active');
+  } catch {}
 });
 
-// Contact form submit (Formspree)
+// ── Contact form (Formspree) ───────────────────────────
 const form = document.querySelector('.contact-form');
 form?.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -52,7 +101,7 @@ form?.addEventListener('submit', async (e) => {
     } else {
       btn.textContent = original;
       btn.disabled = false;
-      alert('Hubo un error. Por favor escríbenos directamente a athletetrainlab@gmail.com');
+      alert('Hubo un error. Por favor escríbenos a athletetrainlab@gmail.com');
     }
   } catch {
     btn.textContent = original;
@@ -60,7 +109,7 @@ form?.addEventListener('submit', async (e) => {
   }
 });
 
-// Animate on scroll
+// ── Animate on scroll ──────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
