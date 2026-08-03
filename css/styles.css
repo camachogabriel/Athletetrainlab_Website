@@ -194,6 +194,60 @@ p { color: var(--gray); margin-bottom: 1rem; }
 .mobile-menu .btn { margin-top: 16px; width: 100%; justify-content: center; }
 .mobile-menu.open { display: flex; }
 
+/* ── Dropdown Servicios ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.nav-dropdown-toggle .arrow {
+  font-size: 0.7rem;
+  transition: transform var(--transition);
+}
+.nav-dropdown:hover .arrow { transform: rotate(180deg); }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-width: 220px;
+  padding: 8px 0;
+  z-index: 200;
+}
+.nav-dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: var(--dark);
+  border-radius: 0;
+  white-space: nowrap;
+}
+.dropdown-menu li a:hover { color: var(--blue); background: var(--blue-light); }
+/* Mobile sub-items */
+.mobile-group-label {
+  padding: 12px 0 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.mobile-sub {
+  padding-left: 16px !important;
+  font-size: 0.92rem !important;
+  color: var(--gray) !important;
+}
+
 /* ========================================
    HERO
    ======================================== */
