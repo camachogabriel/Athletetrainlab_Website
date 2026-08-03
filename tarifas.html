@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarifas y Planes | Athletetrainlab</title>
+  <meta name="description" content="Planes de entrenamiento ATL Smart, ATL Smart Plus y ATL Performance para ciclistas en Costa Rica. Entrenamiento personalizado con seguimiento profesional.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── Pricing Hero ── */
+    .pricing-hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #0d2b5e 100%);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+    .pricing-hero h1 { color: var(--white); margin-bottom: 1rem; }
+    .pricing-hero p  { color: rgba(255,255,255,0.75); font-size: 1.15rem; max-width: 560px; margin: 0 auto 1.5rem; }
+    .discount-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 18px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Plan Cards Grid ── */
+    .plans-section { padding: 80px 0 40px; background: var(--gray-light); }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .plan-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow var(--transition), transform var(--transition);
+      position: relative;
+    }
+    .plan-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-6px);
+    }
+    .plan-card.featured {
+      border: 2px solid var(--blue);
+      transform: scale(1.03);
+      box-shadow: 0 12px 48px rgba(0,87,184,0.2);
+    }
+    .plan-card.featured:hover { transform: scale(1.03) translateY(-6px); }
+
+    .plan-badge {
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 5px 18px;
+      border-radius: 0 0 12px 12px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .plan-header {
+      padding: 40px 28px 28px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .plan-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .dot-green  { background: #22c55e; }
+    .dot-blue   { background: var(--blue); }
+    .dot-orange { background: var(--orange); }
+
+    .plan-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .plan-tagline {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    .plan-price {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 2.2rem;
+      color: var(--dark);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .plan-price span { font-size: 1rem; font-weight: 600; color: var(--gray); }
+    .plan-usd {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-bottom: 0;
+    }
+
+    .plan-body { padding: 28px; flex: 1; }
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .plan-features li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--dark);
+      align-items: flex-start;
+    }
+    .plan-features li .icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      margin-top: 2px;
+      font-weight: 700;
+    }
+    .icon-check { background: #dcfce7; color: #16a34a; }
+    .plan-footer { padding: 0 28px 28px; }
+    .plan-footer .btn { width: 100%; justify-content: center; }
+    .btn-outline-blue {
+      border: 2px solid var(--blue);
+      color: var(--blue);
+      background: transparent;
+    }
+    .btn-outline-blue:hover { background: var(--blue); color: var(--white); }
+
+    /* ── For Whom section ── */
+    .for-whom { padding: 72px 0; background: var(--white); }
+    .for-whom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+    .whom-card {
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+    }
+    .whom-card h3 { margin-bottom: 8px; font-size: 1.1rem; }
+    .whom-tagline { font-size: 0.88rem; color: var(--blue); font-weight: 600; margin-bottom: 16px !important; }
+    .whom-card ul { list-style: none; padding: 0; }
+    .whom-card ul li {
+      padding: 6px 0;
+      font-size: 0.9rem;
+      color: var(--gray);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .whom-card ul li:last-child { border-bottom: none; }
+    .whom-card ul li::before { content: "→"; color: var(--orange); font-weight: 700; flex-shrink: 0; }
+    .card-green  { border-top: 4px solid #22c55e; }
+    .card-blue   { border-top: 4px solid var(--blue); }
+    .card-orange { border-top: 4px solid var(--orange); }
+
+    /* ── Comparison Table ── */
+    .comparison { padding: 72px 0; background: var(--gray-light); }
+    .comparison h2 { text-align: center; margin-bottom: 12px; }
+    .comparison .subtitle { text-align: center; margin-bottom: 48px; }
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; background: var(--white); font-size: 0.9rem; }
+    th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    thead tr { background: var(--dark); }
+    thead th { color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.85rem; }
+    thead th:first-child { border-radius: var(--radius) 0 0 0; }
+    thead th:last-child  { border-radius: 0 var(--radius) 0 0; }
+    tbody tr:hover { background: var(--gray-light); }
+    tbody tr:last-child td { border-bottom: none; }
+    td:not(:first-child) { text-align: center; color: var(--gray); }
+    .col-feature { font-weight: 600; color: var(--dark); width: 30%; }
+    .col-plus { background: #f0f5ff; }
+    thead .col-plus { background: var(--blue); position: relative; }
+    thead .col-plus::after {
+      content: "⭐ Más elegido";
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--orange);
+      margin-top: 3px;
+    }
+    .check  { color: #16a34a; font-size: 1.1rem; }
+    .dash   { color: #d1d5db; }
+
+    /* ── Progression ── */
+    .progression { padding: 72px 0; background: var(--white); text-align: center; }
+    .progression h2 { margin-bottom: 48px; }
+    .prog-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .prog-step {
+      background: var(--gray-light);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      min-width: 200px;
+      text-align: center;
+    }
+    .prog-step.highlight { background: var(--blue-light); border: 2px solid var(--blue); }
+    .prog-step h4 { font-size: 1.05rem; margin-bottom: 4px; }
+    .prog-step p  { font-size: 0.85rem; margin: 0; }
+    .prog-arrow {
+      font-size: 2rem;
+      color: var(--orange);
+      padding: 0 12px;
+      font-weight: 700;
+    }
+
+    /* ── Note discount ── */
+    .discount-note {
+      background: #fff8e6;
+      border: 1px solid #f0d080;
+      border-radius: var(--radius);
+      padding: 16px 24px;
+      text-align: center;
+      margin: 32px auto 0;
+      max-width: 600px;
+    }
+    .discount-note p { margin: 0; font-size: 0.9rem; color: var(--dark); }
+    .discount-note strong { color: var(--orange-dark); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .plans-grid, .for-whom-grid { grid-template-columns: 1fr; }
+      .plan-card.featured { transform: none; }
+      .prog-steps { flex-direction: column; }
+      .prog-arrow { transform: rotate(90deg); padding: 6px 0; }
+    }
+    @media (max-width: 600px) {
+      th, td { padding: 10px 12px; font-size: 0.8rem; }
+      .plan-price { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="https://static.wixstatic.com/media/9d1be0_e4ee180b08184d159adbfa2a55f4ace3~mv2.png" alt="ATL Athletetrainlab Logo">
+      </a>
+      <ul class="navbar-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="pruebas-rendimiento.html">Pruebas de Rendimiento</a></li>
+        <li><a href="plan-entrenamientos.html">Plan de Entrenamientos</a></li>
+        <li><a href="bikefit-3d.html">Bike Fit 3D</a></li>
+        <li><a href="somos-atl.html">Somos ATL</a></li>
+        <li><a href="tarifas.html">Tarifas</a></li>
+        <li><a href="convenios.html">Convenios</a></li>
+      </ul>
+      <a href="contacto.html" class="btn btn-primary navbar-cta">Agendar Cita</a>
+      <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Inicio</a>
+      <a href="pruebas-rendimiento.html">Pruebas de Rendimiento</a>
+      <a href="plan-entrenamientos.html">Plan de Entrenamientos</a>
+      <a href="bikefit-3d.html">Bike Fit 3D</a>
+      <a href="somos-atl.html">Somos ATL</a>
+      <a href="tarifas.html">Tarifas</a>
+      <a href="convenios.html">Convenios</a>
+      <a href="contacto.html" class="btn btn-primary">Agendar Cita</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pricing-hero">
+    <div class="container">
+      <h1>Planes de Entrenamiento</h1>
+      <p>No vendemos sólo un plan — entregamos el nivel de acompañamiento que cada ciclista necesita para alcanzar sus objetivos.</p>
+      <span class="discount-badge">5% de descuento pagando en depósito o efectivo</span>
+    </div>
+  </section>
+
+  <!-- PLAN CARDS -->
+  <section class="plans-section">
+    <div class="container">
+      <div class="plans-grid">
+
+        <!-- ATL Smart -->
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-name"><span class="plan-dot dot-green"></span>ATL Smart</div>
+            <p class="plan-tagline">Entrena con una guía profesional</p>
+            <div class="plan-price">₡23.000<span>/mes</span></div>
+            <p class="plan-usd">≈ US$46 por mes</p>
+          </div>
+          <div class="plan-body">
+            <ul class="plan-features">
+              <li><span class="icon icon-check">✓</span>Prueba de evaluación básica (presencial o virtual)</li>
+              <li><span class="icon icon-check">✓</span>Zonas de entrenamiento estimadas</li>
+              <li><span class="icon icon-check">✓</span>Plan de entrenamiento mensual personalizado</li>
+              <li><span class="icon icon-check">✓</span>Seguimiento semanal vía App</li>
+              <li><span class="icon icon-check">✓</span>Cambios al plan hasta 12 horas (vía App)</li>
+              <li><span class="icon icon-check">✓</span>1 reunión mensual con el entrenador</li>
+              <li><span class="icon icon-check">✓</span>Atención para situaciones urgentes</li>
+              <li><span class="icon icon-check">✓</span>Charlas educativas incluidas</li>
+              <li><span class="icon icon-check">✓</span>50% descuento en Bike Fit 3D</li>
+              <li><span class="icon icon-check">✓</span>Descuentos en TopStone y Ciclismo y Más</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <a href="contacto.html" class="btn btn-outline-blue">Empezar con ATL Smart</a>
+          </div>
+        </div>
+
+        <!-- ATL Smart Plus (destacado) -->
+        <div class="plan-card featured">
+          <div class="plan-badge">⭐ Más elegido</div>
+          <div class="plan-header">
+            <div class="plan-name"><span class="plan-dot dot-blue"></span>ATL Smart Plus</div>
+            <p class="plan-tagline">Entrena con datos fisiológicos reales</p>
+            <div class="plan-price">₡28.000<span>/mes</span></div>
+            <p class="plan-usd">≈ US$56 por mes</p>
+          </div>
+          <div class="plan-body">
+            <ul class="plan-features">
+              <li><span class="icon icon-check">✓</span><strong>Evaluación fisiológica completa</strong></li>
+              <li><span class="icon icon-check">✓</span><strong>Zonas de entrenamiento medidas con precisión</strong></li>
+              <li><span class="icon icon-check">✓</span>Plan de entrenamiento mensual personalizado</li>
+              <li><span class="icon icon-check">✓</span>Seguimiento semanal vía App</li>
+              <li><span class="icon icon-check">✓</span>Cambios al plan hasta 12 horas (vía App)</li>
+              <li><span class="icon icon-check">✓</span>1 reunión mensual con el entrenador</li>
+              <li><span class="icon icon-check">✓</span>Atención para situaciones urgentes</li>
+              <li><span class="icon icon-check">✓</span>Charlas educativas incluidas</li>
+              <li><span class="icon icon-check">✓</span>50% descuento en Bike Fit 3D</li>
+              <li><span class="icon icon-check">✓</span>Descuentos en TopStone y Ciclismo y Más</li>
+            </ul>
+            <div class="discount-note" style="margin-top:0; margin-bottom:0; padding: 12px 16px; font-size: 0.82rem;">
+              <p>La evaluación fisiológica incluida vale significativamente más que la diferencia de ₡5.000 respecto a ATL Smart.</p>
+            </div>
+          </div>
+          <div class="plan-footer">
+            <a href="contacto.html" class="btn btn-primary">Empezar con Smart Plus</a>
+          </div>
+        </div>
+
+        <!-- ATL Performance -->
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-name"><span class="plan-dot dot-orange"></span>ATL Performance</div>
+            <p class="plan-tagline">El máximo nivel de personalización</p>
+            <div class="plan-price">₡40.000<span>/mes</span></div>
+            <p class="plan-usd">≈ US$76 por mes</p>
+          </div>
+          <div class="plan-body">
+            <ul class="plan-features">
+              <li><span class="icon icon-check">✓</span><strong>Evaluación fisiológica completa</strong></li>
+              <li><span class="icon icon-check">✓</span><strong>Zonas medidas + seguimiento continuo</strong></li>
+              <li><span class="icon icon-check">✓</span><strong>Plan de entrenamiento semanal</strong></li>
+              <li><span class="icon icon-check">✓</span><strong>Actualización semanal según resultados</strong></li>
+              <li><span class="icon icon-check">✓</span><strong>Seguimiento personalizado con el entrenador</strong></li>
+              <li><span class="icon icon-check">✓</span><strong>Comunicación directa y continua</strong></li>
+              <li><span class="icon icon-check">✓</span><strong>Ajustes continuos según necesidades</strong></li>
+              <li><span class="icon icon-check">✓</span>Reuniones según planificación y seguimiento</li>
+              <li><span class="icon icon-check">✓</span>Atención prioritaria para situaciones urgentes</li>
+              <li><span class="icon icon-check">✓</span>Evaluaciones fisiológicas periódicas</li>
+              <li><span class="icon icon-check">✓</span>Charlas educativas incluidas</li>
+              <li><span class="icon icon-check">✓</span>50% descuento en Bike Fit 3D</li>
+              <li><span class="icon icon-check">✓</span>Descuentos en TopStone y Ciclismo y Más</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <a href="contacto.html" class="btn btn-outline-blue">Empezar con Performance</a>
+          </div>
+        </div>
+
+      </div><!-- /plans-grid -->
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN ES -->
+  <section class="for-whom">
+    <div class="container">
+      <h2 style="text-align:center;">¿Para quién es cada plan?</h2>
+      <p style="text-align:center; max-width:560px; margin:8px auto 0;">Cada plan está diseñado para un perfil específico de ciclista y sus objetivos.</p>
+      <div class="for-whom-grid">
+
+        <div class="whom-card card-green">
+          <h3><span class="plan-dot dot-green"></span>ATL Smart</h3>
+          <p class="whom-tagline">Guía profesional accesible</p>
+          <ul>
+            <li>Ciclistas recreativos</li>
+            <li>Personas que entrenan por salud o bienestar</li>
+            <li>Quienes buscan guía profesional con costo accesible</li>
+            <li>Deportistas que entrenan constante pero sin necesidad de seguimiento cercano</li>
+          </ul>
+        </div>
+
+        <div class="whom-card card-blue">
+          <h3><span class="plan-dot dot-blue"></span>ATL Smart Plus</h3>
+          <p class="whom-tagline">Datos reales, mayor precisión</p>
+          <ul>
+            <li>Ciclistas que desean entrenar con mayor precisión</li>
+            <li>Deportistas que quieren conocer sus verdaderas zonas fisiológicas</li>
+            <li>Personas que participan ocasionalmente en competencias</li>
+            <li>Quienes desean mejor personalización sin llegar al plan más avanzado</li>
+          </ul>
+        </div>
+
+        <div class="whom-card card-orange">
+          <h3><span class="plan-dot dot-orange"></span>ATL Performance</h3>
+          <p class="whom-tagline">Máximo rendimiento y acompañamiento</p>
+          <ul>
+            <li>Competidores y ciclistas que buscan el máximo rendimiento</li>
+            <li>Deportistas con objetivos específicos (Gran Fondo, MTB, Ruta, XCM, XCO…)</li>
+            <li>Personas que necesitan ajustes constantes según respuesta fisiológica</li>
+            <li>Quienes desean el mayor acompañamiento posible del entrenador</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLA COMPARATIVA -->
+  <section class="comparison">
+    <div class="container">
+      <h2>Comparación completa de planes</h2>
+      <p class="subtitle">Todas las características en un vistazo</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-feature">Característica</th>
+              <th>ATL Smart</th>
+              <th class="col-plus">ATL Smart Plus</th>
+              <th>ATL Performance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-feature">Precio mensual</td>
+              <td>₡23.000 (≈US$46)</td>
+              <td class="col-plus">₡28.000 (≈US$56)</td>
+              <td>₡40.000 (≈US$76)</td>
+            </tr>
+            <tr>
+              <td class="col-feature">Evaluación inicial</td>
+              <td>Prueba básica (presencial o virtual)</td>
+              <td class="col-plus">Evaluación fisiológica completa</td>
+              <td>Evaluación fisiológica completa</td>
+            </tr>
+            <tr>
+              <td class="col-feature">Determinación de zonas</td>
+              <td>Estimadas</td>
+              <td class="col-plus">Medidas con precisión</td>
+              <td>Medidas con precisión</td>
+            </tr>
+            <tr>
+              <td class="col-feature">Objetivos personalizados</td>
+              <td><span class="check">✓</span></td>
+              <td class="col-plus"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="col-feature">Plan de entrenamiento</td>
+              <td>Mensual</td>
+              <td class="col-plus">Mensual</td>
+              <td><strong>Semanal</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature">Actualización del plan</td>
+              <td>Según evolución</td>
+              <td class="col-plus">Según evolución</td>
+              <td><strong>Semanal según resultados</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature">Seguimiento</td>
+              <td>Semanal vía App</td>
+              <td class="col-plus">Semanal vía App</td>
+              <td><strong>Personalizado con entrenador</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature">Comunicación</td>
+              <td>Mediante la App</td>
+              <td class="col-plus">Mediante la App</td>
+              <td><strong>Directa y continua</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature">Cambios al entrenamiento</td>
+              <td>Hasta 12 h vía App</td>
+              <td class="col-plus">Hasta 12 h vía App</td>
+              <td><strong>Ajustes continuos</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature">Reunión con entrenador</td>
+              <td>1 mensual</td>
+              <td class="col-plus">1 mensual</td>
+              <td>Según planificación</td>
+            </tr>
+            <tr>
+              <td class="col-feature">Evaluaciones de ajuste</td>
+              <td>Virtuales</td>
+              <td class="col-plus">Virtuales</td>
+              <td><strong>Fisiológicas periódicas</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature">Atención urgente</td>
+              <td>Enlace directo</td>
+              <td class="col-plus">Enlace directo</td>
+              <td><strong>Prioritaria</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature">Charlas educativas</td>
+              <td><span class="check">✓</span></td>
+              <td class="col-plus"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="col-feature">50% dto. en Bike Fit</td>
+              <td><span class="check">✓</span></td>
+              <td class="col-plus"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="col-feature">Descuentos en tiendas</td>
+              <td><span class="check">✓</span></td>
+              <td class="col-plus"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="discount-note">
+        <p><strong>5% de descuento</strong> en todos los planes al pagar en depósito o efectivo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESIÓN -->
+  <section class="progression">
+    <div class="container">
+      <h2>Una línea de planes que crece contigo</h2>
+      <div class="prog-steps">
+        <div class="prog-step">
+          <h4>🟢 ATL Smart</h4>
+          <p>Guía profesional accesible</p>
+        </div>
+        <div class="prog-arrow">↓</div>
+        <div class="prog-step highlight">
+          <h4>🔵 ATL Smart Plus ⭐</h4>
+          <p>Datos fisiológicos reales</p>
+        </div>
+        <div class="prog-arrow">↓</div>
+        <div class="prog-step">
+          <h4>🟠 ATL Performance</h4>
+          <p>Máximo acompañamiento</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container cta-inner">
+      <div>
+        <h2>¿Listo para empezar?</h2>
+        <p>Agenda una consulta gratuita y te ayudamos a elegir el plan que mejor se adapta a ti.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="contacto.html" class="btn btn-primary">Agendar Consulta Gratuita</a>
+        <a href="https://wa.me/50688445550" target="_blank" class="btn btn-outline">WhatsApp: 8844-5550</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="https://static.wixstatic.com/media/9d1be0_e4ee180b08184d159adbfa2a55f4ace3~mv2.png" alt="ATL Logo" style="width:120px; margin-bottom:16px; filter: brightness(0) invert(1);">
+          <p style="color:rgba(255,255,255,0.6); font-size:0.9rem;">Entrenamiento inteligente para ciclistas de todos los niveles en Costa Rica.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Servicios</h4>
+          <ul class="footer-links">
+            <li><a href="pruebas-rendimiento.html">Pruebas de Rendimiento</a></li>
+            <li><a href="plan-entrenamientos.html">Plan de Entrenamientos</a></li>
+            <li><a href="bikefit-3d.html">Bike Fit 3D</a></li>
+            <li><a href="atl-principiantes.html">ATL Principiantes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">ATL</h4>
+          <ul class="footer-links">
+            <li><a href="somos-atl.html">Somos ATL</a></li>
+            <li><a href="tarifas.html">Tarifas</a></li>
+            <li><a href="convenios.html">Convenios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Contacto</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+50688445550">📞 8844-5550</a></li>
+            <li><a href="mailto:athletetrainlab@gmail.com">✉ athletetrainlab@gmail.com</a></li>
+            <li style="color:rgba(255,255,255,0.6); font-size:0.88rem;">Los Ángeles de Santo Domingo<br>Heredia, Costa Rica</li>
+          </ul>
+          <div class="footer-social" style="margin-top:16px;">
+            <a href="https://instagram.com/athletetrainlab" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://facebook.com/atheletrainlab" target="_blank" aria-label="Facebook">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://youtube.com/@athletetrainlabtestingandt5075" target="_blank" aria-label="YouTube">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Athletetrainlab. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
