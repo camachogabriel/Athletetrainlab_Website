@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutrición para el Ciclista Amateur | Guías ATL</title>
+  <meta name="description" content="Por qué muchos ciclistas amateur no bajan de peso — y cómo comer bien dentro y fuera de la bicicleta. Guía práctica con calculadoras interactivas.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { background: #0D0F1A; }
+
+    /* ── Hero ── */
+    .guide-hero {
+      background: linear-gradient(135deg, #1A1A2E 0%, #0d1b3e 100%);
+      padding: 100px 0 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .guide-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800; color: #fff;
+      line-height: 1.15; margin-bottom: 16px; max-width: 820px;
+    }
+    .guide-hero .guide-subtitle {
+      font-size: 1.1rem; color: rgba(255,255,255,0.65);
+      max-width: 640px; line-height: 1.7; margin-bottom: 32px;
+    }
+    .guide-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .guide-tag {
+      background: rgba(240,165,0,0.15); color: #F0A500;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 4px; border: 1px solid rgba(240,165,0,0.25);
+    }
+    .guide-tag.science { background: rgba(0,87,184,0.15); color: #5b9df5; border-color: rgba(0,87,184,0.3); }
+    .guide-info-row { display: flex; gap: 32px; flex-wrap: wrap; }
+    .guide-info-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.45); font-size: 13px; }
+    .guide-info-item svg { width:15px; height:15px; stroke:rgba(255,255,255,0.35); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+    .back-link { display:inline-flex; align-items:center; gap:8px; color:rgba(255,255,255,0.45); font-size:13px; font-weight:600; text-decoration:none; margin-bottom:32px; transition:color .2s; }
+    .back-link:hover { color:#F0A500; }
+    .back-link svg { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+
+    /* ── Layout ── */
+    .guide-body { padding: 64px 0 80px; background: #0D0F1A; }
+    .guide-layout { display: grid; grid-template-columns: 1fr 280px; gap: 64px; align-items: start; }
+    @media (max-width: 900px) { .guide-layout { grid-template-columns: 1fr; } .guide-sidebar { order: -1; } }
+
+    /* ── Article prose ── */
+    .guide-article h2 { font-size: 1.6rem; font-weight: 800; color: #fff; margin: 56px 0 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .guide-article h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+    .guide-article h3 { font-size: 1.1rem; font-weight: 700; color: rgba(255,255,255,0.9); margin: 32px 0 12px; }
+    .guide-article p { color: rgba(255,255,255,0.70); line-height: 1.85; margin-bottom: 18px; font-size: 1rem; }
+    .guide-article strong { color: rgba(255,255,255,0.92); font-weight: 600; }
+    .guide-article a { color: #5b9df5; text-decoration: none; }
+    .guide-article a:hover { color: #F0A500; }
+
+    /* ── Callout ── */
+    .callout { background: rgba(240,165,0,0.07); border-left: 3px solid #F0A500; border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 28px 0; }
+    .callout.blue { background: rgba(0,87,184,0.08); border-left-color: #0057B8; }
+    .callout.red { background: rgba(239,68,68,0.07); border-left-color: #ef4444; }
+    .callout.green { background: rgba(34,197,94,0.07); border-left-color: #22c55e; }
+    .callout .callout-title { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #F0A500; margin-bottom: 8px; }
+    .callout.blue .callout-title { color: #5b9df5; }
+    .callout.red .callout-title { color: #f87171; }
+    .callout.green .callout-title { color: #4ade80; }
+    .callout p { margin-bottom: 0; color: rgba(255,255,255,0.75); }
+
+    /* ── Cycle diagram ── */
+    .cycle-diagram { display: flex; flex-wrap: wrap; gap: 0; margin: 28px 0; }
+    .cycle-step { flex: 1; min-width: 140px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 18px 16px; position: relative; }
+    .cycle-step:not(:last-child)::after { content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); color: #F0A500; font-weight: 700; font-size: 18px; z-index: 2; }
+    @media (max-width: 700px) { .cycle-step { flex: 0 0 100%; } .cycle-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -12px; transform: translateX(50%); } }
+    .cycle-num { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #F0A500; opacity: 0.7; margin-bottom: 6px; }
+    .cycle-text { font-size: 13px; color: rgba(255,255,255,0.70); line-height: 1.5; }
+    .cycle-step.bad { border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.04); }
+    .cycle-step.bad .cycle-num { color: #f87171; }
+
+    /* ── Plate visual ── */
+    .plate-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+    @media (max-width: 600px) { .plate-grid { grid-template-columns: 1fr; } }
+    .plate-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 18px; }
+    .plate-card .plate-pct { font-size: 28px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+    .plate-card .plate-macro { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+    .plate-card .plate-why { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    .plate-card ul { padding: 0; margin: 8px 0 0; }
+    .plate-card ul li { font-size: 12.5px; color: rgba(255,255,255,0.50); padding: 3px 0; padding-left: 12px; position: relative; }
+    .plate-card ul li::before { content: '·'; position: absolute; left: 0; color: var(--c); }
+
+    /* ── Timing section ── */
+    .timing-grid { display: flex; flex-direction: column; gap: 16px; margin: 24px 0; }
+    .timing-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 90px 1fr; gap: 16px; }
+    .timing-label { text-align: center; }
+    .timing-icon { font-size: 24px; display: block; margin-bottom: 4px; }
+    .timing-when { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .timing-content h4 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .timing-content p { font-size: 13.5px; color: rgba(255,255,255,0.60); line-height: 1.65; margin: 0 0 8px; }
+    .timing-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-right: 4px; }
+    .tag-carbs { background: rgba(240,165,0,0.12); color: #F0A500; }
+    .tag-protein { background: rgba(0,87,184,0.12); color: #5b9df5; }
+    .tag-fat { background: rgba(168,85,247,0.12); color: #c084fc; }
+    .tag-hydration { background: rgba(34,197,94,0.12); color: #4ade80; }
+
+    /* ── Error list ── */
+    .error-list { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+    .error-item { display: flex; gap: 16px; background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; padding: 16px 20px; align-items: flex-start; }
+    .error-x { color: #f87171; font-size: 18px; font-weight: 900; flex-shrink: 0; line-height: 1.4; }
+    .error-text h4 { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 4px; }
+    .error-text p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0; }
+
+    /* ── Tips list ── */
+    .tip-list { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+    .tip-item { display: flex; gap: 16px; background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.15); border-radius: 10px; padding: 16px 20px; align-items: flex-start; }
+    .tip-check { color: #4ade80; font-size: 18px; font-weight: 900; flex-shrink: 0; line-height: 1.4; }
+    .tip-text h4 { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 4px; }
+    .tip-text p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0; }
+
+    /* ── Science reference ── */
+    .science-ref { background: rgba(0,87,184,0.06); border: 1px solid rgba(0,87,184,0.18); border-radius: 10px; padding: 24px; margin: 32px 0; }
+    .science-ref .ref-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #5b9df5; margin-bottom: 12px; }
+    .science-ref .ref-title { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.85); margin-bottom: 8px; line-height: 1.5; }
+    .science-ref .ref-meta { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+    .science-ref .ref-finding { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.65; }
+    .science-ref .ref-link { display: inline-block; margin-top: 12px; font-size: 13px; color: #5b9df5; text-decoration: none; }
+    .science-ref .ref-link:hover { color: #F0A500; }
+
+    /* ── Calculator section ── */
+    .calc-section { background: #0D0F1A; padding: 56px 0 0; }
+    .calc-wrapper {
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 36px;
+      margin: 28px 0;
+    }
+    .calc-title { font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .calc-subtitle { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } .calc-wrapper { padding: 24px 18px; } }
+    .calc-field label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+    .calc-field input[type=number], .calc-field select {
+      width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+      color: #fff; padding: 12px 14px; border-radius: 8px; font-size: 15px; font-family: inherit;
+      outline: none; transition: border-color .2s;
+    }
+    .calc-field input[type=number]:focus, .calc-field select:focus { border-color: rgba(240,165,0,0.5); }
+    .calc-field select option { background: #1a1a2e; }
+    .calc-radios { display: flex; gap: 8px; }
+    .calc-radio { flex: 1; }
+    .calc-radio input { display: none; }
+    .calc-radio label {
+      display: block; text-align: center; padding: 10px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.55);
+      font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s;
+      background: rgba(255,255,255,0.03);
+    }
+    .calc-radio input:checked + label { border-color: #F0A500; background: rgba(240,165,0,0.12); color: #F0A500; }
+    .calc-btn {
+      width: 100%; background: linear-gradient(90deg, #0057B8, #F0A500);
+      color: #fff; border: none; padding: 14px; border-radius: 10px;
+      font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 20px;
+      font-family: inherit; letter-spacing: 0.5px; transition: opacity .2s;
+    }
+    .calc-btn:hover { opacity: 0.9; }
+
+    /* Results */
+    .calc-results { display: none; margin-top: 28px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .calc-results.show { display: block; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+    @media (max-width: 600px) { .results-grid { grid-template-columns: 1fr; } }
+    .result-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; padding: 18px; }
+    .result-card.highlight { background: rgba(240,165,0,0.07); border-color: rgba(240,165,0,0.25); }
+    .result-card .r-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .result-card .r-value { font-size: 26px; font-weight: 900; color: #F0A500; line-height: 1; }
+    .result-card .r-unit { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4); }
+    .result-card .r-note { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; margin-top: 8px; }
+    .result-note { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 16px 18px; font-size: 13.5px; color: rgba(255,255,255,0.60); line-height: 1.7; }
+    .result-timeline { margin-top: 20px; }
+    .result-timeline h4 { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.8); margin-bottom: 12px; }
+    .tl { border-left: 2px solid rgba(240,165,0,0.3); margin-left: 8px; padding-left: 18px; }
+    .tl div { margin: 10px 0; font-size: 13.5px; color: rgba(255,255,255,0.60); line-height: 1.5; }
+    .tl b { color: rgba(240,165,0,0.9); }
+
+    /* TDEE Calculator */
+    .tdee-results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px; }
+    @media (max-width: 600px) { .tdee-results-grid { grid-template-columns: 1fr; } }
+    .tdee-main { grid-column: 1 / -1; }
+    .tdee-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; padding: 18px; }
+    .tdee-card.main-card { background: rgba(0,87,184,0.1); border-color: rgba(0,87,184,0.3); }
+    .tdee-card.goal-card { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.2); }
+    .tdee-card.goal-card.deficit { background: rgba(240,165,0,0.06); border-color: rgba(240,165,0,0.2); }
+    .tdee-card .r-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .tdee-card .r-value { font-size: 30px; font-weight: 900; color: #5b9df5; line-height: 1; }
+    .tdee-card.goal-card .r-value { color: #4ade80; }
+    .tdee-card.goal-card.deficit .r-value { color: #F0A500; }
+    .tdee-card .r-unit { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.4); }
+    .tdee-card .r-note { font-size: 12.5px; color: rgba(255,255,255,0.45); line-height: 1.55; margin-top: 8px; }
+    .macro-bars { margin-top: 20px; }
+    .macro-bars h4 { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+    .macro-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .macro-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65); width: 80px; flex-shrink: 0; }
+    .macro-bar-bg { flex: 1; height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+    .macro-bar-fill { height: 100%; border-radius: 4px; transition: width .5s ease; }
+    .macro-val { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.75); width: 80px; text-align: right; flex-shrink: 0; }
+    .c-carbs { background: #F0A500; }
+    .c-protein { background: #5b9df5; }
+    .c-fat { background: #c084fc; }
+
+    /* ── Sidebar ── */
+    .guide-sidebar { position: static; }
+    .sidebar-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .sidebar-card h4 { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+    .toc-list { list-style: none; padding: 0; margin: 0; }
+    .toc-list li { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 9px 0; }
+    .toc-list li:last-child { border-bottom: none; }
+    .toc-list a { font-size: 13.5px; color: rgba(255,255,255,0.55); text-decoration: none; display: block; transition: color .2s; }
+    .toc-list a:hover { color: #F0A500; }
+    .sidebar-cta { background: linear-gradient(135deg, rgba(240,165,0,0.12) 0%, rgba(0,87,184,0.08) 100%); border: 1px solid rgba(240,165,0,0.2); border-radius: 12px; padding: 24px; text-align: center; }
+    .sidebar-cta p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 16px; }
+    .sidebar-cta .btn { width: 100%; text-align: center; font-size: 13px; display: block; }
+
+    /* ── Related section ── */
+    .related-section { padding: 56px 0; background: #0D0F1A; border-top: 1px solid rgba(255,255,255,0.07); }
+    .related-section h3 { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .related-section p { color: rgba(255,255,255,0.5); margin-bottom: 28px; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+    .related-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 22px; text-decoration: none; transition: border-color .2s, transform .15s; }
+    .related-card:hover { border-color: rgba(240,165,0,0.3); transform: translateY(-2px); }
+    .related-card .rc-tag { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #F0A500; margin-bottom: 8px; }
+    .related-card .rc-title { font-size: 15px; font-weight: 700; color: #fff; line-height: 1.4; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="Img/ATLLogoBlancoNegro.svg" alt="ATL Athletetrainlab Logo">
+      </a>
+      <ul class="navbar-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li class="has-mega">
+          <button class="mega-toggle" aria-expanded="false" aria-haspopup="true">
+            Servicios
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="mega-panel" role="menu">
+            <div class="mega-inner">
+              <a href="pruebas-rendimiento.html" class="mega-card">
+                <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                <div><div class="mega-card-title">Pruebas de Rendimiento</div><p class="mega-card-desc">VO2 Máx, Láctato y análisis fisiológico completo</p></div>
+              </a>
+              <a href="plan-entrenamientos.html" class="mega-card">
+                <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                <div><div class="mega-card-title">Plan de Entrenamientos</div><p class="mega-card-desc">Planificación personalizada con seguimiento semanal</p></div>
+              </a>
+              <a href="bikefit-3d.html" class="mega-card">
+                <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                <div><div class="mega-card-title">Bike Fit 3D</div><p class="mega-card-desc">Biomecánica avanzada con captura de movimiento 3D</p></div>
+              </a>
+              <a href="app.html" class="mega-card">
+                <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+                <div><div class="mega-card-title">ATL App</div><p class="mega-card-desc">Tu entrenamiento y seguimiento siempre a la mano</p></div>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li><a href="somos-atl.html">Somos ATL</a></li>
+        <li><a href="tarifas.html">Tarifas</a></li>
+        <li><a href="convenios.html">Convenios</a></li>
+        <li><a href="guias.html" class="active">Guías</a></li>
+      </ul>
+      <a href="contacto.html" class="btn btn-primary navbar-cta">Agendar Cita</a>
+      <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Inicio</a>
+      <button class="mobile-services-toggle" aria-expanded="false">Servicios<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <div class="mobile-services-list">
+        <a href="pruebas-rendimiento.html">Pruebas de Rendimiento</a>
+        <a href="plan-entrenamientos.html">Plan de Entrenamientos</a>
+        <a href="bikefit-3d.html">Bike Fit 3D</a>
+        <a href="app.html">ATL App</a>
+      </div>
+      <a href="somos-atl.html">Somos ATL</a>
+      <a href="tarifas.html">Tarifas</a>
+      <a href="convenios.html">Convenios</a>
+      <a href="guias.html">Guías</a>
+      <a href="contacto.html" class="btn btn-primary">Agendar Cita</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <a href="guias.html" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver a Guías
+      </a>
+      <div class="guide-meta">
+        <span class="guide-tag">Nutrición Deportiva</span>
+        <span class="guide-tag science">Basado en evidencia científica</span>
+      </div>
+      <h1>Nutrición para el Ciclista Amateur</h1>
+      <p class="guide-subtitle">Cómo comer bien dentro y fuera de la bicicleta — con calculadoras prácticas para saber exactamente cuánto y cuándo comer.</p>
+      <div class="guide-info-row">
+        <div class="guide-info-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Lectura: 12 min
+        </div>
+        <div class="guide-info-item">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Ciclistas amateur de todos los niveles
+        </div>
+        <div class="guide-info-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Athletetrainlab · Guías
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide body -->
+  <section class="guide-body">
+    <div class="container">
+      <div class="guide-layout">
+
+        <!-- Article -->
+        <article class="guide-article">
+
+          <h2 id="por-que">Por qué el ciclista amateur no baja de peso</h2>
+
+          <p>Muchas personas llegan al ciclismo con el objetivo de bajar de peso. Las primeras semanas funcionan: el cuerpo reacciona al nuevo estímulo, el gasto energético sube y la balanza se mueve. Pero después de unas semanas — a veces días — el peso se detiene. O peor: empieza a subir.</p>
+
+          <p>¿Por qué pasa esto? No es que el cuerpo "se acostumbre". El problema, en casi todos los casos, es mucho más simple: <strong>comemos más de lo que quemamos</strong>. Y el deporte tiene una trampa psicológica poderosa que lo facilita.</p>
+
+          <div class="callout red">
+            <div class="callout-title">La trampa mental del deportista amateur</div>
+            <p>Pedaleamos 1 hora y sentimos que "nos lo ganamos". Llegamos a casa con hambre, con la sensación de haber hecho un esfuerzo enorme, y comemos de más. El problema: 1 hora de ciclismo a ritmo moderado quema entre 400 y 600 kcal. Una sola comida extra puede borrar eso en minutos.</p>
+          </div>
+
+          <p>La investigación científica lo confirma: las personas tienden a sobrestimar las calorías quemadas durante el ejercicio y a subestimar lo que comen después. Un estudio publicado en <em>International Journal of Obesity</em> demostró que la compensación alimentaria post-ejercicio es una de las razones principales por las que el ejercicio solo no garantiza pérdida de peso.</p>
+
+          <p>El ciclo típico del ciclista amateur que no baja de peso se ve así:</p>
+
+          <div class="cycle-diagram">
+            <div class="cycle-step bad">
+              <div class="cycle-num">01</div>
+              <div class="cycle-text">Entrenamos 1–2 horas y sentimos que quemamos mucho</div>
+            </div>
+            <div class="cycle-step bad">
+              <div class="cycle-num">02</div>
+              <div class="cycle-text">Comemos de más afuera del entrenamiento ("me lo gané")</div>
+            </div>
+            <div class="cycle-step bad">
+              <div class="cycle-num">03</div>
+              <div class="cycle-text">No bajamos de peso — o bajamos y volvemos a subir</div>
+            </div>
+            <div class="cycle-step bad">
+              <div class="cycle-num">04</div>
+              <div class="cycle-text">Pensamos que el problema es que entrenamos poco y aumentamos el volumen</div>
+            </div>
+          </div>
+
+          <p>El problema se complica cuando, para compensar, aumentamos el volumen de entrenamiento sin ajustar la alimentación. Más horas en la bici = más hambre, más "permisos" psicológicos para comer, y mayor riesgo de llegar cansados y comer cualquier cosa rápida y calórica.</p>
+
+          <h2 id="dentro-fuera">El error clave: confundir cuándo comer con cuánto comer</h2>
+
+          <p>Hay una distinción fundamental que pocos ciclistas amateurs entienden al inicio:</p>
+
+          <p><strong>Durante el entrenamiento, sí debemos comer y reponer.</strong> Salir en ayunas a una sesión larga o no hidratarse bien perjudica el rendimiento, la recuperación y las adaptaciones que el entrenamiento busca generar. Eso es "nutrición deportiva".</p>
+
+          <p><strong>Fuera del entrenamiento, la clave es la disciplina.</strong> Ese es el momento donde se gana o se pierde el control calórico. Comer bien antes y después del entrenamiento no da permiso de comer mal el resto del día.</p>
+
+          <div class="callout">
+            <div class="callout-title">La clave</div>
+            <p>El error más común no es comer <em>durante</em> el ejercicio — es comer de más <em>fuera</em> de él. Una alimentación balanceada en el resto del día, combinada con una nutrición deportiva correcta durante los entrenamientos, es la fórmula que funciona.</p>
+          </div>
+
+          <p>Una mala nutrición fuera del entrenamiento genera tres problemas serios: <strong>recuperación pobre</strong> (el músculo no tiene los materiales para repararse), <strong>malas adaptaciones</strong> (el cuerpo no puede capitalizar el esfuerzo que hiciste) y <strong>acumulación de grasa</strong> por consumir calorías en momentos donde el metabolismo no está acelerado.</p>
+
+          <h2 id="alimentacion">Cómo debería ser tu alimentación</h2>
+
+          <p>No existe una dieta mágica para ciclistas. Pero sí existe una proporción de macronutrientes que funciona bien para el deporte de resistencia: una que prioriza los carbohidratos como combustible, protege el músculo con proteína suficiente, y no descarta las grasas saludables.</p>
+
+          <div class="plate-grid">
+            <div class="plate-card" style="--c: #F0A500;">
+              <div class="plate-pct" style="color:#F0A500">50–60%</div>
+              <div class="plate-macro">Carbohidratos</div>
+              <div class="plate-why">Tu combustible principal. El músculo los convierte en glucógeno — la reserva de energía que usás pedalando.</div>
+              <ul>
+                <li>Arroz, papa, pasta, pan integral</li>
+                <li>Frutas (banano, mango, naranja)</li>
+                <li>Avena, legumbres</li>
+              </ul>
+            </div>
+            <div class="plate-card" style="--c: #5b9df5;">
+              <div class="plate-pct" style="color:#5b9df5">20–25%</div>
+              <div class="plate-macro">Proteína</div>
+              <div class="plate-why">Repara y construye el músculo después del esfuerzo. Sin suficiente proteína, el entrenamiento no produce las adaptaciones que buscás.</div>
+              <ul>
+                <li>Pollo, pescado, huevos</li>
+                <li>Frijoles, lentejas, tofu</li>
+                <li>Lácteos bajos en grasa</li>
+              </ul>
+            </div>
+            <div class="plate-card" style="--c: #c084fc;">
+              <div class="plate-pct" style="color:#c084fc">20–25%</div>
+              <div class="plate-macro">Grasas saludables</div>
+              <div class="plate-why">Necesarias para absorber vitaminas, proteger articulaciones y como fuente de energía en esfuerzos de baja intensidad (Zona 2).</div>
+              <ul>
+                <li>Aguacate, aceite de oliva</li>
+                <li>Nueces, almendras</li>
+                <li>Sardinas, salmón</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Hidratación diaria — no solo durante el ejercicio</h3>
+
+          <p>La hidratación no empieza cuando montás la bici. Un cuerpo bien hidratado rinde mejor, se recupera antes y regula mejor la temperatura durante el ejercicio. La recomendación general es de <strong>35–40 ml de agua por kilo de peso al día</strong> (unos 2–3 litros para la mayoría de personas), más lo que se pierde durante el ejercicio.</p>
+
+          <h2 id="timing">Cuándo comer — antes, durante y después</h2>
+
+          <p>El momento en que comés importa tanto como qué comés. Para el ciclista amateur, hay tres ventanas clave:</p>
+
+          <div class="timing-grid">
+
+            <div class="timing-card">
+              <div class="timing-label">
+                <span class="timing-icon">🍽️</span>
+                <span class="timing-when">1–3h antes</span>
+              </div>
+              <div class="timing-content">
+                <h4>Antes del entrenamiento</h4>
+                <p>Cargá carbohidratos de digestión fácil. No salgas en ayunas a sesiones de más de 60 minutos — llegás a la sesión con menos glucógeno y el rendimiento baja, además de que la recuperación posterior es peor.</p>
+                <span class="timing-tag tag-carbs">Carbohidratos</span>
+                <span class="timing-tag tag-hydration">Hidratación</span>
+                <p style="margin-top:10px;font-size:13px">Ejemplos: avena con fruta, arroz con pollo, tostadas con miel. Evitá comidas muy grasosas o con mucha fibra — pueden causar problemas digestivos en el rodillo.</p>
+              </div>
+            </div>
+
+            <div class="timing-card">
+              <div class="timing-label">
+                <span class="timing-icon">🚴</span>
+                <span class="timing-when">Durante</span>
+              </div>
+              <div class="timing-content">
+                <h4>Durante el entrenamiento</h4>
+                <p>Depende de la duración e intensidad. En sesiones cortas (&lt;60 min) no es necesario comer. En sesiones largas o intensas, reponer carbohidratos e hidratarte marca una diferencia enorme en cómo terminás y en la recuperación.</p>
+                <span class="timing-tag tag-carbs">Carbohidratos</span>
+                <span class="timing-tag tag-hydration">Líquido + Sodio</span>
+                <p style="margin-top:10px;font-size:13px">Usá la calculadora de más abajo para saber exactamente cuánto reponer según tu salida.</p>
+              </div>
+            </div>
+
+            <div class="timing-card">
+              <div class="timing-label">
+                <span class="timing-icon">⚡</span>
+                <span class="timing-when">30–60 min después</span>
+              </div>
+              <div class="timing-content">
+                <h4>Después del entrenamiento</h4>
+                <p>La ventana de recuperación. El músculo está listo para absorber nutrientes y reconstruirse. Una combinación de carbohidratos y proteína en este período acelera la recuperación y mejora las adaptaciones del entrenamiento.</p>
+                <span class="timing-tag tag-carbs">Carbohidratos</span>
+                <span class="timing-tag tag-protein">Proteína 20–30g</span>
+                <p style="margin-top:10px;font-size:13px">Ejemplos: batido de proteína con fruta, arroz con pollo, yogur con granola. No esperés horas para comer después de entrenar duro.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="science-ref">
+            <div class="ref-label">Evidencia científica</div>
+            <div class="ref-title">Nutrient timing revisited: is there a post-exercise anabolic window?</div>
+            <div class="ref-meta">Aragon AA, Schoenfeld BJ · Journal of the International Society of Sports Nutrition · 2013</div>
+            <div class="ref-finding">El período post-ejercicio incrementa la capacidad del músculo para absorber proteína y glucosa. Consumir proteína de alta calidad (20–40 g) junto con carbohidratos dentro de la primera hora post-ejercicio optimiza la síntesis de proteína muscular y la recarga de glucógeno.</div>
+          </div>
+
+          <h2 id="calc-ejercicio">Calculadora: ¿cuánto comer durante el ejercicio?</h2>
+
+          <p>Ingresá los datos de tu próxima salida y la calculadora te dice cuántos carbohidratos, líquido y sodio necesitás por hora. La lógica está basada en los estándares de nutrición deportiva de ACSM e ISSN.</p>
+
+          <!-- IN-RIDE NUTRITION CALCULATOR -->
+          <div class="calc-wrapper" id="ride-calc">
+            <div class="calc-title">Nutrición en el ejercicio</div>
+            <div class="calc-subtitle">Carbohidratos · Líquido · Sodio por hora</div>
+
+            <div class="calc-grid">
+              <div class="calc-field">
+                <label>Duración (horas)</label>
+                <input type="number" id="rc-dur" min="0.5" max="12" step="0.5" placeholder="Ej: 2.5">
+              </div>
+              <div class="calc-field">
+                <label>Intensidad</label>
+                <select id="rc-int">
+                  <option value="">Seleccioná...</option>
+                  <option value="suave">Suave — Zona 2, podés conversar</option>
+                  <option value="moderado">Moderado — ritmo firme pero sostenible</option>
+                  <option value="fuerte">Fuerte / competitivo — intervalos o grupeta rápida</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label>Entorno</label>
+                <div class="calc-radios">
+                  <div class="calc-radio">
+                    <input type="radio" name="rc-lugar" id="rc-calle" value="calle">
+                    <label for="rc-calle">🌤️ Calle</label>
+                  </div>
+                  <div class="calc-radio">
+                    <input type="radio" name="rc-lugar" id="rc-rodillo" value="rodillo">
+                    <label for="rc-rodillo">🏠 Rodillo</label>
+                  </div>
+                </div>
+              </div>
+              <div class="calc-field" id="rc-clima-field">
+                <label>Clima</label>
+                <select id="rc-clima">
+                  <option value="">Seleccioná...</option>
+                  <option value="fresco">Fresco / nublado (&lt;20°C)</option>
+                  <option value="templado">Templado (20–27°C)</option>
+                  <option value="caluroso">Caluroso (&gt;28°C)</option>
+                  <option value="humedo">Caluroso y húmedo</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label>Sudoración</label>
+                <div class="calc-radios">
+                  <div class="calc-radio">
+                    <input type="radio" name="rc-sudor" id="rc-poco" value="poco">
+                    <label for="rc-poco">Poca</label>
+                  </div>
+                  <div class="calc-radio">
+                    <input type="radio" name="rc-sudor" id="rc-normal" value="normal">
+                    <label for="rc-normal">Normal</label>
+                  </div>
+                  <div class="calc-radio">
+                    <input type="radio" name="rc-sudor" id="rc-mucho" value="mucho">
+                    <label for="rc-mucho">Mucha</label>
+                  </div>
+                </div>
+              </div>
+              <div class="calc-field" style="align-self:end;">
+                <button class="calc-btn" onclick="calcRide()">Calcular mi plan</button>
+              </div>
+            </div>
+
+            <div class="calc-results" id="rc-results">
+              <div class="results-grid">
+                <div class="result-card highlight">
+                  <div class="r-label">Carbohidratos</div>
+                  <div><span class="r-value" id="rc-r-carb">—</span> <span class="r-unit">g/hora</span></div>
+                  <div class="r-note" id="rc-r-carb-note"></div>
+                </div>
+                <div class="result-card">
+                  <div class="r-label">Líquido</div>
+                  <div><span class="r-value" id="rc-r-liq" style="color:#4ade80">—</span> <span class="r-unit">ml/hora</span></div>
+                  <div class="r-note" id="rc-r-liq-note"></div>
+                </div>
+                <div class="result-card">
+                  <div class="r-label">Sodio</div>
+                  <div><span class="r-value" id="rc-r-sod" style="color:#5b9df5">—</span> <span class="r-unit">mg/hora</span></div>
+                  <div class="r-note" id="rc-r-sod-note"></div>
+                </div>
+              </div>
+              <div class="result-note" id="rc-r-msg"></div>
+              <div class="result-timeline" id="rc-r-tl"></div>
+            </div>
+          </div>
+
+          <h2 id="errores">Errores comunes de nutrición en el ciclismo amateur</h2>
+
+          <div class="error-list">
+            <div class="error-item">
+              <div class="error-x">✕</div>
+              <div class="error-text">
+                <h4>Salir en ayunas a sesiones largas</h4>
+                <p>Para sesiones de menos de 45–60 minutos a baja intensidad, el ayuno puede funcionar. Pero para salidas largas o intensas sin combustible previo, el rendimiento cae, el riesgo de hipoglucemia sube y la recuperación empeora. El músculo necesita glucógeno para trabajar bien.</p>
+              </div>
+            </div>
+            <div class="error-item">
+              <div class="error-x">✕</div>
+              <div class="error-text">
+                <h4>Comer de más porque "me lo gané"</h4>
+                <p>La trampa psicológica más común. Una hora de pedaleo moderado quema 400–500 kcal. Una comida extra grande, un postre o unas cervezas pueden duplicar o triplicar eso fácilmente. El déficit se construye en la cocina, no en el rodillo.</p>
+              </div>
+            </div>
+            <div class="error-item">
+              <div class="error-x">✕</div>
+              <div class="error-text">
+                <h4>No reponer durante salidas largas</h4>
+                <p>Muchos ciclistas salen con solo agua a salidas de 2+ horas y se preguntan por qué "se quedan sin piernas" a la hora y media. Es "bonking" o golpe de gracia — las reservas de glucógeno se agotan. Reponer carbohidratos e hidratación durante el ejercicio es obligatorio en salidas largas.</p>
+              </div>
+            </div>
+            <div class="error-item">
+              <div class="error-x">✕</div>
+              <div class="error-text">
+                <h4>Hidratarse solo cuando se tiene sed</h4>
+                <p>Para cuando sentís sed, ya perdiste un 1–2% de tu peso en agua — suficiente para bajar el rendimiento un 5–10%. La hidratación es preventiva: bebé en sorbos regulares desde el inicio, no cuando ya estás deshidratado.</p>
+              </div>
+            </div>
+            <div class="error-item">
+              <div class="error-x">✕</div>
+              <div class="error-text">
+                <h4>Cortar todos los carbohidratos para bajar de peso</h4>
+                <p>Los carbohidratos son el combustible del deporte de resistencia. Eliminarlos drásticamente hace que el entrenamiento se sienta miserable, reduce el rendimiento y puede provocar pérdida de masa muscular. El déficit calórico funciona mejor cuando viene de reducir porciones y calidad de alimentos procesados, no de eliminar macronutrientes necesarios.</p>
+              </div>
+            </div>
+            <div class="error-item">
+              <div class="error-x">✕</div>
+              <div class="error-text">
+                <h4>No reponer proteína después de entrenar</h4>
+                <p>Sin proteína post-entrenamiento, el músculo no tiene los materiales para reconstruirse. Todo el trabajo de la sesión produce menos adaptación de la que podría. 20–30 g de proteína en los primeros 30–60 minutos post-ejercicio marcam diferencia real en recuperación y composición corporal.</p>
+              </div>
+            </div>
+          </div>
+
+          <h2 id="bajar-peso">Si querés bajar de peso — cómo hacerlo sin perder rendimiento</h2>
+
+          <p>Bajar de peso mientras entrenás es posible, pero requiere un enfoque diferente al de simplemente "comer menos y moverse más". Para el ciclista amateur, la clave está en <strong>crear el déficit calórico fuera de los entrenamientos</strong>, no durante ellos.</p>
+
+          <div class="tip-list">
+            <div class="tip-item">
+              <div class="tip-check">✓</div>
+              <div class="tip-text">
+                <h4>Defendé la nutrición durante el entrenamiento</h4>
+                <p>No recortes carbohidratos ni líquido durante las sesiones de entrenamiento para "quemar más grasa". Eso solo baja el rendimiento y la calidad del entrenamiento. El déficit se crea en el resto del día.</p>
+              </div>
+            </div>
+            <div class="tip-item">
+              <div class="tip-check">✓</div>
+              <div class="tip-text">
+                <h4>Prioriza proteína en el día</h4>
+                <p>Una ingesta alta de proteína (1.6–2.0 g por kg de peso al día) en un déficit calórico ayuda a preservar masa muscular mientras se pierde grasa. Es el cambio de composición corporal que todos quieren — perder grasa sin perder músculo ni rendimiento.</p>
+              </div>
+            </div>
+            <div class="tip-item">
+              <div class="tip-check">✓</div>
+              <div class="tip-text">
+                <h4>Déficit moderado — no agresivo</h4>
+                <p>Un déficit de 250–400 kcal diarias es suficiente para perder 0.3–0.5 kg por semana sin comprometer la energía para entrenar. Déficits muy agresivos (-700 a -1000 kcal) hacen que los entrenamientos sean una tortura y aumentan el riesgo de lesiones y enfermedad.</p>
+              </div>
+            </div>
+            <div class="tip-item">
+              <div class="tip-check">✓</div>
+              <div class="tip-text">
+                <h4>Mejorar la calidad, no solo reducir la cantidad</h4>
+                <p>Reducir alimentos ultraprocesados, bebidas azucaradas y alcohol genera un impacto calórico enorme sin que tengas que medir cada gramo. Una alimentación basada en alimentos reales es la base.</p>
+              </div>
+            </div>
+            <div class="tip-item">
+              <div class="tip-check">✓</div>
+              <div class="tip-text">
+                <h4>Dormir bien es parte del proceso</h4>
+                <p>La falta de sueño eleva el cortisol (hormona del estrés), aumenta el apetito y reduce la hormona del crecimiento que es clave para la recuperación muscular. Dormir 7–9 horas de calidad es tan importante como la dieta para la composición corporal del deportista.</p>
+              </div>
+            </div>
+            <div class="tip-item">
+              <div class="tip-check">✓</div>
+              <div class="tip-text">
+                <h4>La pérdida de peso no es lineal — tené paciencia</h4>
+                <p>El agua corporal fluctúa, el glucógeno muscular cambia con los entrenamientos y hay semanas donde el peso sube aunque todo esté bien. Medí el progreso en semanas y meses, no en días. El objetivo es un proceso sostenible que no afecte el rendimiento ni la salud.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="science-ref">
+            <div class="ref-label">Evidencia científica</div>
+            <div class="ref-title">The role of exercise and physical activity in weight loss and maintenance</div>
+            <div class="ref-meta">Swift DL et al. · Progress in Cardiovascular Diseases · 2014</div>
+            <div class="ref-finding">El ejercicio solo tiene un efecto modesto sobre la pérdida de peso si no va acompañado de ajustes en la dieta. La combinación de ejercicio aeróbico con control calórico y mayor ingesta proteica produce resultados significativamente superiores — preservando masa muscular y mejorando el perfil metabólico.</div>
+          </div>
+
+          <h2 id="calc-tdee">Calculadora de necesidades nutricionales diarias</h2>
+
+          <p>Esta calculadora estima tu gasto energético total diario (TDEE) usando la fórmula Mifflin-St Jeor, una de las más validadas para deportistas. Con ese dato podés estimar cuántas calorías y qué cantidad de macronutrientes necesitás según tu nivel de actividad y objetivo.</p>
+
+          <!-- TDEE CALCULATOR -->
+          <div class="calc-wrapper" id="tdee-calc">
+            <div class="calc-title">Calculadora de nutrición diaria</div>
+            <div class="calc-subtitle">TDEE · Calorías · Macronutrientes estimados</div>
+
+            <div class="calc-grid">
+              <div class="calc-field">
+                <label>Sexo</label>
+                <div class="calc-radios">
+                  <div class="calc-radio">
+                    <input type="radio" name="tdee-sex" id="tdee-m" value="m">
+                    <label for="tdee-m">Hombre</label>
+                  </div>
+                  <div class="calc-radio">
+                    <input type="radio" name="tdee-sex" id="tdee-f" value="f">
+                    <label for="tdee-f">Mujer</label>
+                  </div>
+                </div>
+              </div>
+              <div class="calc-field">
+                <label>Edad</label>
+                <input type="number" id="tdee-age" min="14" max="80" placeholder="Años">
+              </div>
+              <div class="calc-field">
+                <label>Peso (kg)</label>
+                <input type="number" id="tdee-w" min="30" max="200" placeholder="Kg">
+              </div>
+              <div class="calc-field">
+                <label>Estatura (cm)</label>
+                <input type="number" id="tdee-h" min="140" max="220" placeholder="Cm">
+              </div>
+              <div class="calc-field" style="grid-column: 1 / -1;">
+                <label>Nivel de actividad</label>
+                <select id="tdee-act">
+                  <option value="">Seleccioná...</option>
+                  <option value="1.2">Sedentario — poca o ninguna actividad fuera del ciclismo</option>
+                  <option value="1.375">Levemente activo — ejercicio 1–3 días/semana</option>
+                  <option value="1.55">Moderadamente activo — ejercicio 3–5 días/semana</option>
+                  <option value="1.725">Muy activo — ejercicio 6–7 días/semana intenso</option>
+                  <option value="1.9">Extremadamente activo — dos sesiones al día</option>
+                </select>
+              </div>
+              <div class="calc-field" style="grid-column: 1 / -1;">
+                <label>Objetivo</label>
+                <div class="calc-radios">
+                  <div class="calc-radio">
+                    <input type="radio" name="tdee-goal" id="tdee-lose" value="lose">
+                    <label for="tdee-lose">Bajar de peso</label>
+                  </div>
+                  <div class="calc-radio">
+                    <input type="radio" name="tdee-goal" id="tdee-maintain" value="maintain">
+                    <label for="tdee-maintain">Mantener peso</label>
+                  </div>
+                  <div class="calc-radio">
+                    <input type="radio" name="tdee-goal" id="tdee-gain" value="gain">
+                    <label for="tdee-gain">Ganar masa</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="calc-btn" onclick="calcTdee()">Calcular mis necesidades</button>
+
+            <div class="calc-results" id="tdee-results">
+              <div class="tdee-results-grid">
+                <div class="tdee-card main-card">
+                  <div class="r-label">Gasto calórico total (TDEE)</div>
+                  <div><span class="r-value" id="tdee-r-tdee">—</span> <span class="r-unit">kcal/día</span></div>
+                  <div class="r-note">Calorías que quemás en un día típico con tu nivel de actividad actual.</div>
+                </div>
+                <div class="tdee-card goal-card" id="tdee-r-goal-card">
+                  <div class="r-label" id="tdee-r-goal-label">Objetivo calórico</div>
+                  <div><span class="r-value" id="tdee-r-goal">—</span> <span class="r-unit">kcal/día</span></div>
+                  <div class="r-note" id="tdee-r-goal-note"></div>
+                </div>
+                <div class="tdee-card">
+                  <div class="r-label">Metabolismo basal (BMR)</div>
+                  <div><span class="r-value" id="tdee-r-bmr" style="color:rgba(255,255,255,0.6);font-size:22px">—</span> <span class="r-unit">kcal/día</span></div>
+                  <div class="r-note">Calorías que quemás en reposo absoluto — lo mínimo para funcionar.</div>
+                </div>
+              </div>
+
+              <div class="macro-bars" id="tdee-r-macros">
+                <h4>Distribución de macronutrientes estimada</h4>
+                <div class="macro-row">
+                  <span class="macro-name">Carbohidratos</span>
+                  <div class="macro-bar-bg"><div class="macro-bar-fill c-carbs" id="tdee-bar-c" style="width:0%"></div></div>
+                  <span class="macro-val" id="tdee-val-c">—</span>
+                </div>
+                <div class="macro-row">
+                  <span class="macro-name">Proteína</span>
+                  <div class="macro-bar-bg"><div class="macro-bar-fill c-protein" id="tdee-bar-p" style="width:0%"></div></div>
+                  <span class="macro-val" id="tdee-val-p">—</span>
+                </div>
+                <div class="macro-row">
+                  <span class="macro-name">Grasa</span>
+                  <div class="macro-bar-bg"><div class="macro-bar-fill c-fat" id="tdee-bar-f" style="width:0%"></div></div>
+                  <span class="macro-val" id="tdee-val-f">—</span>
+                </div>
+              </div>
+
+              <div class="result-note" id="tdee-r-note" style="margin-top:16px"></div>
+            </div>
+          </div>
+
+          <div class="science-ref">
+            <div class="ref-label">Referencia nutricional</div>
+            <div class="ref-title">Dietary protein for athletes: From requirements to optimum adaptation</div>
+            <div class="ref-meta">Phillips SM, Van Loon LJ · Journal of Sports Sciences · 2011</div>
+            <div class="ref-finding">Los deportistas de resistencia requieren 1.2–1.4 g de proteína por kg de peso corporal diariamente; para deportistas que buscan cambios en composición corporal se recomienda hasta 1.6–2.0 g/kg. La distribución a lo largo del día (3–4 comidas con proteína) maximiza la síntesis muscular.</div>
+          </div>
+
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="guide-sidebar">
+          <div class="sidebar-card">
+            <h4>Contenido</h4>
+            <ul class="toc-list">
+              <li><a href="#por-que">Por qué no bajás de peso</a></li>
+              <li><a href="#dentro-fuera">El error clave</a></li>
+              <li><a href="#alimentacion">Cómo debería ser tu dieta</a></li>
+              <li><a href="#timing">Cuándo comer</a></li>
+              <li><a href="#calc-ejercicio">Calculadora en el ejercicio</a></li>
+              <li><a href="#errores">Errores comunes</a></li>
+              <li><a href="#bajar-peso">Consejos para bajar de peso</a></li>
+              <li><a href="#calc-tdee">Calculadora nutricional diaria</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-cta">
+            <p>¿Querés un plan de entrenamiento que también contemple tu nutrición y objetivos?</p>
+            <a href="plan-entrenamientos.html" class="btn btn-primary">Ver planes de entrenamiento</a>
+            <br><br>
+            <a href="contacto.html" class="btn btn-outline" style="width:100%;text-align:center;font-size:13px;display:block;">Consulta gratuita</a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Related guides -->
+  <section class="related-section">
+    <div class="container">
+      <h3>Más guías de Athletetrainlab</h3>
+      <p>Seguimos publicando recursos para que entiendas mejor tu entrenamiento.</p>
+      <div class="related-grid">
+        <a href="guia-zonas-respiracion.html" class="related-card">
+          <div class="rc-tag">Fisiología</div>
+          <div class="rc-title">Zonas de Entrenamiento con la Respiración</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="Img/ATLLogoBlancoBlanco.svg" alt="ATL Logo">
+          <p>Centro de análisis deportivo y coaching de ciclismo en Costa Rica.</p>
+        </div>
+        <div class="footer-col"><h4>Servicios</h4><a href="pruebas-rendimiento.html">Pruebas de Rendimiento</a><a href="plan-entrenamientos.html">Plan de Entrenamientos</a><a href="bikefit-3d.html">Bike Fit 3D</a></div>
+        <div class="footer-col"><h4>ATL</h4><a href="somos-atl.html">Somos ATL</a><a href="tarifas.html">Tarifas</a><a href="convenios.html">Convenios</a><a href="guias.html">Guías</a><a href="contacto.html">Contacto</a></div>
+        <div class="footer-col"><h4>Contacto</h4><div class="footer-contact-item"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>athletetrainlab@gmail.com</span></div><div class="footer-contact-item"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.36-.36a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span>8844-5550</span></div></div>
+      </div>
+      <div class="footer-bottom"><span>© 2025 Athletetrainlab Costa Rica.</span> <a href="privacidad.html" style="color:rgba(255,255,255,0.35);text-decoration:none;margin-left:16px;font-size:13px;">Política de Privacidad</a></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+  // ─────────────────────────────────────────────
+  // IN-RIDE NUTRITION CALCULATOR
+  // Logic adapted from github.com/camachogabriel/atl-nut-sys
+  // ─────────────────────────────────────────────
+  document.querySelectorAll('input[name="rc-lugar"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('rc-clima-field').style.opacity = r.value === 'rodillo' ? '0.3' : '1';
+      document.getElementById('rc-clima-field').style.pointerEvents = r.value === 'rodillo' ? 'none' : 'auto';
+    });
+  });
+
+  function calcRide() {
+    const dur   = parseFloat(document.getElementById('rc-dur').value);
+    const inten = document.getElementById('rc-int').value;
+    const lugar = document.querySelector('input[name="rc-lugar"]:checked')?.value;
+    const clima = document.getElementById('rc-clima').value;
+    const sudor = document.querySelector('input[name="rc-sudor"]:checked')?.value;
+
+    if (!dur || !inten || !lugar || (!clima && lugar === 'calle') || !sudor) {
+      alert('Completá todos los campos para calcular.');
+      return;
+    }
+
+    // Carbohidratos
+    let carbTarget = 0;
+    if (dur >= 1) {
+      const tabla = { suave: [30, 45, 55], moderado: [45, 65, 80], fuerte: [60, 85, 100] };
+      const idx   = dur < 2 ? 0 : dur < 3 ? 1 : 2;
+      carbTarget  = (tabla[inten] || tabla.moderado)[idx];
+    }
+
+    // Líquido
+    const baseMap = { fresco: 500, templado: 650, caluroso: 750, humedo: 800 };
+    let liq = lugar === 'rodillo' ? 850 : (baseMap[clima] || 650);
+    if (sudor === 'mucho') liq += 150;
+    else if (sudor === 'poco') liq -= 100;
+    if (inten === 'fuerte') liq += 50;
+    else if (inten === 'suave') liq -= 50;
+    liq = Math.max(400, Math.min(1100, Math.round(liq / 50) * 50));
+
+    // Sodio
+    let sodio = { poco: 300, normal: 500, mucho: 800 }[sudor] || 500;
+    if (lugar === 'rodillo') sodio += 300;
+    else if (clima === 'caluroso') sodio += 150;
+    else if (clima === 'humedo') sodio += 250;
+    sodio = Math.max(200, Math.min(1500, Math.round(sodio / 50) * 50));
+
+    // Render results
+    const totalCarb = Math.round(carbTarget * dur);
+    const totalLiq  = Math.round(liq * dur / 100) / 10;
+
+    document.getElementById('rc-r-carb').textContent = dur < 1 ? '0' : `${Math.max(0, carbTarget - 15)}–${carbTarget + 15}`;
+    document.getElementById('rc-r-carb-note').textContent = dur < 1
+      ? 'Sesión corta: tus reservas alcanzan. Solo agua.'
+      : `~${totalCarb} g en total. ${inten === 'suave' ? 'A ritmo suave usás más grasa — menos carbos necesarios.' : 'A este esfuerzo el cuerpo depende del glucógeno.'}`;
+
+    document.getElementById('rc-r-liq').textContent = liq;
+    document.getElementById('rc-r-liq-note').textContent = `~${totalLiq} L en total. ${lugar === 'rodillo' ? 'Rodillo: sin ventilación, sudás más.' : 'Bebé en sorbos regulares sin esperar sed.'}`;
+
+    document.getElementById('rc-r-sod').textContent = sodio;
+    document.getElementById('rc-r-sod-note').textContent = lugar === 'rodillo'
+      ? 'Alto en rodillo: el sodio retiene el líquido que tanto perdés.'
+      : 'No solo agua — el sodio mejora la absorción y la retención.';
+
+    let msg = '';
+    if (dur < 1) {
+      msg = 'Para sesiones de menos de 1 hora: llevá solo agua. Tus reservas de glucógeno alcanzan de sobra.';
+    } else {
+      const geles = Math.max(1, Math.round(totalCarb / 25));
+      const bidones = Math.max(1, Math.round(liq * dur / 600));
+      msg = `Equivalente práctico: ~${geles} geles o barritas (25 g c/u), ~${bidones} bidones de 600 ml${sodio > 500 ? ', pastillas de electrolitos o bebida con sodio' : ' con un toque de sal o electrolitos'}.`;
+    }
+    document.getElementById('rc-r-msg').textContent = msg;
+
+    // Timeline
+    const horas = Math.max(1, Math.ceil(dur));
+    let tlHtml = '<div class="result-timeline"><h4>Estrategia hora por hora</h4><div class="tl">';
+    tlHtml += `<div><b>Antes:</b> Llegá bien hidratado y con una comida de carbohidratos 1–3 h antes.</div>`;
+    if (dur >= 1) {
+      for (let h = 1; h <= horas; h++) {
+        tlHtml += `<div><b>Hora ${h}:</b> ~${carbTarget} g carbos · ~${liq} ml líquido · ~${sodio} mg sodio</div>`;
+      }
+    }
+    tlHtml += `<div><b>Al terminar:</b> Reponés con carbohidratos + proteína en los primeros 30–60 min.</div>`;
+    tlHtml += '</div></div>';
+    document.getElementById('rc-r-tl').innerHTML = tlHtml;
+
+    document.getElementById('rc-results').classList.add('show');
+    document.getElementById('rc-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ─────────────────────────────────────────────
+  // TDEE CALCULATOR — Mifflin-St Jeor
+  // ─────────────────────────────────────────────
+  function calcTdee() {
+    const sex  = document.querySelector('input[name="tdee-sex"]:checked')?.value;
+    const age  = parseFloat(document.getElementById('tdee-age').value);
+    const w    = parseFloat(document.getElementById('tdee-w').value);
+    const h    = parseFloat(document.getElementById('tdee-h').value);
+    const act  = parseFloat(document.getElementById('tdee-act').value);
+    const goal = document.querySelector('input[name="tdee-goal"]:checked')?.value;
+
+    if (!sex || !age || !w || !h || !act || !goal) {
+      alert('Completá todos los campos para calcular.');
+      return;
+    }
+
+    // BMR — Mifflin-St Jeor
+    const bmr = sex === 'm'
+      ? 10 * w + 6.25 * h - 5 * age + 5
+      : 10 * w + 6.25 * h - 5 * age - 161;
+
+    const tdee = Math.round(bmr * act);
+
+    // Target según objetivo
+    let targetCal, goalLabel, goalNote, isDeficit = false;
+    if (goal === 'lose') {
+      targetCal = tdee - 350;
+      goalLabel = 'Objetivo para bajar de peso';
+      goalNote  = 'Déficit de ~350 kcal/día — pérdida lenta y sostenible (~0.3 kg/semana) sin comprometer el rendimiento.';
+      isDeficit  = true;
+    } else if (goal === 'gain') {
+      targetCal = tdee + 250;
+      goalLabel = 'Objetivo para ganar masa';
+      goalNote  = 'Superávit moderado de 250 kcal/día para ganar músculo minimizando grasa.';
+    } else {
+      targetCal = tdee;
+      goalLabel = 'Objetivo para mantener peso';
+      goalNote  = 'Igualá tu gasto energético total para mantener el peso y optimizar el rendimiento.';
+    }
+
+    // Macros: carb 50%, protein 25%, fat 25%  (para pérdida: protein al 28%)
+    const pProt = goal === 'lose' ? 0.28 : 0.23;
+    const pCarb = goal === 'lose' ? 0.47 : 0.52;
+    const pFat  = 1 - pProt - pCarb;
+
+    const gCarb = Math.round((targetCal * pCarb) / 4);
+    const gProt = Math.round((targetCal * pProt) / 4);
+    const gFat  = Math.round((targetCal * pFat)  / 9);
+
+    // Protein check (1.6–2.0 g/kg)
+    const protMin = Math.round(w * 1.6);
+    const protMax = Math.round(w * 2.0);
+
+    document.getElementById('tdee-r-bmr').textContent  = Math.round(bmr);
+    document.getElementById('tdee-r-tdee').textContent = tdee;
+    document.getElementById('tdee-r-goal').textContent = targetCal;
+    document.getElementById('tdee-r-goal-label').textContent = goalLabel;
+    document.getElementById('tdee-r-goal-note').textContent  = goalNote;
+
+    const goalCard = document.getElementById('tdee-r-goal-card');
+    goalCard.className = 'tdee-card goal-card' + (isDeficit ? ' deficit' : '');
+
+    // Macro bars
+    document.getElementById('tdee-bar-c').style.width  = Math.round(pCarb * 100) + '%';
+    document.getElementById('tdee-bar-p').style.width  = Math.round(pProt * 100) + '%';
+    document.getElementById('tdee-bar-f').style.width  = Math.round(pFat  * 100) + '%';
+    document.getElementById('tdee-val-c').textContent  = `${gCarb} g/día`;
+    document.getElementById('tdee-val-p').textContent  = `${gProt} g/día`;
+    document.getElementById('tdee-val-f').textContent  = `${gFat} g/día`;
+
+    let noteText = `Para un ciclista de ${w} kg, la proteína recomendada es ${protMin}–${protMax} g/día (1.6–2.0 g/kg). `;
+    if (gProt < protMin) {
+      noteText += `Tu estimado (${gProt} g) está por debajo — considerá aumentar proteína y reducir carbohidratos levemente para preservar músculo.`;
+    } else {
+      noteText += `Tu estimado (${gProt} g) está dentro del rango recomendado para un deportista de resistencia.`;
+    }
+    noteText += ` Estos valores son estimados — la realidad varía por intensidad del entrenamiento, genética y composición corporal. Para un plan individualizado, consultá con un profesional.`;
+    document.getElementById('tdee-r-note').textContent = noteText;
+
+    document.getElementById('tdee-results').classList.add('show');
+    document.getElementById('tdee-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  </script>
+</body>
+</html>
