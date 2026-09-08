@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La glucosa en la dieta — Glucosa</title>
+<meta name="description" content="De qué alimentos viene, cómo la fibra cambia su velocidad de entrada, y qué patrón alimentario sostiene un balance estable.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF6;
+  --paper-2:#F4F2EC;
+  --ink:#1B1C18;
+  --ink-soft:#4A4A43;
+  --ink-faint:#8B897E;
+  --line:#DEDACB;
+  --line-strong:#C9C4B0;
+  --accent:#B9820C;
+  --accent-ink:#7A5608;
+  --tint:#F7EFDC;
+  --tint-line:#E9D9AE;
+  --serif:'Newsreader', 'Iowan Old Style', 'Georgia', serif;
+  --mono:'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent); color:var(--paper);}
+a{color:var(--accent-ink); text-decoration-thickness:1px; text-underline-offset:3px;}
+a:hover{color:var(--accent);}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+img,svg{max-width:100%;}
+
+.wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px 28px;
+  border-bottom:1px solid var(--line);
+}
+.topbar .brand{
+  font-family:var(--mono); font-size:13px; letter-spacing:.02em;
+  color:var(--ink-soft); text-decoration:none;
+}
+.topbar .brand strong{color:var(--ink); font-weight:600;}
+.topbar .back{
+  font-family:var(--mono); font-size:13px;
+  color:var(--ink-soft); text-decoration:none;
+  display:flex; align-items:center; gap:6px;
+}
+.topbar .back:hover{color:var(--accent-ink);}
+.topbar .modtag{
+  font-family:var(--mono); font-size:13px; color:var(--accent-ink);
+  background:var(--tint); border:1px solid var(--tint-line);
+  padding:4px 10px; border-radius:3px;
+}
+
+/* ---------- hero (index) ---------- */
+.hero{
+  position:relative;
+  padding:64px 28px 40px;
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:1120px; margin:0 auto;
+  display:grid; grid-template-columns: 1.1fr 1fr; gap:40px; align-items:center;
+}
+.hero h1{
+  font-size:clamp(48px, 8vw, 84px);
+  line-height:0.98;
+  margin:0 0 20px;
+  font-weight:600;
+  letter-spacing:-0.01em;
+}
+.hero .lede{
+  font-size:20px; line-height:1.55; color:var(--ink-soft);
+  max-width:46ch; margin:0 0 26px;
+}
+.hero .meta{
+  font-family:var(--mono); font-size:13px; color:var(--ink-faint);
+  margin-bottom:10px;
+}
+.curve-wrap{position:relative;}
+.curve-wrap svg{width:100%; height:auto; display:block;}
+.curve-path{
+  fill:none; stroke:var(--ink); stroke-width:2.5;
+  stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:2000; stroke-dashoffset:2000;
+  animation:draw 2.1s cubic-bezier(.4,.1,.2,1) forwards;
+}
+.curve-marker circle{opacity:0; animation:pop .5s ease forwards;}
+.curve-marker text{opacity:0; animation:pop .5s ease forwards;}
+.curve-marker.m1 circle, .curve-marker.m1 text{animation-delay:.9s;}
+.curve-marker.m2 circle, .curve-marker.m2 text{animation-delay:1.3s;}
+.curve-marker.m3 circle, .curve-marker.m3 text{animation-delay:1.7s;}
+.grid-line{stroke:var(--line-strong); stroke-width:1;}
+.base-line{stroke:var(--ink-faint); stroke-width:1; stroke-dasharray:4 5;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes pop{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){
+  .curve-path{animation:none; stroke-dashoffset:0;}
+  .curve-marker circle, .curve-marker text{animation:none; opacity:1;}
+}
+@media (max-width: 860px){
+  .hero-inner{grid-template-columns:1fr;}
+}
+
+.intro-copy{
+  max-width:68ch; margin:0 auto; padding:8px 28px 56px;
+  font-size:18px; color:var(--ink-soft);
+}
+.intro-copy p{margin:0 0 16px;}
+
+/* ---------- module index blocks ---------- */
+.modules{ border-top:1px solid var(--line); }
+.modblock{
+  border-bottom:1px solid var(--line);
+  padding:40px 0;
+  display:grid; grid-template-columns: 100px 1fr; gap:28px;
+}
+.modblock .num{
+  font-family:var(--mono); font-size:15px; padding-top:6px;
+}
+.modblock h2{
+  font-size:30px; margin:0 0 4px; font-weight:600; line-height:1.15;
+}
+.modblock .sub{
+  font-family:var(--mono); font-size:13px; margin:0 0 14px;
+}
+.modblock p.desc{
+  max-width:62ch; color:var(--ink-soft); margin:0 0 16px; font-size:17px;
+}
+.modblock ul.topics{
+  margin:0 0 20px; padding:0; list-style:none;
+  display:flex; flex-wrap:wrap; gap:8px 10px;
+}
+.modblock ul.topics li{
+  font-family:var(--mono); font-size:12.5px;
+  border:1px solid var(--line-strong); border-radius:3px;
+  padding:4px 9px; color:var(--ink-soft);
+}
+.modblock .enter{
+  font-weight:600; font-size:16px; text-decoration:underline;
+  text-decoration-thickness:1px; text-underline-offset:4px;
+}
+.modblock[data-m="1"] .num,.modblock[data-m="1"] .enter,.modblock[data-m="1"] .sub{color:#7A5608;}
+.modblock[data-m="2"] .num,.modblock[data-m="2"] .enter,.modblock[data-m="2"] .sub{color:#332750;}
+.modblock[data-m="3"] .num,.modblock[data-m="3"] .enter,.modblock[data-m="3"] .sub{color:#7A2313;}
+@media (max-width:640px){
+  .modblock{grid-template-columns:1fr; gap:10px;}
+}
+
+/* ---------- module page header ---------- */
+.modhead{
+  padding:56px 28px 32px;
+  background:var(--tint);
+  border-bottom:1px solid var(--tint-line);
+}
+.modhead-inner{max-width:760px; margin:0 auto;}
+.modhead .kicker{font-family:var(--mono); font-size:13px; color:var(--accent-ink); margin-bottom:14px;}
+.modhead h1{font-size:clamp(32px,5vw,48px); line-height:1.08; margin:0 0 10px; font-weight:600;}
+.modhead .sub{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-soft); margin:0;}
+
+.objective{
+  max-width:760px; margin:34px auto 0; padding:20px 24px;
+  border-left:3px solid var(--accent);
+  background:var(--paper);
+  font-size:16px; color:var(--ink-soft);
+}
+.objective p{margin:0;}
+
+/* ---------- layout: toc + article ---------- */
+.page-grid{
+  max-width:1040px; margin:0 auto; padding:44px 28px 90px;
+  display:grid; grid-template-columns:200px minmax(0,760px); gap:48px;
+  align-items:start;
+}
+.toc{position:sticky; top:24px;}
+.toc-label{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin:0 0 12px;}
+.toc ol{list-style:none; margin:0; padding:0; counter-reset:none;}
+.toc li{margin-bottom:10px;}
+.toc a{
+  display:block; font-size:13.5px; line-height:1.4;
+  color:var(--ink-soft); text-decoration:none; border-left:2px solid transparent;
+  padding-left:10px;
+}
+.toc a:hover{color:var(--accent-ink); border-left-color:var(--accent);}
+
+article.content h2{
+  font-size:25px; margin:52px 0 16px; font-weight:600; line-height:1.25;
+  scroll-margin-top:24px;
+}
+article.content h3{
+  font-size:18px; margin:30px 0 10px; font-weight:600;
+  font-family:var(--mono); text-transform:none; color:var(--ink);
+}
+article.content p{margin:0 0 16px; max-width:70ch;}
+article.content ul, article.content ol{margin:0 0 18px; padding-left:22px; max-width:70ch;}
+article.content li{margin-bottom:6px;}
+article.content strong{font-weight:700;}
+article.content em{font-style:italic;}
+article.content hr{border:none; border-top:1px solid var(--line); margin:44px 0;}
+article.content code{
+  font-family:var(--mono); font-size:.86em; background:var(--tint);
+  padding:1px 5px; border-radius:3px;
+}
+
+article.content table{
+  width:100%; border-collapse:collapse; margin:20px 0 28px; font-size:15px;
+}
+article.content caption{caption-side:top; text-align:left;}
+article.content th, article.content td{
+  border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;
+}
+article.content thead th{
+  font-family:var(--mono); font-weight:600; font-size:12.5px;
+  color:var(--accent-ink); border-bottom:2px solid var(--accent);
+  padding-bottom:9px;
+}
+article.content tbody tr:hover{background:var(--tint);}
+
+section.refs{
+  margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
+}
+section.refs h2{
+  font-family:var(--mono); font-size:14px; font-weight:600;
+  color:var(--ink-faint); margin:0 0 18px; text-transform:none;
+}
+section.refs ul{padding-left:0; list-style:none; margin:0;}
+section.refs li{
+  font-size:14px; color:var(--ink-soft); margin-bottom:12px; padding-left:20px;
+  text-indent:-20px; max-width:66ch;
+}
+
+@media (max-width:860px){
+  .page-grid{grid-template-columns:1fr;}
+  .toc{position:static; margin-bottom:8px;}
+  .toc-panel{border:1px solid var(--line); border-radius:4px; padding:14px 16px;}
+}
+
+/* ---------- footer nav ---------- */
+.pagenav{
+  border-top:1px solid var(--line);
+  padding:28px 28px 60px;
+}
+.pagenav-inner{
+  max-width:1040px; margin:0 auto;
+  display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+}
+.pagenav a{
+  font-family:var(--mono); font-size:13.5px; text-decoration:none; color:var(--ink-soft);
+  display:flex; flex-direction:column; gap:4px;
+}
+.pagenav a .lbl{color:var(--ink-faint); font-size:11px;}
+.pagenav a:hover{color:var(--accent-ink);}
+.pagenav a.next{text-align:right; margin-left:auto;}
+
+footer.site{
+  border-top:1px solid var(--line);
+  padding:26px 28px 48px;
+  font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);
+}
+footer.site .wrap{max-width:1120px;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back" href="index.html">← Curso</a>
+  <span class="modtag">módulo 01</span>
+</header>
+
+<section class="modhead">
+  <div class="modhead-inner">
+    <p class="kicker">módulo 01 / 03 módulos</p>
+    <h1>La glucosa en la dieta</h1>
+    <p class="sub">Fundamentos nutricionales</p>
+  </div>
+  <div class="objective">
+<p>Objetivo del módulo: dominar de dónde viene la glucosa que circula en tu sangre, cómo entra al cuerpo, qué papel juega la fibra en ese proceso, y qué patrón alimentario sostiene un balance glucémico estable. Este módulo es la base sobre la que se construyen el Módulo 2 (fisiología/endocrinología) y el Módulo 3 (rendimiento deportivo).</p>
+</div>
+</section>
+
+<div class="page-grid">
+  <nav class="toc">
+    <p class="toc-label">índice</p>
+    <ol><li><a href="#11-qué-es-la-glucosa-y-por-qué-es-el-denominador-común-de-los-carbohidratos">1.1 ¿Qué es la glucosa y por qué es el "denominador común" de los carbohidratos?</a></li><li><a href="#12-tipos-de-alimentos-según-su-forma-química-de-carbohidrato">1.2 Tipos de alimentos según su forma química de carbohidrato</a></li><li><a href="#13-el-rol-de-la-fibra-en-la-dieta">1.3 El rol de la fibra en la dieta</a></li><li><a href="#14-relación-con-la-metabolización-por-qué-no-todos-los-azúcares-cuentan-igual">1.4 Relación con la metabolización: por qué no todos los azúcares "cuentan igual"</a></li><li><a href="#15-ideal-alimentario-para-un-balance-de-glucosa">1.5 Ideal alimentario para un balance de glucosa</a></li><li><a href="#16-síntesis-cómo-entra-la-glucosa-al-cuerpo-mapa-del-proceso-completo">1.6 Síntesis: cómo entra la glucosa al cuerpo (mapa del proceso completo)</a></li><li><a href="#referencias-clave-de-este-módulo">Referencias clave de este módulo</a></li></ol>
+  </nav>
+  <article class="content">
+    
+
+
+<h2 id="11-qué-es-la-glucosa-y-por-qué-es-el-denominador-común-de-los-carbohidratos">1.1 ¿Qué es la glucosa y por qué es el "denominador común" de los carbohidratos?</h2>
+<p>La glucosa es un monosacárido de 6 carbonos (C₆H₁₂O₆). No es el único azúcar que comemos, pero es el punto de convergencia metabólico de <strong>todos</strong> los carbohidratos de la dieta.</p>
+<p>Cuando digerimos carbohidratos, los productos finales que llegan a la mucosa intestinal son casi exclusivamente tres monosacáridos:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Monosacárido</th>
+<th>% aproximado del total absorbido</th>
+<th>Origen dietético principal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Glucosa</strong></td>
+<td>~80 %</td>
+<td>Almidón, azúcar de mesa (parte), lactosa (parte), fruta (parte)</td>
+</tr>
+<tr class="even">
+<td><strong>Fructosa</strong></td>
+<td>Minoritario</td>
+<td>Fruta, miel, sacarosa, jarabe de maíz alto en fructosa</td>
+</tr>
+<tr class="odd">
+<td><strong>Galactosa</strong></td>
+<td>Minoritario</td>
+<td>Lactosa (leche y derivados)</td>
+</tr>
+</tbody>
+</table>
+<p>Esto es clave: <strong>la glucosa es el producto final común de la digestión de carbohidratos</strong>. La fructosa y la galactosa absorbidas viajan al hígado, donde son convertidas rápidamente —casi en su totalidad— en glucosa o en intermediarios que confluyen en las mismas rutas. El hígado contiene grandes cantidades de glucosa-6-fosfatasa, la enzima que libera glucosa libre a la sangre a partir de glucosa-6-fosfato; por esto, sin importar qué azúcar comas, el hígado tiende a "traducirlo" a glucosa antes de exportarlo a la circulación (Hantzidiamantis, Awosika &amp; Lappin, <em>Physiology, Glucose</em>, StatPearls, actualizado 2024).</p>
+<p><strong>Consecuencia práctica:</strong> cuando hablamos de "azúcar en sangre", casi siempre hablamos de glucosa, sin importar si el carbohidrato que comiste era almidón de arroz, lactosa de un yogur o sacarosa de un postre.</p>
+<hr/>
+<h2 id="12-tipos-de-alimentos-según-su-forma-química-de-carbohidrato">1.2 Tipos de alimentos según su forma química de carbohidrato</h2>
+<h3 id="a-monosacáridos-libres">A. Monosacáridos libres</h3>
+<ul>
+<li><strong>Glucosa libre</strong>: miel, jarabes, algunas frutas.</li>
+<li><strong>Fructosa libre</strong>: fruta, miel, agave.</li>
+<li><strong>Galactosa</strong>: casi nunca libre en alimentos; aparece como parte de la lactosa.</li>
+</ul>
+<h3 id="b-disacáridos">B. Disacáridos</h3>
+<ul>
+<li><strong>Sacarosa</strong> (glucosa + fructosa): azúcar de mesa, la mayoría de los productos "endulzados".</li>
+<li><strong>Lactosa</strong> (glucosa + galactosa): leche y lácteos.</li>
+<li><strong>Maltosa</strong> (glucosa + glucosa): producto intermedio de la digestión del almidón, cerveza, malta.</li>
+</ul>
+<h3 id="c-polisacáridos-digeribles-almidón">C. Polisacáridos digeribles (almidón)</h3>
+<ul>
+<li><strong>Amilosa</strong> (cadena lineal) y <strong>amilopectina</strong> (cadena ramificada): componentes del almidón en cereales (trigo, arroz, maíz, avena), tubérculos (papa, yuca) y legumbres.</li>
+<li>La amilopectina, al tener más "puntos de ataque" para las enzimas (más extremos no reductores), se digiere más rápido que la amilosa → almidones ricos en amilopectina generan picos glucémicos más rápidos y altos que los ricos en amilosa.</li>
+</ul>
+<h3 id="d-polisacáridos-no-digeribles-fibra">D. Polisacáridos no digeribles (fibra)</h3>
+<ul>
+<li>Celulosa, hemicelulosa, pectinas, betaglucanos, inulina, fructooligosacáridos (FOS), almidón resistente.</li>
+<li>No aportan glucosa directamente (el intestino humano carece de las enzimas para romperlos), pero <strong>modulan profundamente</strong> la velocidad de absorción de la glucosa de los demás alimentos y sirven de sustrato a la microbiota (ver 1.3).</li>
+</ul>
+<h3 id="jerarquía-práctica-de-velocidad-de-entrada-de-glucosa">Jerarquía práctica de "velocidad de entrada de glucosa"</h3>
+<p>De más rápida a más lenta, en igualdad de cantidad de gramos de carbohidrato:</p>
+<ol type="1">
+<li>Glucosa/maltodextrina líquida (sin fibra, sin grasa, sin proteína) — pico muy rápido.</li>
+<li>Almidón refinado sin fibra (pan blanco, arroz blanco, puré de papa) — rápido.</li>
+<li>Sacarosa en matriz sólida (galletas, postres) — rápido-moderado.</li>
+<li>Almidón con fibra intacta (legumbres, avena integral, arroz integral) — moderado.</li>
+<li>Fructosa libre en fruta entera (con fibra y agua) — lento, porque la fructosa se metaboliza principalmente en el hígado y no eleva la glucemia de forma directa e inmediata (ver 1.4).</li>
+<li>Carbohidrato complejo + fibra + grasa + proteína en una comida mixta — el más lento de todos.</li>
+</ol>
+<hr/>
+<h2 id="13-el-rol-de-la-fibra-en-la-dieta">1.3 El rol de la fibra en la dieta</h2>
+<p>La fibra dietética se clasifica funcionalmente en dos grandes grupos, y ambos importan para el balance de glucosa, aunque por mecanismos distintos.</p>
+<h3 id="fibra-soluble-avena-legumbres-psyllium-manzana-cítricos">Fibra soluble (avena, legumbres, psyllium, manzana, cítricos)</h3>
+<ul>
+<li>Forma geles viscosos en el estómago e intestino delgado.</li>
+<li><strong>Enlentece el vaciamiento gástrico</strong> → la glucosa llega de forma más gradual al intestino delgado.</li>
+<li><strong>Reduce el contacto entre las enzimas digestivas (amilasas) y el almidón</strong>, atrapándolo físicamente en la matriz de gel.</li>
+<li><strong>Disminuye la difusión de la glucosa</strong> hacia el borde en cepillo del enterocito, retrasando su captación por los transportadores SGLT1.</li>
+<li>Resultado neto: curvas de glucemia postprandial más planas, con picos más bajos y más tardíos, y menor demanda de insulina.</li>
+</ul>
+<h3 id="fibra-insoluble-salvado-de-trigo-cáscaras-vegetales-de-hoja">Fibra insoluble (salvado de trigo, cáscaras, vegetales de hoja)</h3>
+<ul>
+<li>Aporta menos efecto directo sobre la viscosidad, pero <strong>acelera el tránsito intestinal</strong> y aumenta el volumen del bolo, lo que también dilута la concentración de glucosa disponible por unidad de tiempo.</li>
+<li>Contribuye a la sensación de saciedad, reduciendo indirectamente la ingesta calórica y de carbohidratos totales.</li>
+</ul>
+<h3 id="fibra-fermentable-y-el-eje-intestino-metabolismo">Fibra fermentable y el eje intestino-metabolismo</h3>
+<p>Buena parte de la fibra soluble (inulina, FOS, betaglucanos, almidón resistente) no se absorbe, pero es fermentada por la microbiota colónica, generando <strong>ácidos grasos de cadena corta (AGCC)</strong>: acetato, propionato y butirato.</p>
+<ul>
+<li>El <strong>propionato</strong> llega al hígado y puede inhibir parcialmente la gluconeogénesis y modular el apetito.</li>
+<li>El <strong>butirato</strong> es el combustible preferido del colonocito y se asocia con mejor sensibilidad a la insulina y menor inflamación de bajo grado sistémica.</li>
+<li>Estos AGCC estimulan la liberación de <strong>GLP-1 y PYY</strong> desde células enteroendocrinas del íleon/colon, hormonas que enlentecen el vaciamiento gástrico y potencian la secreción de insulina dependiente de glucosa (efecto incretina).</li>
+</ul>
+<p><strong>Síntesis del rol de la fibra:</strong> actúa en tres niveles simultáneos — (1) mecánico/físico en el tracto digestivo superior (enlentece absorción), (2) fermentativo en el colon (genera AGCC con efectos metabólicos sistémicos), y (3) endocrino indirecto (estimula incretinas). El resultado combinado es una curva de glucosa-insulina más suave y sostenida, en lugar de picos abruptos seguidos de caídas.</p>
+<hr/>
+<h2 id="14-relación-con-la-metabolización-por-qué-no-todos-los-azúcares-cuentan-igual">1.4 Relación con la metabolización: por qué no todos los azúcares "cuentan igual"</h2>
+<p>Aunque glucosa, fructosa y galactosa terminan mayormente convertidas en glucosa o en intermediarios comunes en el hígado, <strong>la vía y la velocidad son distintas</strong>, y eso tiene consecuencias prácticas:</p>
+<ul>
+<li><strong>Glucosa</strong>: entra a la sangre directamente vía SGLT1/GLUT2 y eleva la glucemia de forma inmediata y proporcional a la dosis. Es el único de los tres monosacáridos que estimula la secreción de insulina de forma robusta por sí sola (a través de la despolarización de la célula β pancreática).</li>
+<li><strong>Fructosa</strong>: se absorbe vía GLUT5 (independiente de sodio) y se metaboliza casi exclusivamente en el hígado mediante la fructoquinasa, sin pasar por el paso regulado por la fosfofructoquinasa-1 (el "cuello de botella" regulatorio de la glucólisis). Esto significa que la fructosa entra a la vía glucolítica/gluconeogénica de forma prácticamente "sin frenos", lo que explica por qué eleva poco la glucemia aguda pero, en exceso crónico, favorece la lipogénesis hepática de novo.</li>
+<li><strong>Galactosa</strong>: se convierte en glucosa-1-fosfato en el hígado a través de la vía de Leloir y entra al mismo fondo metabólico que la glucosa, con un impacto glucémico agudo bajo porque este proceso no es instantáneo.</li>
+</ul>
+<p><strong>Implicación para el balance de glucosa:</strong> la fructosa (en dosis moderadas, principalmente de fruta entera) no es el "villano" agudo de la hiperglucemia postprandial que a veces se piensa —de hecho, tiene bajo índice glucémico—, pero tampoco es gratuita: su metabolismo hepático casi exclusivo la vincula más con la síntesis de triglicéridos y ácido úrico cuando se consume en exceso y en forma líquida/aislada (jarabes, bebidas azucaradas), que cuando se consume en fruta entera junto con fibra, agua y micronutrientes.</p>
+<hr/>
+<h2 id="15-ideal-alimentario-para-un-balance-de-glucosa">1.5 Ideal alimentario para un balance de glucosa</h2>
+<p>Integrando lo anterior, un patrón alimentario que favorece la estabilidad glucémica comparte estas características:</p>
+<ol type="1">
+<li><strong>Carbohidratos en su matriz natural, no aislados</strong>: preferir legumbres, granos enteros, tubérculos con piel, fruta entera, por sobre harinas refinadas, jugos y azúcares añadidos. La fibra propia del alimento es el primer "amortiguador" de la curva glucémica.</li>
+<li><strong>Combinación de macronutrientes en la misma comida</strong>: agregar proteína y/o grasa a una fuente de carbohidrato enlentece el vaciamiento gástrico y reduce el pico glucémico postprandial (efecto de "comida mixta").</li>
+<li><strong>Orden de ingesta</strong>: existe evidencia consistente de que consumir fibra/vegetales y proteína <strong>antes</strong> que el carbohidrato dentro de la misma comida reduce el pico de glucosa e insulina postprandial, comparado con el orden inverso.</li>
+<li><strong>Cantidad y frecuencia</strong>: distribuir el carbohidrato total del día en varias tomas moderadas, en lugar de bolos grandes y aislados, reduce la amplitud de las oscilaciones glucémicas.</li>
+<li><strong>Priorizar carbohidratos de bajo-moderado índice/carga glucémica</strong> cuando el objetivo es estabilidad (no rendimiento agudo): legumbres, avena, la mayoría de las frutas enteras, granos integrales intactos.</li>
+<li><strong>Fibra total suficiente</strong> (idealmente proveniente de múltiples fuentes: soluble e insoluble) para sostener tanto el enlentecimiento de absorción como la producción de AGCC.</li>
+<li><strong>Evitar el consumo aislado y frecuente de azúcares líquidos</strong> (bebidas azucaradas, jugos sin fibra), que representan la combinación de peor perfil: absorción rápida, sin matriz, sin saciedad proporcional a las calorías aportadas.</li>
+</ol>
+<p>Es importante notar que este "ideal de estabilidad" <strong>no es el mismo objetivo</strong> que el ideal de rendimiento deportivo agudo (Módulo 3), donde precisamente se busca lo contrario en momentos puntuales: una entrega rápida y masiva de glucosa a la sangre y al músculo. La nutrición para la salud metabólica de base y la nutrición periexercicio de alto rendimiento son dos problemas distintos que comparten la misma bioquímica pero persiguen objetivos opuestos en el corto plazo.</p>
+<hr/>
+<h2 id="16-síntesis-cómo-entra-la-glucosa-al-cuerpo-mapa-del-proceso-completo">1.6 Síntesis: cómo entra la glucosa al cuerpo (mapa del proceso completo)</h2>
+<ol type="1">
+<li><strong>Boca</strong>: la amilasa salival inicia la hidrólisis del almidón (limitada, por el poco tiempo de contacto).</li>
+<li><strong>Estómago</strong>: el ácido gástrico inactiva la amilasa salival; no hay digestión relevante de carbohidratos aquí, solo mezcla y vaciamiento controlado (regulado, entre otros factores, por la viscosidad que aporta la fibra).</li>
+<li><strong>Intestino delgado (luz)</strong>: la amilasa pancreática continúa la hidrólisis del almidón hasta oligosacáridos y disacáridos (maltosa, maltotriosa, dextrinas límite).</li>
+<li><strong>Borde en cepillo del enterocito</strong>: enzimas de membrana (maltasa-glucoamilasa, sacarasa-isomaltasa, lactasa) completan la hidrólisis hasta monosacáridos libres: glucosa, fructosa, galactosa.</li>
+<li><strong>Absorción hacia el enterocito</strong>:
+<ul>
+<li>Glucosa y galactosa entran por <strong>SGLT1</strong> (transporte activo secundario, acoplado al gradiente de sodio generado por la bomba Na⁺/K⁺-ATPasa).</li>
+<li>Fructosa entra por <strong>GLUT5</strong> (difusión facilitada, independiente de sodio).</li>
+</ul></li>
+<li><strong>Salida del enterocito hacia la sangre (membrana basolateral)</strong>: los tres monosacáridos salen principalmente por <strong>GLUT2</strong>, un transportador bidireccional de baja afinidad y alta capacidad.</li>
+<li><strong>Circulación portal → hígado</strong>: el hígado capta una fracción variable de la glucosa (vía GLUT2, sensible a la actividad de la glucoquinasa) y prácticamente toda la fructosa y galactosa, redirigiéndolas hacia glucosa, glucógeno o lípidos según el estado energético.</li>
+<li><strong>Circulación sistémica</strong>: la glucosa que no fue retenida por el hígado llega a los tejidos periféricos (músculo, tejido adiposo, cerebro, etc.), donde su captación depende del transportador específico de cada tejido (GLUT4 en músculo/adiposo, sensible a insulina; GLUT3 en cerebro, de alta afinidad y no dependiente de insulina; GLUT1 constitutivo).</li>
+</ol>
+<p>Este mapa es el puente directo hacia el <strong>Módulo 2</strong>, donde se profundiza en la regulación hormonal de cada uno de estos pasos (insulina, glucagón, cortisol, eje HPA) y en los principios generales de la endocrinología que gobiernan todo el sistema.</p>
+<hr/>
+<section class="refs"><h2 id="referencias-clave-de-este-módulo">Referencias clave de este módulo</h2>
+<ul>
+<li>Hantzidiamantis PJ, Awosika AO, Lappin SL. <em>Physiology, Glucose</em>. StatPearls [Internet]. Actualizado 30 abr. 2024.</li>
+<li>Holesh JE, Aslam S, Martin A. <em>Physiology, Carbohydrates</em>. StatPearls [Internet].</li>
+<li>Srichaikul K, Jenkins DJA. The Glycemic Index, Rate of Digestion of Carbohydrate Foods, and Their Potential Link with Cardiovascular Disease. <em>J Nutr.</em> 2022.</li>
+<li>Kellett GL, Brot-Laroche E, Mace OJ, Leturque A. Sugar absorption in the intestine: the role of GLUT2. <em>Annu Rev Nutr.</em> 2008.</li>
+</ul>
+</section>
+  </article>
+</div>
+
+<nav class="pagenav">
+  <div class="pagenav-inner">
+    <a class="prev" href="index.html"><span class="lbl">← volver</span>Índice del curso</a>
+    <a class="next" href="modulo-2.html"><span class="lbl">siguiente →</span>Regulación fisiológica y hormonal</a>
+  </div>
+</nav>
+
+</body>
+</html>

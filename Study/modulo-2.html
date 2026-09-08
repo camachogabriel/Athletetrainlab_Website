@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regulación fisiológica y hormonal — Glucosa</title>
+<meta name="description" content="El circuito de insulina, glucagón y cortisol; el eje HPA en detalle; los principios generales de cualquier sistema endocrino, y el mapa enzimático completo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF6;
+  --paper-2:#F4F2EC;
+  --ink:#1B1C18;
+  --ink-soft:#4A4A43;
+  --ink-faint:#8B897E;
+  --line:#DEDACB;
+  --line-strong:#C9C4B0;
+  --accent:#4B3B6B;
+  --accent-ink:#332750;
+  --tint:#EFEAF4;
+  --tint-line:#D6CBE6;
+  --serif:'Newsreader', 'Iowan Old Style', 'Georgia', serif;
+  --mono:'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent); color:var(--paper);}
+a{color:var(--accent-ink); text-decoration-thickness:1px; text-underline-offset:3px;}
+a:hover{color:var(--accent);}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+img,svg{max-width:100%;}
+
+.wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px 28px;
+  border-bottom:1px solid var(--line);
+}
+.topbar .brand{
+  font-family:var(--mono); font-size:13px; letter-spacing:.02em;
+  color:var(--ink-soft); text-decoration:none;
+}
+.topbar .brand strong{color:var(--ink); font-weight:600;}
+.topbar .back{
+  font-family:var(--mono); font-size:13px;
+  color:var(--ink-soft); text-decoration:none;
+  display:flex; align-items:center; gap:6px;
+}
+.topbar .back:hover{color:var(--accent-ink);}
+.topbar .modtag{
+  font-family:var(--mono); font-size:13px; color:var(--accent-ink);
+  background:var(--tint); border:1px solid var(--tint-line);
+  padding:4px 10px; border-radius:3px;
+}
+
+/* ---------- hero (index) ---------- */
+.hero{
+  position:relative;
+  padding:64px 28px 40px;
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:1120px; margin:0 auto;
+  display:grid; grid-template-columns: 1.1fr 1fr; gap:40px; align-items:center;
+}
+.hero h1{
+  font-size:clamp(48px, 8vw, 84px);
+  line-height:0.98;
+  margin:0 0 20px;
+  font-weight:600;
+  letter-spacing:-0.01em;
+}
+.hero .lede{
+  font-size:20px; line-height:1.55; color:var(--ink-soft);
+  max-width:46ch; margin:0 0 26px;
+}
+.hero .meta{
+  font-family:var(--mono); font-size:13px; color:var(--ink-faint);
+  margin-bottom:10px;
+}
+.curve-wrap{position:relative;}
+.curve-wrap svg{width:100%; height:auto; display:block;}
+.curve-path{
+  fill:none; stroke:var(--ink); stroke-width:2.5;
+  stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:2000; stroke-dashoffset:2000;
+  animation:draw 2.1s cubic-bezier(.4,.1,.2,1) forwards;
+}
+.curve-marker circle{opacity:0; animation:pop .5s ease forwards;}
+.curve-marker text{opacity:0; animation:pop .5s ease forwards;}
+.curve-marker.m1 circle, .curve-marker.m1 text{animation-delay:.9s;}
+.curve-marker.m2 circle, .curve-marker.m2 text{animation-delay:1.3s;}
+.curve-marker.m3 circle, .curve-marker.m3 text{animation-delay:1.7s;}
+.grid-line{stroke:var(--line-strong); stroke-width:1;}
+.base-line{stroke:var(--ink-faint); stroke-width:1; stroke-dasharray:4 5;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes pop{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){
+  .curve-path{animation:none; stroke-dashoffset:0;}
+  .curve-marker circle, .curve-marker text{animation:none; opacity:1;}
+}
+@media (max-width: 860px){
+  .hero-inner{grid-template-columns:1fr;}
+}
+
+.intro-copy{
+  max-width:68ch; margin:0 auto; padding:8px 28px 56px;
+  font-size:18px; color:var(--ink-soft);
+}
+.intro-copy p{margin:0 0 16px;}
+
+/* ---------- module index blocks ---------- */
+.modules{ border-top:1px solid var(--line); }
+.modblock{
+  border-bottom:1px solid var(--line);
+  padding:40px 0;
+  display:grid; grid-template-columns: 100px 1fr; gap:28px;
+}
+.modblock .num{
+  font-family:var(--mono); font-size:15px; padding-top:6px;
+}
+.modblock h2{
+  font-size:30px; margin:0 0 4px; font-weight:600; line-height:1.15;
+}
+.modblock .sub{
+  font-family:var(--mono); font-size:13px; margin:0 0 14px;
+}
+.modblock p.desc{
+  max-width:62ch; color:var(--ink-soft); margin:0 0 16px; font-size:17px;
+}
+.modblock ul.topics{
+  margin:0 0 20px; padding:0; list-style:none;
+  display:flex; flex-wrap:wrap; gap:8px 10px;
+}
+.modblock ul.topics li{
+  font-family:var(--mono); font-size:12.5px;
+  border:1px solid var(--line-strong); border-radius:3px;
+  padding:4px 9px; color:var(--ink-soft);
+}
+.modblock .enter{
+  font-weight:600; font-size:16px; text-decoration:underline;
+  text-decoration-thickness:1px; text-underline-offset:4px;
+}
+.modblock[data-m="1"] .num,.modblock[data-m="1"] .enter,.modblock[data-m="1"] .sub{color:#7A5608;}
+.modblock[data-m="2"] .num,.modblock[data-m="2"] .enter,.modblock[data-m="2"] .sub{color:#332750;}
+.modblock[data-m="3"] .num,.modblock[data-m="3"] .enter,.modblock[data-m="3"] .sub{color:#7A2313;}
+@media (max-width:640px){
+  .modblock{grid-template-columns:1fr; gap:10px;}
+}
+
+/* ---------- module page header ---------- */
+.modhead{
+  padding:56px 28px 32px;
+  background:var(--tint);
+  border-bottom:1px solid var(--tint-line);
+}
+.modhead-inner{max-width:760px; margin:0 auto;}
+.modhead .kicker{font-family:var(--mono); font-size:13px; color:var(--accent-ink); margin-bottom:14px;}
+.modhead h1{font-size:clamp(32px,5vw,48px); line-height:1.08; margin:0 0 10px; font-weight:600;}
+.modhead .sub{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-soft); margin:0;}
+
+.objective{
+  max-width:760px; margin:34px auto 0; padding:20px 24px;
+  border-left:3px solid var(--accent);
+  background:var(--paper);
+  font-size:16px; color:var(--ink-soft);
+}
+.objective p{margin:0;}
+
+/* ---------- layout: toc + article ---------- */
+.page-grid{
+  max-width:1040px; margin:0 auto; padding:44px 28px 90px;
+  display:grid; grid-template-columns:200px minmax(0,760px); gap:48px;
+  align-items:start;
+}
+.toc{position:sticky; top:24px;}
+.toc-label{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin:0 0 12px;}
+.toc ol{list-style:none; margin:0; padding:0; counter-reset:none;}
+.toc li{margin-bottom:10px;}
+.toc a{
+  display:block; font-size:13.5px; line-height:1.4;
+  color:var(--ink-soft); text-decoration:none; border-left:2px solid transparent;
+  padding-left:10px;
+}
+.toc a:hover{color:var(--accent-ink); border-left-color:var(--accent);}
+
+article.content h2{
+  font-size:25px; margin:52px 0 16px; font-weight:600; line-height:1.25;
+  scroll-margin-top:24px;
+}
+article.content h3{
+  font-size:18px; margin:30px 0 10px; font-weight:600;
+  font-family:var(--mono); text-transform:none; color:var(--ink);
+}
+article.content p{margin:0 0 16px; max-width:70ch;}
+article.content ul, article.content ol{margin:0 0 18px; padding-left:22px; max-width:70ch;}
+article.content li{margin-bottom:6px;}
+article.content strong{font-weight:700;}
+article.content em{font-style:italic;}
+article.content hr{border:none; border-top:1px solid var(--line); margin:44px 0;}
+article.content code{
+  font-family:var(--mono); font-size:.86em; background:var(--tint);
+  padding:1px 5px; border-radius:3px;
+}
+
+article.content table{
+  width:100%; border-collapse:collapse; margin:20px 0 28px; font-size:15px;
+}
+article.content caption{caption-side:top; text-align:left;}
+article.content th, article.content td{
+  border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;
+}
+article.content thead th{
+  font-family:var(--mono); font-weight:600; font-size:12.5px;
+  color:var(--accent-ink); border-bottom:2px solid var(--accent);
+  padding-bottom:9px;
+}
+article.content tbody tr:hover{background:var(--tint);}
+
+section.refs{
+  margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
+}
+section.refs h2{
+  font-family:var(--mono); font-size:14px; font-weight:600;
+  color:var(--ink-faint); margin:0 0 18px; text-transform:none;
+}
+section.refs ul{padding-left:0; list-style:none; margin:0;}
+section.refs li{
+  font-size:14px; color:var(--ink-soft); margin-bottom:12px; padding-left:20px;
+  text-indent:-20px; max-width:66ch;
+}
+
+@media (max-width:860px){
+  .page-grid{grid-template-columns:1fr;}
+  .toc{position:static; margin-bottom:8px;}
+  .toc-panel{border:1px solid var(--line); border-radius:4px; padding:14px 16px;}
+}
+
+/* ---------- footer nav ---------- */
+.pagenav{
+  border-top:1px solid var(--line);
+  padding:28px 28px 60px;
+}
+.pagenav-inner{
+  max-width:1040px; margin:0 auto;
+  display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+}
+.pagenav a{
+  font-family:var(--mono); font-size:13.5px; text-decoration:none; color:var(--ink-soft);
+  display:flex; flex-direction:column; gap:4px;
+}
+.pagenav a .lbl{color:var(--ink-faint); font-size:11px;}
+.pagenav a:hover{color:var(--accent-ink);}
+.pagenav a.next{text-align:right; margin-left:auto;}
+
+footer.site{
+  border-top:1px solid var(--line);
+  padding:26px 28px 48px;
+  font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);
+}
+footer.site .wrap{max-width:1120px;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back" href="index.html">← Curso</a>
+  <span class="modtag">módulo 02</span>
+</header>
+
+<section class="modhead">
+  <div class="modhead-inner">
+    <p class="kicker">módulo 02 / 03 módulos</p>
+    <h1>Regulación fisiológica y hormonal</h1>
+    <p class="sub">Digestión, eje HPA y endocrinología</p>
+  </div>
+  <div class="objective">
+<p>Objetivo del módulo: entender el sistema de control que mantiene la glucemia dentro de un rango estrecho, el papel del cortisol y el eje hipotálamo-hipófisis-adrenal (HPA), los principios generales que gobiernan cualquier eje endocrino, qué ocurre cuando este sistema se desregula, y el balance enzimático subyacente.</p>
+</div>
+</section>
+
+<div class="page-grid">
+  <nav class="toc">
+    <p class="toc-label">índice</p>
+    <ol><li><a href="#21-digestión-de-carbohidratos-repaso-fisiológico-integrado">2.1 Digestión de carbohidratos (repaso fisiológico integrado)</a></li><li><a href="#22-regulación-hormonal-de-la-glucosa">2.2 Regulación hormonal de la glucosa</a></li><li><a href="#23-cortisol-y-el-eje-hpa">2.3 Cortisol y el eje HPA</a></li><li><a href="#24-principios-fundamentales-de-endocrinología">2.4 Principios fundamentales de endocrinología</a></li><li><a href="#25-desregulación-efecto-de-las-dietas-bajas-en-carbohidratos">2.5 Desregulación: efecto de las dietas bajas en carbohidratos</a></li><li><a href="#26-balance-enzimático-el-mapa-completo-de-interruptores-de-la-glucosa">2.6 Balance enzimático: el mapa completo de "interruptores" de la glucosa</a></li><li><a href="#puente-hacia-el-módulo-3">Puente hacia el Módulo 3</a></li><li><a href="#referencias-clave-de-este-módulo">Referencias clave de este módulo</a></li></ol>
+  </nav>
+  <article class="content">
+    
+
+
+<h2 id="21-digestión-de-carbohidratos-repaso-fisiológico-integrado">2.1 Digestión de carbohidratos (repaso fisiológico integrado)</h2>
+<p>Ya se describió la cascada digestiva-absortiva en el Módulo 1 (§1.6). Aquí se enfatizan los puntos de control enzimático relevantes para la fisiología:</p>
+<ul>
+<li><strong>Amilasa salival y pancreática</strong>: hidrolizan enlaces α-1,4 del almidón; no pueden romper los enlaces α-1,6 (ramificaciones de la amilopectina) ni los enlaces β (fibra), lo que explica por qué la fibra no se digiere.</li>
+<li><strong>Disacaridasas del borde en cepillo</strong> (maltasa-glucoamilasa, sacarasa-isomaltasa, lactasa): son el paso limitante final; su expresión puede reducirse con la edad (hipolactasia) o por daño de la mucosa, generando malabsorción de carbohidratos específicos.</li>
+<li><strong>SGLT1 / GLUT5 / GLUT2</strong>: revisados en el Módulo 1; son el punto de control físico de cuánta glucosa por unidad de tiempo puede entrar realmente a la sangre, independientemente de cuánta esté disponible en la luz intestinal (esto se retoma con mucho detalle en el Módulo 3 al hablar de carbohidratos exógenos durante el ejercicio, donde este límite de transporte se vuelve un factor de rendimiento).</li>
+</ul>
+<hr/>
+<h2 id="22-regulación-hormonal-de-la-glucosa">2.2 Regulación hormonal de la glucosa</h2>
+<p>El control glucémico es un sistema de <strong>retroalimentación negativa multihormonal</strong>, con un solo eje hipoglucemiante dominante (insulina) y varios ejes hiperglucemiantes redundantes (glucagón, catecolaminas, cortisol, GH, tiroxina). Esta asimetría tiene sentido evolutivo: la hipoglucemia aguda es una amenaza vital inmediata (el cerebro depende casi exclusivamente de glucosa), mientras que la hiperglucemia moderada y transitoria es tolerable a corto plazo. Por eso el cuerpo invierte en múltiples "frenos de emergencia" para subir la glucosa, pero solo un mecanismo principal para bajarla.</p>
+<h3 id="tabla-resumen-de-las-hormonas-glucorreguladoras">Tabla-resumen de las hormonas glucorreguladoras</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Hormona</th>
+<th>Origen</th>
+<th>Efecto sobre glucemia</th>
+<th>Mecanismo principal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Insulina</strong></td>
+<td>Células β, islotes pancreáticos</td>
+<td>↓</td>
+<td>↑ translocación de GLUT4 a la membrana (músculo/adiposo), ↑ glucógeno sintasa, ↓ enzimas gluconeogénicas, inactiva fosforilasa kinasa</td>
+</tr>
+<tr class="even">
+<td><strong>Glucagón</strong></td>
+<td>Células α, islotes pancreáticos</td>
+<td>↑</td>
+<td>↑ glucogenólisis hepática, ↑ gluconeogénesis</td>
+</tr>
+<tr class="odd">
+<td><strong>Somatostatina</strong></td>
+<td>Células γ (δ), islotes pancreáticos</td>
+<td>↓ (neto)</td>
+<td>Suprime localmente tanto glucagón como insulina, pero el efecto neto es hipoglucemiante</td>
+</tr>
+<tr class="even">
+<td><strong>Cortisol</strong></td>
+<td>Zona fasciculada, corteza adrenal</td>
+<td>↑</td>
+<td>↑ gluconeogénesis (activa glucosa-6-fosfatasa y PEPCK), antagoniza insulina, ↓ captación periférica de glucosa</td>
+</tr>
+<tr class="odd">
+<td><strong>Epinefrina</strong></td>
+<td>Médula adrenal</td>
+<td>↑</td>
+<td>↑ glucogenólisis, ↑ liberación de ácidos grasos libres (sustrato gluconeogénico indirecto)</td>
+</tr>
+<tr class="even">
+<td><strong>Tiroxina (T4)</strong></td>
+<td>Tiroides</td>
+<td>↑</td>
+<td>↑ glucogenólisis, ↑ absorción intestinal de glucosa</td>
+</tr>
+<tr class="odd">
+<td><strong>Hormona de crecimiento (GH)</strong></td>
+<td>Hipófisis anterior</td>
+<td>↑</td>
+<td>Promueve gluconeogénesis, inhibe captación hepática de glucosa, antagoniza insulina</td>
+</tr>
+<tr class="even">
+<td><strong>ACTH</strong></td>
+<td>Hipófisis anterior</td>
+<td>↑ (indirecto)</td>
+<td>Estimula liberación de cortisol; promueve lipólisis (sustrato gluconeogénico)</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Fuente base de la tabla: Hantzidiamantis, Awosika &amp; Lappin, Physiology, Glucose, StatPearls 2024.)</em></p>
+<h3 id="la-secuencia-fisiológica-típica-tras-una-comida-y-durante-el-ayuno-prolongado">La secuencia fisiológica típica tras una comida y durante el ayuno prolongado</h3>
+<ol type="1">
+<li>Comida rica en carbohidrato → pico de glucemia → liberación de insulina preformada por la célula β.</li>
+<li>Insulina activa GLUT4 en músculo/adiposo, activa glucógeno sintasa hepática → la glucosa se almacena como glucógeno y entra a los tejidos periféricos.</li>
+<li>Glucemia desciende hacia rango normal-bajo → insulina desciende.</li>
+<li>Con insulina baja, las células α liberan glucagón → glucogenólisis y gluconeogénesis hepáticas mantienen la glucemia entre comidas.</li>
+<li>Si el ayuno se prolonga más allá de lo que el glucógeno hepático puede sostener (~12-24 h en reposo), se reclutan cortisol y epinefrina para sostener la gluconeogénesis y establecer euglucemia a partir de un estado de tendencia hipoglucémica.</li>
+</ol>
+<hr/>
+<h2 id="23-cortisol-y-el-eje-hpa">2.3 Cortisol y el eje HPA</h2>
+<h3 id="síntesis-y-ritmo">Síntesis y ritmo</h3>
+<p>El cortisol es el glucocorticoide principal, sintetizado a partir de colesterol en la <strong>zona fasciculada</strong> de la corteza adrenal (que constituye ~75 % de dicha corteza). Su producción diaria normal es de 8-30 mg/día, con un <strong>ritmo circadiano marcado</strong>: comienza a subir en las últimas horas de sueño, alcanza su pico poco después de despertar (ritmo de despertar cortisol, CAR) y desciende progresivamente hasta su nadir nocturno (Kaur, Gandhi &amp; Sharma, <em>Physiology, Cortisol</em>, StatPearls, actualizado dic. 2025).</p>
+<h3 id="el-eje-hpa-como-circuito-de-retroalimentación-negativa">El eje HPA como circuito de retroalimentación negativa</h3>
+<ol type="1">
+<li>El <strong>hipotálamo</strong> (núcleo paraventricular) libera <strong>CRH</strong> (hormona liberadora de corticotropina), potenciada por <strong>vasopresina</strong>.</li>
+<li>CRH estimula la <strong>hipófisis anterior</strong> para liberar <strong>ACTH</strong> (hormona adrenocorticotropa).</li>
+<li>ACTH actúa sobre el receptor de melanocortina-2 en la corteza adrenal, estimulando la conversión de colesterol a pregnenolona (paso limitante de la esteroidogénesis) y, en última instancia, la síntesis de cortisol.</li>
+<li>El cortisol circulante ejerce <strong>retroalimentación negativa</strong> tanto sobre el hipotálamo (inhibe CRH) como sobre la hipófisis (inhibe ACTH), cerrando el circuito.</li>
+</ol>
+<p>Este es el ejemplo clásico y más citado de un eje neuroendocrino clásico de tres niveles (hipotálamo → hipófisis → glándula periférica), y sirve como plantilla para entender los otros ejes (tiroideo, gonadal).</p>
+<h3 id="efecto-del-cortisol-sobre-el-metabolismo-de-carbohidratos">Efecto del cortisol sobre el metabolismo de carbohidratos</h3>
+<ul>
+<li><strong>↑ Gluconeogénesis hepática</strong>: activa transcripcionalmente la glucosa-6-fosfatasa y la fosfoenolpiruvato carboxikinasa (PEPCK), usando como sustratos ácidos grasos libres (de la lipólisis que el propio cortisol estimula) y aminoácidos (de la proteólisis muscular que el propio cortisol estimula).</li>
+<li><strong>↓ Captación y utilización periférica de glucosa</strong>: reduce la sensibilidad a la insulina en músculo esquelético y tejido adiposo.</li>
+<li><strong>Efecto permisivo</strong>: el cortisol no actúa solo; "habilita" y amplifica los efectos hiperglucemiantes del glucagón y las catecolaminas, sin los cuales estas serían menos eficaces.</li>
+<li><strong>Efecto bifásico sobre la célula β</strong>: agudamente puede aumentar la secreción de insulina, pero la exposición sostenida reduce la síntesis y liberación de insulina y, en exceso crónico, promueve apoptosis de la célula β e hiperglucagonemia — el mecanismo central de la hiperglucemia inducida por glucocorticoides.</li>
+</ul>
+<h3 id="por-qué-el-cortisol-importa-para-el-balance-de-glucosa-en-la-vida-real">Por qué el cortisol importa para el "balance de glucosa" en la vida real</h3>
+<p>El cortisol conecta directamente el <strong>estrés psicológico, el sueño insuficiente, el sobreentrenamiento y el ayuno prolongado</strong> con la glucemia. Cualquier estresor que active el eje HPA de forma sostenida (no solo aguda) tiende a: elevar la glucemia basal, aumentar la resistencia periférica a la insulina, favorecer la lipogénesis visceral (por upregulación de 11β-HSD1 en tejido adiposo, que regenera cortisol activo localmente a partir de cortisona) y catabolizar tejido muscular (vía el sistema ubiquitina-proteosoma, atrogina-1 y MuRF1). Esto es clínicamente relevante en el síndrome de Cushing (exceso) y en la enfermedad de Addison (déficit), pero también es relevante subclínicamente en poblaciones con estrés crónico o sueño deficiente, y en atletas con carga de entrenamiento mal gestionada (ver también Módulo 3, §3.5, sobrentrenamiento y disponibilidad de carbohidratos).</p>
+<hr/>
+<h2 id="24-principios-fundamentales-de-endocrinología">2.4 Principios fundamentales de endocrinología</h2>
+<p>Esta sección sintetiza los principios generales descritos en el capítulo clásico de <em>Endocrinology: An Integrated Approach</em> (Nussey &amp; Whitehead, 2001), que sigue siendo la referencia introductoria estándar en la literatura de fisiología endocrina.</p>
+<h3 id="qué-es-una-hormona">¿Qué es una hormona?</h3>
+<p>Una molécula señalizadora secretada por una célula especializada que actúa sobre células diana que expresan receptores específicos para ella. Se clasifican estructuralmente en:</p>
+<ul>
+<li><strong>Péptidos/proteínas</strong> (insulina, glucagón, GH, ACTH): hidrosolubles, actúan sobre receptores de membrana, señalización rápida.</li>
+<li><strong>Esteroides</strong> (cortisol, aldosterona, hormonas sexuales): lipofílicos, atraviesan la membrana, actúan sobre receptores intracelulares/nucleares, señalización más lenta y sostenida (transcripcional).</li>
+<li><strong>Derivados de aminoácidos</strong> (tiroxina, catecolaminas): mecanismos mixtos.</li>
+</ul>
+<h3 id="modos-de-comunicación-química">Modos de comunicación química</h3>
+<ul>
+<li><strong>Endocrino</strong>: la hormona viaja por la sangre a células distantes.</li>
+<li><strong>Paracrino</strong>: actúa sobre células vecinas sin entrar a la circulación general (ej. somatostatina sobre células α e insulina en el propio islote pancreático).</li>
+<li><strong>Autocrino</strong>: la célula actúa sobre sí misma.</li>
+<li><strong>Intracrino</strong>: la hormona se sintetiza y actúa dentro de la misma célula sin ser secretada.</li>
+</ul>
+<h3 id="el-principio-central-control-por-retroalimentación-feedback">El principio central: control por retroalimentación (feedback)</h3>
+<p>Es el principio organizador de toda la endocrinología, y existen <strong>dos arquitecturas distintas</strong>, según la referencia de Nussey &amp; Whitehead (Box 1.2, <em>Principles of feedback control in the endocrine system</em>):</p>
+<ol type="1">
+<li><strong>Ejes controlados por el eje hipotálamo-hipófisis</strong> (tiroides, corteza adrenal, gónadas): la glándula periférica es regulada "desde arriba" (hipotálamo → hipófisis → glándula), y a su vez retroalimenta negativamente a los niveles superiores. Este es el modelo del eje HPA descrito arriba.</li>
+<li><strong>Glándulas NO controladas directamente por el eje hipotálamo-hipófisis</strong> (páncreas endocrino, paratiroides): su secreción está controlada directamente por la <strong>variable que ellas mismas regulan</strong> — el páncreas responde directamente a la concentración de glucosa en sangre, y la paratiroides responde directamente a la concentración de calcio. No hay un "jefe" hipotalámico intermedio; el sensor y el efector están en la misma glándula.</li>
+</ol>
+<p>Este segundo principio es fundamental para entender por qué el sistema insulina-glucagón puede reaccionar en minutos ante un cambio de glucemia (retroalimentación de circuito corto y directo), mientras que un ajuste del eje HPA (cortisol) responde en una escala de tiempo de decenas de minutos a horas (circuito de tres niveles, con retroalimentación negativa en dos puntos).</p>
+<h3 id="retroalimentación-negativa-vs-positiva">Retroalimentación negativa vs. positiva</h3>
+<ul>
+<li><strong>Negativa</strong> (la inmensa mayoría de los ejes metabólicos): el producto final inhibe su propia producción → estabilidad, homeostasis. Ejemplo: cortisol inhibiendo CRH/ACTH; glucosa alta inhibiendo la secreción de glucagón.</li>
+<li><strong>Positiva</strong> (rara, típicamente en procesos que necesitan un cambio de estado rápido y autolimitado, no en homeostasis continua): el producto final amplifica su propia producción. Ejemplo clásico fuera del eje glucémico: el pico de LH preovulatorio.</li>
+</ul>
+<h3 id="receptores-y-transducción-de-señal">Receptores y transducción de señal</h3>
+<ul>
+<li><strong>Receptores de membrana</strong> (para hormonas peptídicas): activan segundos mensajeros (AMPc, IP3/DAG, tirosina-quinasa) → respuesta rápida (segundos-minutos), generalmente modificando la actividad de enzimas ya existentes (ej. fosforilación de glucógeno fosforilasa).</li>
+<li><strong>Receptores intracelulares/nucleares</strong> (para hormonas esteroideas y tiroideas): tras unirse a la hormona, el complejo se transloca al núcleo y actúa como factor de transcripción, alterando la expresión génica → respuesta más lenta (horas), pero de efecto más sostenido y amplio (ej. inducción de PEPCK por cortisol).</li>
+</ul>
+<h3 id="por-qué-esto-importa-para-el-balance-de-glucosa">Por qué esto importa para el "balance de glucosa"</h3>
+<p>Entender esta arquitectura explica por qué la insulina y el glucagón pueden hacer ajustes minuto a minuto (retroalimentación corta, receptores de membrana, respuesta enzimática inmediata), mientras que el cortisol produce cambios más lentos pero más profundos y duraderos en la capacidad gluconeogénica del hígado (retroalimentación larga vía HPA, receptor nuclear, cambios transcripcionales). Ambos sistemas conviven y se modulan mutuamente (el cortisol es "permisivo" para el glucagón, como se vio en 2.3).</p>
+<hr/>
+<h2 id="25-desregulación-efecto-de-las-dietas-bajas-en-carbohidratos">2.5 Desregulación: efecto de las dietas bajas en carbohidratos</h2>
+<p>Cuando el aporte dietético de carbohidratos cae por debajo de las necesidades de glucosa del organismo (particularmente del cerebro, que en condiciones normales requiere ~120 g de glucosa/día), se activa una cascada adaptativa progresiva:</p>
+<h3 id="fase-temprana-días-1-3">Fase temprana (días 1-3)</h3>
+<ul>
+<li>El glucógeno hepático (~80-100 g en un adulto en ayuno normal) se agota en 12-24 horas.</li>
+<li>El glucagón y el cortisol suben para sostener la gluconeogénesis a partir de aminoácidos (glucogénicos, principalmente alanina vía el ciclo glucosa-alanina) y del glicerol liberado por la lipólisis.</li>
+<li>Puede haber una fase de mayor catabolismo proteico muscular relativo, antes de que se completen las adaptaciones siguientes.</li>
+</ul>
+<h3 id="fase-de-adaptación-1-3-semanas-keto-adaptación">Fase de adaptación (1-3 semanas): "keto-adaptación"</h3>
+<ul>
+<li>El hígado incrementa la producción de <strong>cuerpos cetónicos</strong> (acetoacetato, β-hidroxibutirato) a partir de ácidos grasos, que pueden cruzar la barrera hematoencefálica y suplir una fracción creciente (hasta ~60-70 % en adaptación completa) de las necesidades energéticas cerebrales, reduciendo la demanda obligatoria de gluconeogénesis.</li>
+<li>La gluconeogénesis se mantiene elevada mientras dura la restricción, pero se vuelve más eficiente y menos dependiente del catabolismo proteico a medida que avanza la adaptación (aunque nunca llega a cero, porque el cerebro y los eritrocitos siempre requieren algo de glucosa).</li>
+<li>La sensibilidad a la insulina en tejidos que no son el cerebro puede reducirse de forma adaptativa (a veces llamada "resistencia a la insulina fisiológica" o de ahorro de glucosa), ya que el músculo pasa a depender más de ácidos grasos y cuerpos cetónicos, "reservando" la glucosa disponible para los tejidos glucosa-dependientes obligados.</li>
+<li>El cortisol tiende a permanecer relativamente elevado durante esta fase de adaptación, reflejando el mayor requerimiento gluconeogénico sostenido; esto se normaliza parcialmente una vez completada la adaptación metabólica.</li>
+</ul>
+<h3 id="consecuencias-del-eje-enzimático-hormonal-en-restricción-crónica-de-carbohidratos">Consecuencias del eje enzimático-hormonal en restricción crónica de carbohidratos</h3>
+<ul>
+<li>↑ actividad de PEPCK y glucosa-6-fosfatasa hepáticas (gluconeogénesis potenciada de forma crónica).</li>
+<li>↑ actividad de enzimas de la β-oxidación y de la cetogénesis (HMG-CoA sintasa mitocondrial).</li>
+<li>Posible ↓ de la actividad de piruvato deshidrogenasa (PDH) en músculo, favoreciendo el uso de grasa sobre glucosa incluso cuando hay glucosa disponible (relevante para el Módulo 3, porque este mismo mecanismo es el que se explota deliberadamente en los protocolos "train low").</li>
+<li>En contextos de restricción muy severa o sin adaptación adecuada, puede aparecer una activación desproporcionada y sostenida del eje HPA (cortisol crónicamente elevado), que se solapa e interactúa con el estrés del entrenamiento — este es el nexo directo entre este módulo y el Módulo 3 (disponibilidad de carbohidratos, sobreentrenamiento y el debate Burke vs. Noakes).</li>
+</ul>
+<hr/>
+<h2 id="26-balance-enzimático-el-mapa-completo-de-interruptores-de-la-glucosa">2.6 Balance enzimático: el mapa completo de "interruptores" de la glucosa</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Enzima</th>
+<th>Ubicación</th>
+<th>Función</th>
+<th>Regulador principal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Glucoquinasa (hexoquinasa IV)</strong></td>
+<td>Hígado, célula β pancreática</td>
+<td>Fosforila glucosa → glucosa-6-fosfato; baja afinidad, no se satura a concentraciones fisiológicas → actúa como "sensor de glucosa"</td>
+<td>Inducida por insulina; su actividad determina cuánta glucosa capta el hígado tras una comida</td>
+</tr>
+<tr class="even">
+<td><strong>Hexoquinasa I-III</strong></td>
+<td>Tejidos periféricos (músculo, etc.)</td>
+<td>Misma reacción que glucoquinasa, pero alta afinidad y se satura a bajas concentraciones (asegura captación de glucosa incluso en hipoglucemia leve)</td>
+<td>Inhibida por su propio producto (glucosa-6-fosfato)</td>
+</tr>
+<tr class="odd">
+<td><strong>Glucosa-6-fosfatasa</strong></td>
+<td>Hígado, riñón (no en músculo)</td>
+<td>Libera glucosa libre desde glucosa-6-fosfato → única vía de exportación de glucosa a la sangre desde el glucógeno o la gluconeogénesis</td>
+<td>↑ por cortisol y glucagón; ausente en músculo (por eso el músculo NO puede exportar la glucosa de su propio glucógeno a la sangre)</td>
+</tr>
+<tr class="even">
+<td><strong>Glucógeno sintasa</strong></td>
+<td>Hígado, músculo</td>
+<td>Forma glucógeno a partir de UDP-glucosa</td>
+<td>Activada (desfosforilada) por insulina</td>
+</tr>
+<tr class="odd">
+<td><strong>Glucógeno fosforilasa</strong></td>
+<td>Hígado, músculo</td>
+<td>Libera glucosa-1-fosfato del glucógeno (glucogenólisis)</td>
+<td>Activada (fosforilada) por glucagón (hígado) y epinefrina (hígado y músculo)</td>
+</tr>
+<tr class="even">
+<td><strong>Fosfofructoquinasa-1 (PFK-1)</strong></td>
+<td>Todas las células</td>
+<td>Paso limitante e irreversible de la glucólisis</td>
+<td>Inhibida por ATP y citrato (alta energía); activada por AMP y fructosa-2,6-bisfosfato</td>
+</tr>
+<tr class="odd">
+<td><strong>Piruvato deshidrogenasa (PDH)</strong></td>
+<td>Mitocondria, todas las células</td>
+<td>Convierte piruvato en acetil-CoA; "puerta de entrada" de la glucosa al ciclo de Krebs</td>
+<td>Inhibida cuando hay alta disponibilidad de ácidos grasos/acetil-CoA (esto es clave en dietas bajas en carbohidratos y en ejercicio de baja intensidad)</td>
+</tr>
+<tr class="even">
+<td><strong>Fosfoenolpiruvato carboxikinasa (PEPCK)</strong></td>
+<td>Hígado, riñón</td>
+<td>Paso limitante de la gluconeogénesis</td>
+<td>↑ por cortisol y glucagón; ↓ por insulina</td>
+</tr>
+<tr class="odd">
+<td><strong>Fructoquinasa</strong></td>
+<td>Hígado, principalmente</td>
+<td>Primer paso del metabolismo de la fructosa; "sin freno" regulatorio comparable a PFK-1</td>
+<td>No regulada por el estado energético celular (a diferencia de PFK-1) — esto explica el metabolismo casi obligatorio y rápido de la fructosa hacia lípidos cuando se consume en exceso</td>
+</tr>
+</tbody>
+</table>
+<p>El "balance enzimático" en última instancia es el resultado neto de qué enzimas están activadas (por fosforilación/desfosforilación, por disponibilidad de sustrato o por inducción transcripcional) en cada tejido en un momento dado, y ese balance está gobernado, casi en su totalidad, por el cociente insulina/glucagón y por la presencia o ausencia de cortisol y catecolaminas elevadas — cerrando el círculo con todo lo visto en 2.2 y 2.3.</p>
+<hr/>
+<h2 id="puente-hacia-el-módulo-3">Puente hacia el Módulo 3</h2>
+<p>Con este mapa fisiológico-endocrino completo, el Módulo 3 toma estos mismos actores (glucógeno, PDH, insulina/glucagón, cortisol, transportadores de glucosa) y los lleva a su <strong>máxima expresión bajo estrés de ejercicio de alta intensidad y larga duración</strong>, donde la disponibilidad de carbohidratos deja de ser una cuestión de salud metabólica general y se convierte en el factor limitante directo del rendimiento.</p>
+<section class="refs"><h2 id="referencias-clave-de-este-módulo">Referencias clave de este módulo</h2>
+<ul>
+<li>Kaur J, Gandhi J, Sharma S. <em>Physiology, Cortisol</em>. StatPearls [Internet]. Actualizado 1 dic. 2025.</li>
+<li>Hantzidiamantis PJ, Awosika AO, Lappin SL. <em>Physiology, Glucose</em>. StatPearls [Internet]. 2024.</li>
+<li>Nussey S, Whitehead S. <em>Endocrinology: An Integrated Approach</em>. Oxford: BIOS Scientific Publishers; 2001. Capítulo 1: "Principles of endocrinology" (incluye Box 1.2, "Principles of feedback control in the endocrine system"). NCBI Bookshelf, NBK20.</li>
+<li>Kuo T, McQueen A, Chen TC, Wang JC. Regulation of Glucose Homeostasis by Glucocorticoids. <em>Adv Exp Med Biol.</em> 2015.</li>
+</ul>
+</section>
+  </article>
+</div>
+
+<nav class="pagenav">
+  <div class="pagenav-inner">
+    <a class="prev" href="modulo-1.html"><span class="lbl">← anterior</span>La glucosa en la dieta</a>
+    <a class="next" href="modulo-3.html"><span class="lbl">siguiente →</span>Metabolismo en el deporte de alto rendimiento</a>
+  </div>
+</nav>
+
+</body>
+</html>
