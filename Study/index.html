@@ -1,360 +1,301 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Glucosa — curso de estudio</title>
 <meta name="description" content="Curso de estudio sobre la glucosa: nutrición, fisiología hormonal y metabolismo en el deporte de alto rendimiento.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#FBFAF6;
-  --paper-2:#F4F2EC;
-  --ink:#1B1C18;
-  --ink-soft:#4A4A43;
-  --ink-faint:#8B897E;
-  --line:#DEDACB;
-  --line-strong:#C9C4B0;
-  --accent:#1B1C18;
-  --accent-ink:#1B1C18;
-  --tint:#F4F2EC;
-  --tint-line:#DEDACB;
-  --serif:'Newsreader', 'Iowan Old Style', 'Georgia', serif;
-  --mono:'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+  --bg:#F5F6F8;
+  --surface:#FFFFFF;
+  --ink:#171B26;
+  --ink-soft:#454C5C;
+  --ink-faint:#7A8194;
+  --line:#DFE2E8;
+  --line-soft:#EAECF0;
+  --accent:#A6790B;
+  --accent-deep:#7C5A08;
+  --accent-tint:#F4EBD6;
+  --flag:#A63A2E;
+  --flag-tint:#F6E6E3;
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 *{box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;}
 body{
   margin:0;
-  background:var(--paper);
+  background:var(--bg);
   color:var(--ink);
-  font-family:var(--serif);
-  font-size:18px;
+  font-family:var(--sans);
+  font-size:17px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
-::selection{background:var(--accent); color:var(--paper);}
-a{color:var(--accent-ink); text-decoration-thickness:1px; text-underline-offset:3px;}
+::selection{background:var(--accent-tint);}
+a{color:var(--accent-deep);text-decoration-thickness:1px;text-underline-offset:2px;}
 a:hover{color:var(--accent);}
-:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
-img,svg{max-width:100%;}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+img{max-width:100%;height:auto;display:block;}
 
-.wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+.wrap-wide{max-width:980px;margin:0 auto;padding:0 24px;}
 
 /* ---------- top bar ---------- */
 .topbar{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:22px 28px;
   border-bottom:1px solid var(--line);
+  background:var(--surface);
 }
-.topbar .brand{
-  font-family:var(--mono); font-size:13px; letter-spacing:.02em;
-  color:var(--ink-soft); text-decoration:none;
+.topbar-inner{
+  max-width:980px;margin:0 auto;padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:14.5px;
 }
-.topbar .brand strong{color:var(--ink); font-weight:600;}
-.topbar .back{
-  font-family:var(--mono); font-size:13px;
-  color:var(--ink-soft); text-decoration:none;
-  display:flex; align-items:center; gap:6px;
-}
-.topbar .back:hover{color:var(--accent-ink);}
-.topbar .modtag{
-  font-family:var(--mono); font-size:13px; color:var(--accent-ink);
-  background:var(--tint); border:1px solid var(--tint-line);
-  padding:4px 10px; border-radius:3px;
-}
+.topbar a.back{color:var(--ink-soft);font-weight:500;}
+.topbar a.back:hover{color:var(--accent-deep);}
+.topbar .step{color:var(--ink-faint);font-variant-numeric:tabular-nums;}
 
 /* ---------- hero (index) ---------- */
-.hero{
-  position:relative;
-  padding:64px 28px 40px;
-  overflow:hidden;
-}
-.hero-inner{
-  max-width:1120px; margin:0 auto;
-  display:grid; grid-template-columns: 1.1fr 1fr; gap:40px; align-items:center;
+.hero{padding:64px 0 40px;border-bottom:1px solid var(--line);}
+.hero .kicker{
+  font-family:var(--sans);font-size:14.5px;color:var(--accent-deep);
+  font-weight:600;margin-bottom:14px;
 }
 .hero h1{
-  font-size:clamp(48px, 8vw, 84px);
-  line-height:0.98;
-  margin:0 0 20px;
-  font-weight:600;
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(40px,7vw,64px);line-height:1.04;margin:0 0 20px;
   letter-spacing:-0.01em;
 }
-.hero .lede{
-  font-size:20px; line-height:1.55; color:var(--ink-soft);
-  max-width:46ch; margin:0 0 26px;
+.hero p.lede{
+  font-family:var(--serif);font-size:21px;line-height:1.55;
+  color:var(--ink-soft);max-width:640px;margin:0 0 22px;
 }
-.hero .meta{
-  font-family:var(--mono); font-size:13px; color:var(--ink-faint);
-  margin-bottom:10px;
-}
-.curve-wrap{position:relative;}
-.curve-wrap svg{width:100%; height:auto; display:block;}
-.curve-path{
-  fill:none; stroke:var(--ink); stroke-width:2.5;
-  stroke-linecap:round; stroke-linejoin:round;
-  stroke-dasharray:2000; stroke-dashoffset:2000;
-  animation:draw 2.1s cubic-bezier(.4,.1,.2,1) forwards;
-}
-.curve-marker circle{opacity:0; animation:pop .5s ease forwards;}
-.curve-marker text{opacity:0; animation:pop .5s ease forwards;}
-.curve-marker.m1 circle, .curve-marker.m1 text{animation-delay:.9s;}
-.curve-marker.m2 circle, .curve-marker.m2 text{animation-delay:1.3s;}
-.curve-marker.m3 circle, .curve-marker.m3 text{animation-delay:1.7s;}
-.grid-line{stroke:var(--line-strong); stroke-width:1;}
-.base-line{stroke:var(--ink-faint); stroke-width:1; stroke-dasharray:4 5;}
-@keyframes draw{to{stroke-dashoffset:0;}}
-@keyframes pop{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
-@media (prefers-reduced-motion: reduce){
-  .curve-path{animation:none; stroke-dashoffset:0;}
-  .curve-marker circle, .curve-marker text{animation:none; opacity:1;}
-}
-@media (max-width: 860px){
-  .hero-inner{grid-template-columns:1fr;}
+.hero p.sub{font-size:16.5px;color:var(--ink-soft);max-width:620px;margin:0;}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;}
+.pill{
+  border:1px solid var(--line);border-radius:100px;
+  padding:5px 13px;font-size:13.5px;color:var(--ink-soft);
+  background:var(--surface);
 }
 
-.intro-copy{
-  max-width:68ch; margin:0 auto; padding:8px 28px 56px;
-  font-size:18px; color:var(--ink-soft);
+/* ---------- module cards (index) ---------- */
+.modules{padding:48px 0 72px;display:grid;gap:20px;}
+.mcard{
+  border:1px solid var(--line);border-radius:4px;background:var(--surface);
+  padding:32px;display:grid;grid-template-columns:64px 1fr;gap:24px;
+  transition:border-color .15s ease;
 }
-.intro-copy p{margin:0 0 16px;}
+.mcard:hover{border-color:var(--accent);}
+.mcard .num{
+  font-family:var(--serif);font-size:40px;color:var(--accent);
+  line-height:1;font-weight:600;
+}
+.mcard .eyebrow{font-size:13.5px;color:var(--ink-faint);margin-bottom:6px;}
+.mcard h2{font-family:var(--serif);font-size:26px;margin:0 0 10px;font-weight:600;}
+.mcard p{margin:0 0 16px;color:var(--ink-soft);font-size:16px;}
+.mcard .pillrow{margin-top:0;margin-bottom:18px;}
+.mcard .pill{font-size:12.5px;padding:4px 10px;}
+.mcard a.go{font-weight:600;font-size:15px;}
+.mcard a.go .arrow{display:inline-block;transition:transform .15s ease;}
+.mcard a.go:hover .arrow{transform:translateX(3px);}
 
-/* ---------- module index blocks ---------- */
-.modules{ border-top:1px solid var(--line); }
-.modblock{
-  border-bottom:1px solid var(--line);
-  padding:40px 0;
-  display:grid; grid-template-columns: 100px 1fr; gap:28px;
-}
-.modblock .num{
-  font-family:var(--mono); font-size:15px; padding-top:6px;
-}
-.modblock h2{
-  font-size:30px; margin:0 0 4px; font-weight:600; line-height:1.15;
-}
-.modblock .sub{
-  font-family:var(--mono); font-size:13px; margin:0 0 14px;
-}
-.modblock p.desc{
-  max-width:62ch; color:var(--ink-soft); margin:0 0 16px; font-size:17px;
-}
-.modblock ul.topics{
-  margin:0 0 20px; padding:0; list-style:none;
-  display:flex; flex-wrap:wrap; gap:8px 10px;
-}
-.modblock ul.topics li{
-  font-family:var(--mono); font-size:12.5px;
-  border:1px solid var(--line-strong); border-radius:3px;
-  padding:4px 9px; color:var(--ink-soft);
-}
-.modblock .enter{
-  font-weight:600; font-size:16px; text-decoration:underline;
-  text-decoration-thickness:1px; text-underline-offset:4px;
-}
-.modblock[data-m="1"] .num,.modblock[data-m="1"] .enter,.modblock[data-m="1"] .sub{color:#7A5608;}
-.modblock[data-m="2"] .num,.modblock[data-m="2"] .enter,.modblock[data-m="2"] .sub{color:#332750;}
-.modblock[data-m="3"] .num,.modblock[data-m="3"] .enter,.modblock[data-m="3"] .sub{color:#7A2313;}
-@media (max-width:640px){
-  .modblock{grid-template-columns:1fr; gap:10px;}
+footer.site-footer{
+  border-top:1px solid var(--line);padding:32px 0 56px;
+  color:var(--ink-faint);font-size:14px;
 }
 
 /* ---------- module page header ---------- */
-.modhead{
-  padding:56px 28px 32px;
-  background:var(--tint);
-  border-bottom:1px solid var(--tint-line);
+.mod-header{padding:40px 0 8px;}
+.mod-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13.5px;color:var(--accent-deep);font-weight:600;margin-bottom:18px;
 }
-.modhead-inner{max-width:760px; margin:0 auto;}
-.modhead .kicker{font-family:var(--mono); font-size:13px; color:var(--accent-ink); margin-bottom:14px;}
-.modhead h1{font-size:clamp(32px,5vw,48px); line-height:1.08; margin:0 0 10px; font-weight:600;}
-.modhead .sub{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-soft); margin:0;}
+.mod-badge .sq{
+  width:26px;height:26px;border-radius:4px;background:var(--accent-tint);
+  color:var(--accent-deep);display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:13.5px;font-weight:600;
+}
+.mod-header h1{
+  font-family:var(--serif);font-weight:600;font-size:clamp(32px,5.5vw,46px);
+  line-height:1.08;margin:0 0 14px;letter-spacing:-0.01em;
+}
+.mod-header .track{font-size:15.5px;color:var(--ink-faint);margin-bottom:0;}
 
-.objective{
-  max-width:760px; margin:34px auto 0; padding:20px 24px;
-  border-left:3px solid var(--accent);
-  background:var(--paper);
-  font-size:16px; color:var(--ink-soft);
+.callout{
+  border-left:3px solid var(--accent);background:var(--accent-tint);
+  padding:14px 20px;margin:28px 0;font-size:15.5px;color:var(--ink-soft);
+  border-radius:0 4px 4px 0;
 }
-.objective p{margin:0;}
+.callout p{margin:0;}
 
-/* ---------- layout: toc + article ---------- */
-.page-grid{
-  max-width:1040px; margin:0 auto; padding:44px 28px 90px;
-  display:grid; grid-template-columns:200px minmax(0,760px); gap:48px;
-  align-items:start;
+/* ---------- TOC ---------- */
+.toc-box{
+  border:1px solid var(--line);border-radius:4px;background:var(--surface);
+  padding:22px 26px;margin:30px 0 44px;
 }
-.toc{position:sticky; top:24px;}
-.toc-label{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin:0 0 12px;}
-.toc ol{list-style:none; margin:0; padding:0; counter-reset:none;}
-.toc li{margin-bottom:10px;}
-.toc a{
-  display:block; font-size:13.5px; line-height:1.4;
-  color:var(--ink-soft); text-decoration:none; border-left:2px solid transparent;
-  padding-left:10px;
+.toc-box .toc-label{
+  font-size:12.5px;font-weight:600;color:var(--ink-faint);
+  margin-bottom:12px;
 }
-.toc a:hover{color:var(--accent-ink); border-left-color:var(--accent);}
+.toc-box ul{margin:0;padding-left:0;list-style:none;}
+.toc-box li{margin:0;}
+.toc-box a{
+  display:block;padding:5px 0;font-size:15px;color:var(--ink-soft);
+  border-bottom:none;
+}
+.toc-box a:hover{color:var(--accent-deep);}
+.toc-box ul ul{padding-left:18px;}
+.toc-box ul ul a{font-size:14px;color:var(--ink-faint);}
 
-article.content h2{
-  font-size:25px; margin:52px 0 16px; font-weight:600; line-height:1.25;
-  scroll-margin-top:24px;
+/* ---------- article content ---------- */
+article{padding:6px 0 40px;}
+article h2{
+  font-family:var(--serif);font-size:28px;font-weight:600;
+  margin:52px 0 16px;padding-top:20px;border-top:1px solid var(--line-soft);
+  letter-spacing:-0.005em;
 }
-article.content h3{
-  font-size:18px; margin:30px 0 10px; font-weight:600;
-  font-family:var(--mono); text-transform:none; color:var(--ink);
+article > h2:first-child{border-top:none;padding-top:0;margin-top:20px;}
+article h3{
+  font-family:var(--serif);font-size:21px;font-weight:600;margin:34px 0 12px;
 }
-article.content p{margin:0 0 16px; max-width:70ch;}
-article.content ul, article.content ol{margin:0 0 18px; padding-left:22px; max-width:70ch;}
-article.content li{margin-bottom:6px;}
-article.content strong{font-weight:700;}
-article.content em{font-style:italic;}
-article.content hr{border:none; border-top:1px solid var(--line); margin:44px 0;}
-article.content code{
-  font-family:var(--mono); font-size:.86em; background:var(--tint);
-  padding:1px 5px; border-radius:3px;
+article h4{font-size:16.5px;font-weight:600;margin:22px 0 8px;}
+article p{margin:0 0 16px;color:var(--ink);}
+article p, article li{max-width:70ch;}
+article ul, article ol{margin:0 0 18px;padding-left:22px;}
+article li{margin-bottom:8px;}
+article li > ul, article li > ol{margin-top:8px;}
+article strong{font-weight:600;color:var(--ink);}
+article em{color:var(--ink-soft);}
+article blockquote{
+  margin:24px 0;padding:2px 0 2px 20px;border-left:3px solid var(--line);
+  color:var(--ink-faint);font-style:italic;font-size:15.5px;
 }
+article hr{border:none;border-top:1px solid var(--line);margin:40px 0;}
+article figure{margin:28px 0;}
+article figure img{
+  border:1px solid var(--line);border-radius:4px;width:100%;
+}
+article figcaption{
+  font-size:13.5px;color:var(--ink-faint);margin-top:10px;
+  font-style:italic;line-height:1.5;
+}
+article code{
+  font-family:var(--mono);font-size:0.86em;background:var(--line-soft);
+  padding:1px 5px;border-radius:3px;
+}
+article pre{
+  background:#12151F;color:#E7E9EE;border-radius:6px;
+  padding:20px 22px;overflow-x:auto;margin:24px 0;
+  font-family:var(--mono);font-size:13.5px;line-height:1.65;
+}
+article pre code{background:none;padding:0;color:inherit;}
+article table{
+  width:100%;border-collapse:collapse;margin:22px 0;font-size:15px;
+}
+article table th, article table td{
+  border:1px solid var(--line);padding:9px 13px;text-align:left;
+  vertical-align:top;
+}
+article table th{
+  background:var(--line-soft);font-weight:600;font-family:var(--sans);
+  font-size:13.5px;color:var(--ink-soft);
+}
+article table tr:nth-child(even) td{background:#FBFBFC;}
 
-article.content table{
-  width:100%; border-collapse:collapse; margin:20px 0 28px; font-size:15px;
+/* ---------- refs ---------- */
+.refs{
+  margin-top:20px;padding-top:8px;
 }
-article.content caption{caption-side:top; text-align:left;}
-article.content th, article.content td{
-  border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;
+.refs ul{list-style:none;padding:0;margin:0;}
+.refs li{
+  font-size:14.5px;color:var(--ink-faint);padding:9px 0;
+  border-top:1px solid var(--line-soft);
 }
-article.content thead th{
-  font-family:var(--mono); font-weight:600; font-size:12.5px;
-  color:var(--accent-ink); border-bottom:2px solid var(--accent);
-  padding-bottom:9px;
-}
-article.content tbody tr:hover{background:var(--tint);}
+.refs li:first-child{border-top:none;}
 
-section.refs{
-  margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
-}
-section.refs h2{
-  font-family:var(--mono); font-size:14px; font-weight:600;
-  color:var(--ink-faint); margin:0 0 18px; text-transform:none;
-}
-section.refs ul{padding-left:0; list-style:none; margin:0;}
-section.refs li{
-  font-size:14px; color:var(--ink-soft); margin-bottom:12px; padding-left:20px;
-  text-indent:-20px; max-width:66ch;
-}
-
-@media (max-width:860px){
-  .page-grid{grid-template-columns:1fr;}
-  .toc{position:static; margin-bottom:8px;}
-  .toc-panel{border:1px solid var(--line); border-radius:4px; padding:14px 16px;}
-}
-
-/* ---------- footer nav ---------- */
+/* ---------- prev/next ---------- */
 .pagenav{
-  border-top:1px solid var(--line);
-  padding:28px 28px 60px;
-}
-.pagenav-inner{
-  max-width:1040px; margin:0 auto;
-  display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin:56px 0 8px;padding-top:28px;border-top:1px solid var(--line);
 }
 .pagenav a{
-  font-family:var(--mono); font-size:13.5px; text-decoration:none; color:var(--ink-soft);
-  display:flex; flex-direction:column; gap:4px;
+  border:1px solid var(--line);border-radius:4px;padding:18px 20px;
+  display:block;background:var(--surface);
 }
-.pagenav a .lbl{color:var(--ink-faint); font-size:11px;}
-.pagenav a:hover{color:var(--accent-ink);}
-.pagenav a.next{text-align:right; margin-left:auto;}
+.pagenav a:hover{border-color:var(--accent);}
+.pagenav .dir{font-size:12.5px;color:var(--ink-faint);margin-bottom:6px;display:block;}
+.pagenav .lbl{font-family:var(--serif);font-size:17px;color:var(--ink);font-weight:600;}
+.pagenav .next{text-align:right;grid-column:2;}
 
-footer.site{
-  border-top:1px solid var(--line);
-  padding:26px 28px 48px;
-  font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);
+@media (max-width:640px){
+  body{font-size:16px;}
+  .mcard{grid-template-columns:1fr;gap:10px;}
+  .mcard .num{font-size:28px;}
+  .pagenav{grid-template-columns:1fr;}
+  .pagenav .next{grid-column:1;text-align:left;}
+  article h2{font-size:24px;}
+  .hero{padding:44px 0 32px;}
 }
-footer.site .wrap{max-width:1120px;}
+
 </style>
 </head>
 <body>
 
-<header class="topbar">
-  <span class="brand"><strong>Glucosa</strong> — curso de estudio</span>
-  <span class="brand">3 módulos</span>
-</header>
-
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <p class="meta">nutrición · fisiología · rendimiento deportivo</p>
-      <h1>Glucosa</h1>
-      <p class="lede">De un plato de arroz a la fibra muscular en la hora tres de una carrera: el recorrido completo de la molécula que decide cómo comes, cómo regulas y cuánto rindes.</p>
-    </div>
-    
-<div class="curve-wrap">
-<svg viewBox="0 0 1000 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Curva de glucosa ilustrativa que atraviesa los tres módulos del curso">
-  <line class="grid-line" x1="0" y1="90" x2="1000" y2="90" opacity="0.5"/>
-  <line class="grid-line" x1="0" y1="150" x2="1000" y2="150" opacity="0.5"/>
-  <line class="grid-line" x1="0" y1="210" x2="1000" y2="210" opacity="0.5"/>
-  <line class="base-line" x1="0" y1="232" x2="1000" y2="232" opacity="0.6"/>
-  <text x="4" y="226" font-family="IBM Plex Mono" font-size="11" fill="var(--ink-faint)">glucemia basal</text>
-  <path class="curve-path" d="M 0,215 C 60,222 95,232 130,205 C 165,178 150,90 195,72 C 235,58 238,175 255,210 C 280,255 320,232 350,195 C 388,150 400,122 432,122 C 470,122 480,178 500,208 C 538,255 560,230 598,192 C 645,145 660,90 700,62 C 728,44 748,52 766,66 C 800,86 822,148 850,150 C 900,150 932,175 970,190 L 1000,196"/>
-  <g class="curve-marker m1">
-    <circle cx="195" cy="72" r="6" fill="#B9820C"/>
-    <text x="195" y="52" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#7A5608">nutrición</text>
-  </g>
-  <g class="curve-marker m2">
-    <circle cx="432" cy="122" r="6" fill="#4B3B6B"/>
-    <text x="432" y="102" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#332750">regulación</text>
-  </g>
-  <g class="curve-marker m3">
-    <circle cx="700" cy="62" r="6" fill="#A3311B"/>
-    <text x="700" y="42" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#7A2313">rendimiento</text>
-  </g>
-</svg>
-</div>
-
+<div class="topbar"><div class="topbar-inner">
+  <span style="color:var(--ink-faint)">AthleteTrainLab</span>
+  <span class="step">curso de estudio</span>
+</div></div>
+<header class="hero"><div class="wrap-wide">
+  <div class="kicker">Glucosa &middot; curso de estudio &middot; 3 módulos</div>
+  <h1>Glucosa</h1>
+  <p class="lede">De un plato de arroz a la fibra muscular en la hora tres de una carrera: el recorrido completo de la molécula que decide cómo comes, cómo regulas y cuánto rindes.</p>
+  <p class="sub">Curso pensado para quien ya tiene base sólida de fisiología y quiere ver la sinergia completa, no fragmentos sueltos: nutrición, endocrinología y rendimiento deportivo como un solo sistema, con la evidencia más reciente citada en cada módulo.</p>
+  <div class="pillrow">
+    <span class="pill">glucemia basal</span><span class="pill">nutrición</span>
+    <span class="pill">regulación hormonal</span><span class="pill">rendimiento deportivo</span>
   </div>
-</section>
+</div></header>
+<div class="wrap-wide"><div class="modules">
 
-<div class="intro-copy">
-  <p>Este curso está pensado para alguien con base sólida de fisiología que quiere ver la sinergia completa, no fragmentos sueltos: cómo un carbohidrato que entra por la boca termina, tres módulos después, decidiendo si un ciclista sostiene la potencia en el minuto 180 de una carrera.</p>
-  <p>Los tres módulos son acumulativos y se apoyan entre sí. El primero da la base nutricional, el segundo la maquinaria hormonal y endocrina que gobierna esa base, y el tercero lleva ambas a su expresión máxima bajo la demanda del ejercicio de alto rendimiento — con foco en la hipótesis de que la <strong>durabilidad</strong> se explica mejor por el glucógeno subcelular que por la simple caída porcentual de potencia.</p>
-</div>
-
-<div class="wrap modules">
-  
-        <div class="modblock" data-m="1">
-          <div class="num">01</div>
-          <div>
-            <p class="sub">Fundamentos nutricionales</p>
-            <h2>La glucosa en la dieta</h2>
-            <p class="desc">De qué alimentos viene, cómo la fibra cambia su velocidad de entrada, y qué patrón alimentario sostiene un balance estable.</p>
-            <ul class="topics"><li>fibra soluble/insoluble</li><li>índice glucémico</li><li>SGLT1 / GLUT2 / GLUT5</li><li>AGCC y microbiota</li></ul>
-            <a class="enter" href="Study/modulo-1.html">Entrar al módulo</a>
-          </div>
-        </div>
-        <div class="modblock" data-m="2">
-          <div class="num">02</div>
-          <div>
-            <p class="sub">Digestión, eje HPA y endocrinología</p>
-            <h2>Regulación fisiológica y hormonal</h2>
-            <p class="desc">El circuito de insulina, glucagón y cortisol; el eje HPA en detalle; los principios generales de cualquier sistema endocrino, y el mapa enzimático completo.</p>
-            <ul class="topics"><li>eje HPA</li><li>cortisol</li><li>retroalimentación negativa</li><li>cetoadaptación</li><li>balance enzimático</li></ul>
-            <a class="enter" href="Study/modulo-2.html">Entrar al módulo</a>
-          </div>
-        </div>
-        <div class="modblock" data-m="3">
-          <div class="num">03</div>
-          <div>
-            <p class="sub">Glucógeno, durabilidad y periodización</p>
-            <h2>Metabolismo en el deporte de alto rendimiento</h2>
-            <p class="desc">Rutas de ATP, glucógeno subcelular, transportadores múltiples, el mecanismo de la fatiga y el debate Burke contra Noakes.</p>
-            <ul class="topics"><li>crossover concept</li><li>train low / compete high</li><li>SGLT1 + GLUT5</li><li>Ca²⁺ y durabilidad</li><li>Burke vs. Noakes</li></ul>
-            <a class="enter" href="Study/modulo-3.html">Entrar al módulo</a>
-          </div>
-        </div>
-</div>
-
-<footer class="site">
-  <div class="wrap">Fuentes primarias: StatPearls (NCBI Bookshelf), Nussey &amp; Whitehead — <em>Endocrinology: An Integrated Approach</em>, y literatura de fisiología del ejercicio citada al final de cada módulo.</div>
-</footer>
+<a class="mcard" href="modulo-1.html" style="text-decoration:none;color:inherit;display:grid;">
+  <div class="num">01</div>
+  <div>
+    <div class="eyebrow">Fundamentos nutricionales</div>
+    <h2>La glucosa en la dieta</h2>
+    <p>De qué alimentos viene, cómo la fibra y el balance energético cambian su velocidad de entrada, y qué patrón alimentario sostiene un balance estable.</p>
+    <div class="pillrow"><span class="pill">balance energético</span><span class="pill">fibra y microbiota</span><span class="pill">índice glucémico</span><span class="pill">SGLT1 / GLUT2 / GLUT5</span><span class="pill">RED-S</span></div>
+    <span class="go">Entrar al módulo <span class="arrow">&rarr;</span></span>
+  </div>
+</a>
+<a class="mcard" href="modulo-2.html" style="text-decoration:none;color:inherit;display:grid;">
+  <div class="num">02</div>
+  <div>
+    <div class="eyebrow">Digestión, eje HPA y endocrinología</div>
+    <h2>Regulación fisiológica y hormonal</h2>
+    <p>El circuito de insulina, glucagón y cortisol; el eje HPA en detalle; los principios generales de cualquier sistema endocrino, el balance enzimático, y una hipótesis validada con CGM sobre la respuesta glucosa-insulina.</p>
+    <div class="pillrow"><span class="pill">eje HPA</span><span class="pill">cortisol</span><span class="pill">cetoadaptación</span><span class="pill">balance enzimático</span><span class="pill">glucosa-insulina y CGM</span></div>
+    <span class="go">Entrar al módulo <span class="arrow">&rarr;</span></span>
+  </div>
+</a>
+<a class="mcard" href="modulo-3.html" style="text-decoration:none;color:inherit;display:grid;">
+  <div class="num">03</div>
+  <div>
+    <div class="eyebrow">Glucógeno, durabilidad y periodización</div>
+    <h2>Metabolismo en el deporte de alto rendimiento</h2>
+    <p>Rutas de ATP, glucógeno subcelular, transportadores múltiples, el mecanismo de la fatiga y el debate Burke contra Noakes.</p>
+    <div class="pillrow"><span class="pill">crossover concept</span><span class="pill">train low / compete high</span><span class="pill">SGLT1 + GLUT5</span><span class="pill">Ca²⁺ y durabilidad</span><span class="pill">Burke vs. Noakes</span></div>
+    <span class="go">Entrar al módulo <span class="arrow">&rarr;</span></span>
+  </div>
+</a>
+</div></div>
+<footer class="site-footer"><div class="wrap-wide">
+  Fuentes primarias citadas al final de cada módulo (Sports Medicine, J Physiol, Am J Clin Nutr, AJCN Great Debates in Nutrition, entre otras). AthleteTrainLab.
+</div></footer>
 
 </body>
 </html>

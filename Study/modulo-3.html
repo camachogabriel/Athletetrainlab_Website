@@ -1,530 +1,499 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Metabolismo en el deporte de alto rendimiento — Glucosa</title>
-<meta name="description" content="Rutas de ATP, glucógeno subcelular, transportadores múltiples, el mecanismo de la fatiga y el debate Burke contra Noakes.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<meta name="description" content="Rutas de ATP, glucógeno muscular, transportadores múltiples, el mecanismo de la fatiga (Ca²⁺) y el debate Burke vs. Noakes sobre periodización de carbohidratos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#FBFAF6;
-  --paper-2:#F4F2EC;
-  --ink:#1B1C18;
-  --ink-soft:#4A4A43;
-  --ink-faint:#8B897E;
-  --line:#DEDACB;
-  --line-strong:#C9C4B0;
-  --accent:#A3311B;
-  --accent-ink:#7A2313;
-  --tint:#F7EAE5;
-  --tint-line:#E9C5B7;
-  --serif:'Newsreader', 'Iowan Old Style', 'Georgia', serif;
-  --mono:'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+  --bg:#F5F6F8;
+  --surface:#FFFFFF;
+  --ink:#171B26;
+  --ink-soft:#454C5C;
+  --ink-faint:#7A8194;
+  --line:#DFE2E8;
+  --line-soft:#EAECF0;
+  --accent:#A6790B;
+  --accent-deep:#7C5A08;
+  --accent-tint:#F4EBD6;
+  --flag:#A63A2E;
+  --flag-tint:#F6E6E3;
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 *{box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;}
 body{
   margin:0;
-  background:var(--paper);
+  background:var(--bg);
   color:var(--ink);
-  font-family:var(--serif);
-  font-size:18px;
+  font-family:var(--sans);
+  font-size:17px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
-::selection{background:var(--accent); color:var(--paper);}
-a{color:var(--accent-ink); text-decoration-thickness:1px; text-underline-offset:3px;}
+::selection{background:var(--accent-tint);}
+a{color:var(--accent-deep);text-decoration-thickness:1px;text-underline-offset:2px;}
 a:hover{color:var(--accent);}
-:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
-img,svg{max-width:100%;}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+img{max-width:100%;height:auto;display:block;}
 
-.wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+.wrap-wide{max-width:980px;margin:0 auto;padding:0 24px;}
 
 /* ---------- top bar ---------- */
 .topbar{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:22px 28px;
   border-bottom:1px solid var(--line);
+  background:var(--surface);
 }
-.topbar .brand{
-  font-family:var(--mono); font-size:13px; letter-spacing:.02em;
-  color:var(--ink-soft); text-decoration:none;
+.topbar-inner{
+  max-width:980px;margin:0 auto;padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:14.5px;
 }
-.topbar .brand strong{color:var(--ink); font-weight:600;}
-.topbar .back{
-  font-family:var(--mono); font-size:13px;
-  color:var(--ink-soft); text-decoration:none;
-  display:flex; align-items:center; gap:6px;
-}
-.topbar .back:hover{color:var(--accent-ink);}
-.topbar .modtag{
-  font-family:var(--mono); font-size:13px; color:var(--accent-ink);
-  background:var(--tint); border:1px solid var(--tint-line);
-  padding:4px 10px; border-radius:3px;
-}
+.topbar a.back{color:var(--ink-soft);font-weight:500;}
+.topbar a.back:hover{color:var(--accent-deep);}
+.topbar .step{color:var(--ink-faint);font-variant-numeric:tabular-nums;}
 
 /* ---------- hero (index) ---------- */
-.hero{
-  position:relative;
-  padding:64px 28px 40px;
-  overflow:hidden;
-}
-.hero-inner{
-  max-width:1120px; margin:0 auto;
-  display:grid; grid-template-columns: 1.1fr 1fr; gap:40px; align-items:center;
+.hero{padding:64px 0 40px;border-bottom:1px solid var(--line);}
+.hero .kicker{
+  font-family:var(--sans);font-size:14.5px;color:var(--accent-deep);
+  font-weight:600;margin-bottom:14px;
 }
 .hero h1{
-  font-size:clamp(48px, 8vw, 84px);
-  line-height:0.98;
-  margin:0 0 20px;
-  font-weight:600;
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(40px,7vw,64px);line-height:1.04;margin:0 0 20px;
   letter-spacing:-0.01em;
 }
-.hero .lede{
-  font-size:20px; line-height:1.55; color:var(--ink-soft);
-  max-width:46ch; margin:0 0 26px;
+.hero p.lede{
+  font-family:var(--serif);font-size:21px;line-height:1.55;
+  color:var(--ink-soft);max-width:640px;margin:0 0 22px;
 }
-.hero .meta{
-  font-family:var(--mono); font-size:13px; color:var(--ink-faint);
-  margin-bottom:10px;
-}
-.curve-wrap{position:relative;}
-.curve-wrap svg{width:100%; height:auto; display:block;}
-.curve-path{
-  fill:none; stroke:var(--ink); stroke-width:2.5;
-  stroke-linecap:round; stroke-linejoin:round;
-  stroke-dasharray:2000; stroke-dashoffset:2000;
-  animation:draw 2.1s cubic-bezier(.4,.1,.2,1) forwards;
-}
-.curve-marker circle{opacity:0; animation:pop .5s ease forwards;}
-.curve-marker text{opacity:0; animation:pop .5s ease forwards;}
-.curve-marker.m1 circle, .curve-marker.m1 text{animation-delay:.9s;}
-.curve-marker.m2 circle, .curve-marker.m2 text{animation-delay:1.3s;}
-.curve-marker.m3 circle, .curve-marker.m3 text{animation-delay:1.7s;}
-.grid-line{stroke:var(--line-strong); stroke-width:1;}
-.base-line{stroke:var(--ink-faint); stroke-width:1; stroke-dasharray:4 5;}
-@keyframes draw{to{stroke-dashoffset:0;}}
-@keyframes pop{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
-@media (prefers-reduced-motion: reduce){
-  .curve-path{animation:none; stroke-dashoffset:0;}
-  .curve-marker circle, .curve-marker text{animation:none; opacity:1;}
-}
-@media (max-width: 860px){
-  .hero-inner{grid-template-columns:1fr;}
+.hero p.sub{font-size:16.5px;color:var(--ink-soft);max-width:620px;margin:0;}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;}
+.pill{
+  border:1px solid var(--line);border-radius:100px;
+  padding:5px 13px;font-size:13.5px;color:var(--ink-soft);
+  background:var(--surface);
 }
 
-.intro-copy{
-  max-width:68ch; margin:0 auto; padding:8px 28px 56px;
-  font-size:18px; color:var(--ink-soft);
+/* ---------- module cards (index) ---------- */
+.modules{padding:48px 0 72px;display:grid;gap:20px;}
+.mcard{
+  border:1px solid var(--line);border-radius:4px;background:var(--surface);
+  padding:32px;display:grid;grid-template-columns:64px 1fr;gap:24px;
+  transition:border-color .15s ease;
 }
-.intro-copy p{margin:0 0 16px;}
+.mcard:hover{border-color:var(--accent);}
+.mcard .num{
+  font-family:var(--serif);font-size:40px;color:var(--accent);
+  line-height:1;font-weight:600;
+}
+.mcard .eyebrow{font-size:13.5px;color:var(--ink-faint);margin-bottom:6px;}
+.mcard h2{font-family:var(--serif);font-size:26px;margin:0 0 10px;font-weight:600;}
+.mcard p{margin:0 0 16px;color:var(--ink-soft);font-size:16px;}
+.mcard .pillrow{margin-top:0;margin-bottom:18px;}
+.mcard .pill{font-size:12.5px;padding:4px 10px;}
+.mcard a.go{font-weight:600;font-size:15px;}
+.mcard a.go .arrow{display:inline-block;transition:transform .15s ease;}
+.mcard a.go:hover .arrow{transform:translateX(3px);}
 
-/* ---------- module index blocks ---------- */
-.modules{ border-top:1px solid var(--line); }
-.modblock{
-  border-bottom:1px solid var(--line);
-  padding:40px 0;
-  display:grid; grid-template-columns: 100px 1fr; gap:28px;
-}
-.modblock .num{
-  font-family:var(--mono); font-size:15px; padding-top:6px;
-}
-.modblock h2{
-  font-size:30px; margin:0 0 4px; font-weight:600; line-height:1.15;
-}
-.modblock .sub{
-  font-family:var(--mono); font-size:13px; margin:0 0 14px;
-}
-.modblock p.desc{
-  max-width:62ch; color:var(--ink-soft); margin:0 0 16px; font-size:17px;
-}
-.modblock ul.topics{
-  margin:0 0 20px; padding:0; list-style:none;
-  display:flex; flex-wrap:wrap; gap:8px 10px;
-}
-.modblock ul.topics li{
-  font-family:var(--mono); font-size:12.5px;
-  border:1px solid var(--line-strong); border-radius:3px;
-  padding:4px 9px; color:var(--ink-soft);
-}
-.modblock .enter{
-  font-weight:600; font-size:16px; text-decoration:underline;
-  text-decoration-thickness:1px; text-underline-offset:4px;
-}
-.modblock[data-m="1"] .num,.modblock[data-m="1"] .enter,.modblock[data-m="1"] .sub{color:#7A5608;}
-.modblock[data-m="2"] .num,.modblock[data-m="2"] .enter,.modblock[data-m="2"] .sub{color:#332750;}
-.modblock[data-m="3"] .num,.modblock[data-m="3"] .enter,.modblock[data-m="3"] .sub{color:#7A2313;}
-@media (max-width:640px){
-  .modblock{grid-template-columns:1fr; gap:10px;}
+footer.site-footer{
+  border-top:1px solid var(--line);padding:32px 0 56px;
+  color:var(--ink-faint);font-size:14px;
 }
 
 /* ---------- module page header ---------- */
-.modhead{
-  padding:56px 28px 32px;
-  background:var(--tint);
-  border-bottom:1px solid var(--tint-line);
+.mod-header{padding:40px 0 8px;}
+.mod-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13.5px;color:var(--accent-deep);font-weight:600;margin-bottom:18px;
 }
-.modhead-inner{max-width:760px; margin:0 auto;}
-.modhead .kicker{font-family:var(--mono); font-size:13px; color:var(--accent-ink); margin-bottom:14px;}
-.modhead h1{font-size:clamp(32px,5vw,48px); line-height:1.08; margin:0 0 10px; font-weight:600;}
-.modhead .sub{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-soft); margin:0;}
+.mod-badge .sq{
+  width:26px;height:26px;border-radius:4px;background:var(--accent-tint);
+  color:var(--accent-deep);display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:13.5px;font-weight:600;
+}
+.mod-header h1{
+  font-family:var(--serif);font-weight:600;font-size:clamp(32px,5.5vw,46px);
+  line-height:1.08;margin:0 0 14px;letter-spacing:-0.01em;
+}
+.mod-header .track{font-size:15.5px;color:var(--ink-faint);margin-bottom:0;}
 
-.objective{
-  max-width:760px; margin:34px auto 0; padding:20px 24px;
-  border-left:3px solid var(--accent);
-  background:var(--paper);
-  font-size:16px; color:var(--ink-soft);
+.callout{
+  border-left:3px solid var(--accent);background:var(--accent-tint);
+  padding:14px 20px;margin:28px 0;font-size:15.5px;color:var(--ink-soft);
+  border-radius:0 4px 4px 0;
 }
-.objective p{margin:0;}
+.callout p{margin:0;}
 
-/* ---------- layout: toc + article ---------- */
-.page-grid{
-  max-width:1040px; margin:0 auto; padding:44px 28px 90px;
-  display:grid; grid-template-columns:200px minmax(0,760px); gap:48px;
-  align-items:start;
+/* ---------- TOC ---------- */
+.toc-box{
+  border:1px solid var(--line);border-radius:4px;background:var(--surface);
+  padding:22px 26px;margin:30px 0 44px;
 }
-.toc{position:sticky; top:24px;}
-.toc-label{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin:0 0 12px;}
-.toc ol{list-style:none; margin:0; padding:0; counter-reset:none;}
-.toc li{margin-bottom:10px;}
-.toc a{
-  display:block; font-size:13.5px; line-height:1.4;
-  color:var(--ink-soft); text-decoration:none; border-left:2px solid transparent;
-  padding-left:10px;
+.toc-box .toc-label{
+  font-size:12.5px;font-weight:600;color:var(--ink-faint);
+  margin-bottom:12px;
 }
-.toc a:hover{color:var(--accent-ink); border-left-color:var(--accent);}
+.toc-box ul{margin:0;padding-left:0;list-style:none;}
+.toc-box li{margin:0;}
+.toc-box a{
+  display:block;padding:5px 0;font-size:15px;color:var(--ink-soft);
+  border-bottom:none;
+}
+.toc-box a:hover{color:var(--accent-deep);}
+.toc-box ul ul{padding-left:18px;}
+.toc-box ul ul a{font-size:14px;color:var(--ink-faint);}
 
-article.content h2{
-  font-size:25px; margin:52px 0 16px; font-weight:600; line-height:1.25;
-  scroll-margin-top:24px;
+/* ---------- article content ---------- */
+article{padding:6px 0 40px;}
+article h2{
+  font-family:var(--serif);font-size:28px;font-weight:600;
+  margin:52px 0 16px;padding-top:20px;border-top:1px solid var(--line-soft);
+  letter-spacing:-0.005em;
 }
-article.content h3{
-  font-size:18px; margin:30px 0 10px; font-weight:600;
-  font-family:var(--mono); text-transform:none; color:var(--ink);
+article > h2:first-child{border-top:none;padding-top:0;margin-top:20px;}
+article h3{
+  font-family:var(--serif);font-size:21px;font-weight:600;margin:34px 0 12px;
 }
-article.content p{margin:0 0 16px; max-width:70ch;}
-article.content ul, article.content ol{margin:0 0 18px; padding-left:22px; max-width:70ch;}
-article.content li{margin-bottom:6px;}
-article.content strong{font-weight:700;}
-article.content em{font-style:italic;}
-article.content hr{border:none; border-top:1px solid var(--line); margin:44px 0;}
-article.content code{
-  font-family:var(--mono); font-size:.86em; background:var(--tint);
-  padding:1px 5px; border-radius:3px;
+article h4{font-size:16.5px;font-weight:600;margin:22px 0 8px;}
+article p{margin:0 0 16px;color:var(--ink);}
+article p, article li{max-width:70ch;}
+article ul, article ol{margin:0 0 18px;padding-left:22px;}
+article li{margin-bottom:8px;}
+article li > ul, article li > ol{margin-top:8px;}
+article strong{font-weight:600;color:var(--ink);}
+article em{color:var(--ink-soft);}
+article blockquote{
+  margin:24px 0;padding:2px 0 2px 20px;border-left:3px solid var(--line);
+  color:var(--ink-faint);font-style:italic;font-size:15.5px;
 }
+article hr{border:none;border-top:1px solid var(--line);margin:40px 0;}
+article figure{margin:28px 0;}
+article figure img{
+  border:1px solid var(--line);border-radius:4px;width:100%;
+}
+article figcaption{
+  font-size:13.5px;color:var(--ink-faint);margin-top:10px;
+  font-style:italic;line-height:1.5;
+}
+article code{
+  font-family:var(--mono);font-size:0.86em;background:var(--line-soft);
+  padding:1px 5px;border-radius:3px;
+}
+article pre{
+  background:#12151F;color:#E7E9EE;border-radius:6px;
+  padding:20px 22px;overflow-x:auto;margin:24px 0;
+  font-family:var(--mono);font-size:13.5px;line-height:1.65;
+}
+article pre code{background:none;padding:0;color:inherit;}
+article table{
+  width:100%;border-collapse:collapse;margin:22px 0;font-size:15px;
+}
+article table th, article table td{
+  border:1px solid var(--line);padding:9px 13px;text-align:left;
+  vertical-align:top;
+}
+article table th{
+  background:var(--line-soft);font-weight:600;font-family:var(--sans);
+  font-size:13.5px;color:var(--ink-soft);
+}
+article table tr:nth-child(even) td{background:#FBFBFC;}
 
-article.content table{
-  width:100%; border-collapse:collapse; margin:20px 0 28px; font-size:15px;
+/* ---------- refs ---------- */
+.refs{
+  margin-top:20px;padding-top:8px;
 }
-article.content caption{caption-side:top; text-align:left;}
-article.content th, article.content td{
-  border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;
+.refs ul{list-style:none;padding:0;margin:0;}
+.refs li{
+  font-size:14.5px;color:var(--ink-faint);padding:9px 0;
+  border-top:1px solid var(--line-soft);
 }
-article.content thead th{
-  font-family:var(--mono); font-weight:600; font-size:12.5px;
-  color:var(--accent-ink); border-bottom:2px solid var(--accent);
-  padding-bottom:9px;
-}
-article.content tbody tr:hover{background:var(--tint);}
+.refs li:first-child{border-top:none;}
 
-section.refs{
-  margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
-}
-section.refs h2{
-  font-family:var(--mono); font-size:14px; font-weight:600;
-  color:var(--ink-faint); margin:0 0 18px; text-transform:none;
-}
-section.refs ul{padding-left:0; list-style:none; margin:0;}
-section.refs li{
-  font-size:14px; color:var(--ink-soft); margin-bottom:12px; padding-left:20px;
-  text-indent:-20px; max-width:66ch;
-}
-
-@media (max-width:860px){
-  .page-grid{grid-template-columns:1fr;}
-  .toc{position:static; margin-bottom:8px;}
-  .toc-panel{border:1px solid var(--line); border-radius:4px; padding:14px 16px;}
-}
-
-/* ---------- footer nav ---------- */
+/* ---------- prev/next ---------- */
 .pagenav{
-  border-top:1px solid var(--line);
-  padding:28px 28px 60px;
-}
-.pagenav-inner{
-  max-width:1040px; margin:0 auto;
-  display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin:56px 0 8px;padding-top:28px;border-top:1px solid var(--line);
 }
 .pagenav a{
-  font-family:var(--mono); font-size:13.5px; text-decoration:none; color:var(--ink-soft);
-  display:flex; flex-direction:column; gap:4px;
+  border:1px solid var(--line);border-radius:4px;padding:18px 20px;
+  display:block;background:var(--surface);
 }
-.pagenav a .lbl{color:var(--ink-faint); font-size:11px;}
-.pagenav a:hover{color:var(--accent-ink);}
-.pagenav a.next{text-align:right; margin-left:auto;}
+.pagenav a:hover{border-color:var(--accent);}
+.pagenav .dir{font-size:12.5px;color:var(--ink-faint);margin-bottom:6px;display:block;}
+.pagenav .lbl{font-family:var(--serif);font-size:17px;color:var(--ink);font-weight:600;}
+.pagenav .next{text-align:right;grid-column:2;}
 
-footer.site{
-  border-top:1px solid var(--line);
-  padding:26px 28px 48px;
-  font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);
+@media (max-width:640px){
+  body{font-size:16px;}
+  .mcard{grid-template-columns:1fr;gap:10px;}
+  .mcard .num{font-size:28px;}
+  .pagenav{grid-template-columns:1fr;}
+  .pagenav .next{grid-column:1;text-align:left;}
+  article h2{font-size:24px;}
+  .hero{padding:44px 0 32px;}
 }
-footer.site .wrap{max-width:1120px;}
+
 </style>
 </head>
 <body>
 
-<header class="topbar">
-  <a class="back" href="index.html">← Curso</a>
-  <span class="modtag">módulo 03</span>
-</header>
-
-<section class="modhead">
-  <div class="modhead-inner">
-    <p class="kicker">módulo 03 / 03 módulos</p>
-    <h1>Metabolismo en el deporte de alto rendimiento</h1>
-    <p class="sub">Glucógeno, durabilidad y periodización</p>
-  </div>
-  <div class="objective">
-<p>Objetivo del módulo: llevar todo lo aprendido en los Módulos 1 y 2 a su máxima expresión bajo la demanda del ejercicio de resistencia. Este es el módulo "núcleo" para tu hipótesis de trabajo: <strong>la durabilidad se explica mejor por la disponibilidad y cinética del glucógeno (a nivel subcelular) que por la simple caída porcentual de potencia.</strong></p>
+<div class="topbar"><div class="topbar-inner">
+  <a class="back" href="index.html">&larr; Curso</a>
+  <span class="step">módulo 03 / 03</span>
+</div></div>
+<header class="mod-header"><div class="wrap">
+  <div class="mod-badge"><span class="sq">03</span>Glucógeno, durabilidad y periodización</div>
+  <h1>Metabolismo en el deporte de alto rendimiento</h1>
+  <p class="track">Rutas de ATP, glucógeno subcelular, transportadores múltiples, el mecanismo de la fatiga y el debate Burke contra Noakes.</p>
+</div></header><div class="wrap"><nav class="toc-box" aria-label="Contenido del módulo"><div class="toc-label">En este módulo</div><div class="toc">
+<ul>
+<li><a href="#1-fundamentos-del-metabolismo-de-carbohidratos-en-el-ejercicio">1. Fundamentos del metabolismo de carbohidratos en el ejercicio</a><ul>
+<li><a href="#11-las-tres-rutas-de-resintesis-de-atp">1.1 Las tres rutas de resíntesis de ATP</a></li>
+<li><a href="#12-por-que-el-carbohidrato-es-el-sustrato-preferente-a-alta-intensidad">1.2 Por qué el carbohidrato es el sustrato preferente a alta intensidad</a></li>
+<li><a href="#13-el-concepto-de-disponibilidad-de-carbohidratos-carbohydrate-availability">1.3 El concepto de "disponibilidad de carbohidratos" (carbohydrate availability)</a></li>
+</ul>
+</li>
+<li><a href="#2-glucogeno-muscular-deplecion-cinetica-y-train-low-compete-high">2. Glucógeno muscular: depleción, cinética y "train low, compete high"</a><ul>
+<li><a href="#21-deplecion-segun-intensidad-y-tipo-de-fibra">2.1 Depleción según intensidad y tipo de fibra</a></li>
+<li><a href="#22-biogenesis-mitocondrial-y-la-hipotesis-del-umbral-de-glucogeno">2.2 Biogénesis mitocondrial y la "hipótesis del umbral de glucógeno"</a></li>
+<li><a href="#23-train-low-compete-high-el-marco-de-bartlett-hawley-morton-2015">2.3 "Train low, compete high": el marco de Bartlett, Hawley &amp; Morton (2015)</a></li>
+<li><a href="#24-el-resultado-paradojico-senalizacion-molecular-rendimiento-garantizado">2.4 El resultado paradójico: señalización molecular ≠ rendimiento garantizado</a></li>
+</ul>
+</li>
+<li><a href="#3-carbohidratos-exogenos-durante-el-ejercicio-transportadores-multiples">3. Carbohidratos exógenos durante el ejercicio: transportadores múltiples</a><ul>
+<li><a href="#31-el-limite-de-la-glucosa-sola">3.1 El límite de la glucosa sola</a></li>
+<li><a href="#32-por-que-glucosa-fructosa-supera-ese-limite">3.2 Por qué glucosa + fructosa supera ese límite</a></li>
+<li><a href="#33-recomendaciones-practicas-basadas-en-dosis-y-duracion">3.3 Recomendaciones prácticas basadas en dosis y duración</a></li>
+</ul>
+</li>
+<li><a href="#4-fatiga-y-durabilidad-el-nucleo-de-la-hipotesis">4. Fatiga y durabilidad: el núcleo de la hipótesis</a><ul>
+<li><a href="#41-el-mecanismo-de-ca2-por-que-el-glucogeno-intramiofibrilar-importa-tanto">4.1 El mecanismo de Ca²⁺: por qué el glucógeno intramiofibrilar importa tanto</a></li>
+<li><a href="#42-durabilidad-definicion-y-evidencia-de-caida-de-cpftp">4.2 Durabilidad: definición y evidencia de caída de CP/FTP</a></li>
+<li><a href="#43-curva-dosis-respuesta-de-cho-0-120-gh-y-su-relacion-con-durabilidad">4.3 Curva dosis-respuesta de CHO (0-120 g/h) y su relación con durabilidad</a></li>
+<li><a href="#44-sintesis-de-tu-hipotesis-por-que-el-glucogeno-explica-mejor-la-durabilidad-que-la-caida-porcentual-de-potencia-aislada">4.4 Síntesis de tu hipótesis: por qué el glucógeno explica mejor la durabilidad que la caída porcentual de potencia aislada</a></li>
+</ul>
+</li>
+<li><a href="#5-periodizacion-estrategica-el-debate-burke-vs-noakes-2024-2026">5. Periodización estratégica: el debate Burke vs. Noakes (2024-2026)</a><ul>
+<li><a href="#51-el-contexto-del-debate">5.1 El contexto del debate</a></li>
+<li><a href="#52-postura-de-noakes-no-perjudica-tras-adaptacion">5.2 Postura de Noakes ("No perjudica, tras adaptación")</a></li>
+<li><a href="#53-postura-de-burke-si-perjudica-especialmente-en-alta-intensidad">5.3 Postura de Burke ("Sí perjudica, especialmente en alta intensidad")</a></li>
+<li><a href="#54-puntos-de-friccion-metodologica-explicitos">5.4 Puntos de fricción metodológica explícitos</a></li>
+<li><a href="#55-sintesis-integradora-final-el-modelo-completo-del-curso">5.5 Síntesis integradora final: el modelo completo del curso</a></li>
+</ul>
+</li>
+<li><a href="#referencias-clave-de-este-modulo">Referencias clave de este módulo</a></li>
+</ul>
 </div>
-</section>
-
-<div class="page-grid">
-  <nav class="toc">
-    <p class="toc-label">índice</p>
-    <ol><li><a href="#31-fundamentos-del-metabolismo-de-carbohidratos-en-el-ejercicio">3.1 Fundamentos del metabolismo de carbohidratos en el ejercicio</a></li><li><a href="#32-glucógeno-muscular-depleción-cinética-por-intensidad-biogénesis-mitocondrial-y-train-low-compete-high">3.2 Glucógeno muscular: depleción, cinética por intensidad, biogénesis mitocondrial y "train low, compete high"</a></li><li><a href="#33-carbohidratos-exógenos-transportadores-múltiples-y-por-qué-glucosa--fructosa-supera-el-límite-de-la-glucosa-sola">3.3 Carbohidratos exógenos: transportadores múltiples y por qué glucosa + fructosa supera el límite de la glucosa sola</a></li><li><a href="#34-fatiga-y-durabilidad-el-núcleo-de-la-hipótesis">3.4 Fatiga y durabilidad: el núcleo de la hipótesis</a></li><li><a href="#35-periodización-estratégica-integración-práctica-y-el-debate-burke-vs-noakes-2024-2026">3.5 Periodización estratégica: integración práctica y el debate Burke vs. Noakes (2024-2026)</a></li><li><a href="#36-uso-de-la-fructosa-clave-en-ambientes-calurosos">3.6 Uso de la fructosa: clave en ambientes calurosos</a></li><li><a href="#referencias-clave-de-este-módulo">Referencias clave de este módulo</a></li></ol>
-  </nav>
-  <article class="content">
-    
-
-
-<h2 id="31-fundamentos-del-metabolismo-de-carbohidratos-en-el-ejercicio">3.1 Fundamentos del metabolismo de carbohidratos en el ejercicio</h2>
-<h3 id="las-tres-rutas-de-resíntesis-de-atp">Las tres rutas de resíntesis de ATP</h3>
-<p>El músculo esquelético no "usa" ATP directamente desde un reservorio grande; lo resintetiza continuamente a partir de tres sistemas, que coexisten siempre pero con contribución relativa distinta según la intensidad y duración:</p>
-<ol type="1">
-<li><strong>Sistema de los fosfágenos</strong> (ATP-PCr): resíntesis inmediata, sin oxígeno, capacidad muy alta pero reservorio minúsculo (segundos). Domina en esfuerzos explosivos (&lt;10 s).</li>
-<li><strong>Glucólisis anaeróbica</strong>: rompe glucosa/glucógeno hasta piruvato → lactato, sin necesidad de oxígeno, produce ATP rápido pero en cantidad limitada por molécula (2 ATP netos por glucosa desde glucógeno, o 2 ATP netos por glucosa libre), y genera acidosis metabólica asociada. Domina en esfuerzos de alta intensidad de 10 s a ~2-3 min.</li>
-<li><strong>Fosforilación oxidativa (mitocondrial)</strong>: requiere oxígeno; puede usar carbohidrato (vía piruvato → acetil-CoA → ciclo de Krebs) o grasa (vía β-oxidación → acetil-CoA → ciclo de Krebs) como sustrato. Rinde ~32 ATP por molécula de glucosa (vs. 2 de la vía anaeróbica), pero a una <strong>tasa máxima de producción de ATP por unidad de tiempo mucho menor</strong> que la vía anaeróbica.</li>
-</ol>
-<h3 id="por-qué-el-carbohidrato-es-el-sustrato-preferido-a-alta-intensidad-el-crossover-concept-de-brooks">Por qué el carbohidrato es el sustrato preferido a alta intensidad: el "crossover concept" de Brooks</h3>
-<p>El concepto de "crossover" (Brooks &amp; Mercier, <em>J Appl Physiol</em>, 1994; Brooks, <em>Clin Exp Pharmacol Physiol</em>, 1997) es el marco teórico estándar para entender el reparto CHO/grasa según intensidad:</p>
-<ul>
-<li>A intensidades bajas-moderadas (&lt; ~45-50 % VO₂max en sujeto entrenado), la grasa es el sustrato predominante.</li>
-<li>A medida que sube la intensidad, la contribución relativa de carbohidrato aumenta y la de grasa disminuye, cruzándose ambas curvas en el <strong>"punto de crossover"</strong> (habitualmente entre 45-65 % VO₂max según el estado de entrenamiento).</li>
-<li>Por encima de ~85 % VO₂max, la oxidación de grasa se minimiza casi por completo y el carbohidrato se convierte en el sustrato prácticamente exclusivo.</li>
-</ul>
-<p><strong>¿Por qué ocurre esto a nivel mecanístico?</strong> Existen varias razones convergentes, no una sola:</p>
-<ul>
-<li><strong>Tasa de producción de ATP por unidad de tiempo</strong>: la oxidación de grasa, aunque rinde más ATP por molécula, requiere más oxígeno por caloría producida y tiene una tasa máxima de flujo (<code>Vmax</code>) mucho menor que la oxidación de carbohidrato. A alta intensidad, el requerimiento de ATP por segundo supera lo que la β-oxidación puede sostener, obligando a un mayor reclutamiento de la vía glucolítica, mucho más rápida.</li>
-<li><strong>Reclutamiento de fibras tipo II</strong>: a mayor intensidad se reclutan más fibras rápidas (tipo IIx/IIa), que tienen menor densidad mitocondrial y capacidad oxidativa relativa, pero alta capacidad glucolítica — su sola activación desplaza el balance hacia el carbohidrato.</li>
-<li><strong>Activación simpática</strong>: el aumento de catecolaminas con la intensidad estimula la glucogenólisis muscular y hepática, aumentando la disponibilidad de sustrato glucolítico exactamente cuando más se necesita.</li>
-<li><strong>Inhibición de la entrada de ácidos grasos a la mitocondria</strong>: a alta intensidad, la acumulación de malonil-CoA (subproducto de la glucólisis acelerada) inhibe la carnitina palmitoiltransferasa I (CPT-I), la enzima que transporta ácidos grasos de cadena larga al interior mitocondrial — un mecanismo bioquímico directo que "cierra la puerta" a la grasa precisamente cuando la demanda de ATP es más alta.</li>
-</ul>
-<p>El entrenamiento de resistencia desplaza el punto de crossover hacia intensidades relativas más altas (mejora la capacidad oxidativa de grasa), pero <strong>no elimina el crossover</strong>: incluso en atletas de élite, el ejercicio de intensidad dura (~75-90 % VO₂max) se sostiene predominantemente con carbohidrato.</p>
-<h3 id="el-concepto-de-disponibilidad-de-carbohidratos-carbohydrate-availability">El concepto de "disponibilidad de carbohidratos" (carbohydrate availability)</h3>
-<p>Introducido y desarrollado por Hawley y Burke (Hawley &amp; Burke, <em>Exerc Sport Sci Rev</em>, 2010; Hawley &amp; Morton, <em>Clin Exp Pharmacol Physiol</em>, 2014), este concepto va más allá de "cuánto carbohidrato como" e integra <strong>tres reservorios simultáneos</strong>:</p>
-<ol type="1">
-<li><strong>Glucógeno muscular</strong> (el reservorio de acceso más rápido y directo para el músculo activo).</li>
-<li><strong>Glucógeno hepático</strong> (mantiene la glucemia; su agotamiento es la causa clásica de la "pájara"/hipoglucemia de esfuerzo).</li>
-<li><strong>Carbohidrato exógeno</strong> ingerido durante el ejercicio (§3.3).</li>
-</ol>
-<p>La "disponibilidad de carbohidratos" en un momento dado del ejercicio es la suma funcional de estos tres reservorios, y determina tanto (a) la capacidad de sostener una intensidad absoluta dada, como (b) la señalización celular que dispara las adaptaciones al entrenamiento (§3.2). Este concepto es el que permite entender por qué "carbohidratos totales del día" es una variable demasiado gruesa: lo que realmente importa es la disponibilidad <em>en el momento y lugar</em> donde el músculo la necesita.</p>
-<hr/>
-<h2 id="32-glucógeno-muscular-depleción-cinética-por-intensidad-biogénesis-mitocondrial-y-train-low-compete-high">3.2 Glucógeno muscular: depleción, cinética por intensidad, biogénesis mitocondrial y "train low, compete high"</h2>
-<h3 id="patrones-de-depleción-según-intensidad-y-tipo-de-fibra">Patrones de depleción según intensidad y tipo de fibra</h3>
-<p>Los estudios clásicos de biopsia muscular (Gollnick et al., 1973) y los más recientes con microscopía electrónica confirman un patrón claro:</p>
-<ul>
-<li>A intensidades <strong>bajas-moderadas</strong> y de larga duración, se reclutan preferentemente fibras tipo I (lentas, oxidativas), que depletan su glucógeno de forma progresiva y casi lineal con el tiempo.</li>
-<li>A intensidades <strong>altas e intermitentes</strong> (series repetidas, deportes de equipo, intervalos), se reclutan también fibras tipo II (rápidas, glucolíticas), que depletan su glucógeno de forma <strong>desproporcionadamente rápida</strong> en relación con la caída del glucógeno muscular "promedio" medido en una biopsia de tejido completo.</li>
-</ul>
-<p>Esto es clínicamente relevante: <strong>el glucógeno muscular medido a nivel de todo el músculo puede parecer "moderadamente reducido" mientras que fibras individuales específicas ya están virtualmente vacías</strong> — y son precisamente esas fibras individuales depletadas las que dejan de poder contribuir a la fuerza/potencia (Vigh-Larsen, Ørtenblad &amp; Nielsen, <em>Sports Medicine</em>, 2021 — revisión narrativa sobre glucógeno muscular y rendimiento de alta intensidad).</p>
-<h3 id="compartimentos-subcelulares-del-glucógeno">Compartimentos subcelulares del glucógeno</h3>
-<p>El glucógeno no está distribuido de forma homogénea dentro de la fibra muscular; se organiza en tres poblaciones distintas, cada una asociada topográficamente a una maquinaria contráctil o de transporte iónico específica (Nielsen, Ørtenblad et al.):</p>
+</nav></div><div class="wrap"><article><h2 id="1-fundamentos-del-metabolismo-de-carbohidratos-en-el-ejercicio">1. Fundamentos del metabolismo de carbohidratos en el ejercicio</h2>
+<h3 id="11-las-tres-rutas-de-resintesis-de-atp">1.1 Las tres rutas de resíntesis de ATP</h3>
 <table>
 <thead>
-<tr class="header">
-<th>Compartimento</th>
-<th>Ubicación</th>
-<th>Proceso asociado</th>
+<tr>
+<th>Sistema</th>
+<th>Sustrato</th>
+<th>Tasa máxima de producción de ATP</th>
+<th>Capacidad (duración)</th>
+<th>Dependencia de O₂</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><strong>Intramiofibrilar (Intra)</strong></td>
-<td>Entre los filamentos de actina/miosina, cerca de la tríada</td>
-<td>Liberación de Ca²⁺ del retículo sarcoplásmico (RS)</td>
+<tr>
+<td>Fosfocreatina (PCr)</td>
+<td>Creatina fosfato</td>
+<td>Muy alta</td>
+<td>Segundos (~10 s)</td>
+<td>No</td>
 </tr>
-<tr class="even">
-<td><strong>Intermiofibrilar (IMF)</strong></td>
-<td>Entre miofibrillas, cerca de mitocondrias</td>
-<td>Recaptación de Ca²⁺ por la SERCA (bomba Ca²⁺-ATPasa del RS)</td>
+<tr>
+<td>Glucólisis anaeróbica</td>
+<td>Glucógeno/glucosa → lactato</td>
+<td>Alta</td>
+<td>~1-3 min</td>
+<td>No</td>
 </tr>
-<tr class="odd">
-<td><strong>Subsarcolemal (SS)</strong></td>
-<td>Justo bajo la membrana celular</td>
-<td>Actividad de la bomba Na⁺/K⁺-ATPasa, excitabilidad de membrana</td>
+<tr>
+<td>Fosforilación oxidativa</td>
+<td>Glucógeno/glucosa, ácidos grasos, (proteína marginal)</td>
+<td>Moderada-baja</td>
+<td>Horas</td>
+<td>Sí</td>
 </tr>
 </tbody>
 </table>
-<p>Esta organización subcelular es la clave mecanística de por qué la depleción de glucógeno causa fatiga incluso cuando, en teoría, "sobra sustrato energético" a nivel de todo el músculo (ver §3.4).</p>
-<h3 id="biogénesis-mitocondrial-y-disponibilidad-reducida-de-carbohidratos">Biogénesis mitocondrial y disponibilidad reducida de carbohidratos</h3>
-<p>Entrenar con glucógeno reducido activa de forma amplificada la vía de señalización que regula la biogénesis mitocondrial:</p>
-<ul>
-<li><strong>AMPK</strong> (activada por el aumento de la relación AMP/ATP, más pronunciado cuando hay poco glucógeno) y <strong>p38 MAPK</strong> fosforilan y activan a <strong>PGC-1α</strong>, el "regulador maestro" de la biogénesis mitocondrial.</li>
-<li>Estudios con biopsia muscular muestran que un mismo estímulo de ejercicio produce un incremento de ARNm de PGC-1α de ~8 veces con glucógeno bajo, frente a ~2,5 veces con glucógeno normal (Bartlett et al.; Impey et al. — estudios citados en la revisión de Impey y colaboradores de 2018).</li>
-<li>La restricción de carbohidratos también favorece la actividad de la piruvato deshidrogenasa quinasa 4 (PDK4), que inhibe a la PDH y desplaza el metabolismo hacia la oxidación de grasa, reforzando el fenotipo oxidativo.</li>
-</ul>
-<h3 id="train-low-compete-high-qué-dice-la-evidencia-realmente">"Train low, compete high": qué dice la evidencia realmente</h3>
-<p>El paradigma "train low, compete high" (Bartlett, Hawley &amp; Morton, revisión conceptual; Hawley &amp; Morton, 2014) propone entrenar deliberadamente una parte de las sesiones (habitualmente 30-50 %) con disponibilidad reducida de carbohidratos —ayuno, doble sesión sin recarga entre ellas, restricción post-ejercicio, o el modelo "sleep-low, train-low" de Marquet et al.— para amplificar la señal de adaptación mitocondrial descrita arriba, y luego competir con disponibilidad alta.</p>
-<p>La síntesis más rigurosa de la evidencia es el marco de <strong>"Fuel for the Work Required" y la "hipótesis del umbral de glucógeno"</strong> (Impey, Hearris, Hammond, Bartlett, Louis, Close &amp; Morton, <em>Sports Medicine</em>, 2018):</p>
-<ul>
-<li>Los beneficios sobre la señalización celular (fosforilación de AMPK/p38, expresión génica, actividad enzimática oxidativa) son consistentes y se observan en la mayoría de los estudios cuando el entrenamiento comienza dentro de un rango específico de concentración de glucógeno muscular (ni excesivamente alto ni completamente depletado).</li>
-<li>Sin embargo, esa señalización molecular amplificada <strong>no siempre se traduce en mejor rendimiento</strong>: de los estudios revisados, solo ~37 % mostraron mejoras de rendimiento, mientras que ~63 % no mostraron cambios — y ningún estudio robusto ha mostrado <em>perjuicio</em> consistente cuando el protocolo está bien diseñado.</li>
-<li>El "train low" reduce la capacidad de entrenar duro en esa sesión específica (el atleta no puede sostener la misma potencia/velocidad con glucógeno bajo) y es psicológicamente más exigente — lo cual es un costo real que debe balancearse contra el beneficio de señalización (Bartlett et al., 2015; Burke, 2010).</li>
-<li>La variante <strong>"train high, sleep low"</strong> (entrenar por la tarde con buena disponibilidad, no reponer carbohidratos antes de dormir, y entrenar en ayunas/glucógeno bajo a la mañana siguiente) muestra evidencia algo más consistente de beneficio de rendimiento que el "train low" puro, posiblemente porque permite mantener la calidad del estímulo de entrenamiento de alta intensidad (Hawley, 2014; Marquet et al.).</li>
-</ul>
-<p><strong>Conclusión práctica de esta sección:</strong> "train low, compete high" es una herramienta de periodización válida para maximizar adaptaciones oxidativas en bloques específicos de la temporada (típicamente base/preparatoria), <strong>no</strong> una estrategia para usar de forma crónica ni cerca de competencias, y su implementación exitosa depende de aplicar el estímulo de baja disponibilidad de forma selectiva y calculada — no simplemente "entrenar siempre con poco carbohidrato".</p>
-<hr/>
-<h2 id="33-carbohidratos-exógenos-transportadores-múltiples-y-por-qué-glucosa--fructosa-supera-el-límite-de-la-glucosa-sola">3.3 Carbohidratos exógenos: transportadores múltiples y por qué glucosa + fructosa supera el límite de la glucosa sola</h2>
-<h3 id="el-límite-de-la-glucosa-sola-saturación-de-sglt1">El límite de la glucosa sola: saturación de SGLT1</h3>
-<p>Durante décadas se documentó que la oxidación de carbohidrato exógeno (el que se ingiere durante el ejercicio) tiene un techo cercano a <strong>~1 g/min (~60 g/h)</strong> cuando se ingiere solo glucosa o maltodextrina, sin importar cuánto más se ingiera por encima de esa cantidad. La investigación de Jeukendrup y colaboradores estableció que este techo <strong>no</strong> se debe a limitaciones del vaciamiento gástrico, ni de la síntesis de glucógeno hepático, ni de la captación muscular de glucosa (esto último se descartó al comprobar que la infusión intravenosa directa de glucosa permite tasas de captación muscular mucho mayores) — el cuello de botella real es la <strong>absorción intestinal</strong>, específicamente la saturación del transportador <strong>SGLT1</strong> en el borde en cepillo del enterocito (Jeukendrup, <em>Sports Medicine</em> / <em>Sports Science Exchange</em>, GSSI; Jentjens et al., 2004).</p>
-<h3 id="la-solución-transportadores-múltiples-glucosa--fructosa">La solución: transportadores múltiples (glucosa + fructosa)</h3>
-<p>La fructosa se absorbe por un transportador completamente distinto e independiente del sodio: <strong>GLUT5</strong>. Al no competir por el mismo transportador que la glucosa, la combinación de ambos carbohidratos permite <strong>sumar</strong> sus capacidades de absorción en lugar de competir por una sola vía saturable.</p>
-<p><strong>Datos clave</strong> (Jentjens et al., 2004a, <em>J Appl Physiol</em>; y trabajos posteriores del grupo de Jeukendrup):</p>
-<ul>
-<li>Glucosa sola a 1,8 g/min: oxidación exógena pico ≈ 0,8 g/min (saturación de SGLT1).</li>
-<li>Glucosa + fructosa (proporción ~2:1) a 1,8 g/min combinados: oxidación exógena pico ≈ 1,2-1,3 g/min — un incremento de hasta **~55 %** respecto a glucosa sola.</li>
-<li>Combinaciones optimizadas de "carbohidratos múltiplemente transportables" (MTC, por sus siglas en inglés) han mostrado incrementos de oxidación de hasta <strong>~75 %</strong> frente al uso de un solo transportador.</li>
-</ul>
-<h3 id="guías-prácticas-de-dosificación-evidencia-actual">Guías prácticas de dosificación (evidencia actual)</h3>
-<ul>
-<li>Para saturar SGLT1 se requieren ~60 g/h de glucosa/maltodextrina; el exceso más allá de esto solo se aprovecha si se añade una fuente que use GLUT5 (fructosa, o sacarosa que se hidroliza a glucosa+fructosa).</li>
-<li>La proporción clásica más estudiada es <strong>2:1 glucosa:fructosa</strong> (ej. 60 g/h de glucosa/maltodextrina + 30 g/h de fructosa = 90 g/h totales), recomendada por el consenso del ACSM (2016) para eventos &gt; 2,5-3 h.</li>
-<li>Investigación más reciente ha explorado proporciones más cercanas a 1:1 (p. ej. 0,8:1 fructosa:glucosa) a dosis de hasta 120 g/h, con resultados favorables en confort gastrointestinal y en eficiencia de absorción, sin comprometer la oxidación (estudios de Rowlands, O'Brien y colaboradores).</li>
-<li>El <strong>entrenamiento intestinal</strong> ("training the gut", Jeukendrup, 2017) — exponer repetidamente al tracto digestivo a altas dosis de carbohidrato durante los entrenamientos — mejora la tolerancia y reduce el malestar gastrointestinal en un 26-47 %, y mejora la absorción efectiva entre un 45-54 %, según revisiones recientes.</li>
-</ul>
-<p>Este mecanismo de transportadores múltiples es la base bioquímica directa de por qué las guías de nutrición deportiva moderna recomiendan mezclas de carbohidratos (no solo glucosa/maltodextrina) para eventos prolongados de alta demanda energética.</p>
-<hr/>
-<h2 id="34-fatiga-y-durabilidad-el-núcleo-de-la-hipótesis">3.4 Fatiga y durabilidad: el núcleo de la hipótesis</h2>
-<p>Esta es la sección central del módulo, donde se integra todo lo anterior para sostener la tesis: <strong>la durabilidad se explica mejor por el estado del glucógeno (especialmente a nivel subcelular) que por la simple caída porcentual de la potencia.</strong></p>
-<h3 id="qué-es-durabilidad-como-constructo-científico">¿Qué es "durabilidad" como constructo científico?</h3>
-<p>El término <strong>durability</strong> (durabilidad) fue formalizado recientemente en la literatura de fisiología del ejercicio como un <strong>cuarto determinante del rendimiento de resistencia</strong>, junto al VO₂max, el umbral/potencia crítica y la eficiencia/economía (Maunder, Plews &amp; Kilding, <em>Sports Medicine</em>, 2021; Jones, 2023). Se define como <strong>la resistencia al deterioro de las características fisiológicas de rendimiento durante el ejercicio prolongado</strong> — es decir, no cuánto rindes en estado fresco, sino cuánto de ese rendimiento fresco logras conservar tras horas de trabajo acumulado.</p>
-<h3 id="evidencia-de-deterioro-fisiológico-durante-el-ejercicio-prolongado">Evidencia de deterioro fisiológico durante el ejercicio prolongado</h3>
-<p>Múltiples estudios documentan caídas variables, pero consistentes, en las variables de rendimiento "en estado fresco" tras ejercicio prolongado:</p>
-<ul>
-<li>Tras ~4 h de ciclismo, se han reportado caídas de ~2,9 % en potencia de contrarreloj de 20 min (Valenzuela et al., 2023) y de hasta ~10 % en contrarreloj de 6 min (Ørtenblad et al., 2024), con <strong>enorme variabilidad interindividual</strong> (de -31 % a +1 % en algunos sujetos del segundo estudio).</li>
-<li>La <strong>potencia crítica (CP)</strong> y la capacidad de trabajo anaeróbico (W') también se reducen tras acumular trabajo por encima del umbral de lactato, en una magnitud dependiente de la cantidad de trabajo realizado y de la intensidad relativa del mismo (Mateo-March et al., 2022, 2024; Spragg et al., 2024).</li>
-<li>Esta variabilidad individual tan amplia es precisamente la pista de que <strong>"caída porcentual de potencia"</strong>, como métrica aislada, es un descriptor pobre del fenómeno: dos atletas con la misma caída de potencia pueden tener mecanismos fisiológicos subyacentes completamente distintos, y dos atletas con distinta caída de potencia pueden compartir el mismo mecanismo limitante en distinta magnitud.</li>
-</ul>
-<h3 id="el-mecanismo-glucógeno-subcelular-ca²-y-acoplamiento-excitación-contracción">El mecanismo: glucógeno subcelular, Ca²⁺ y acoplamiento excitación-contracción</h3>
-<p>Aquí es donde el glucógeno entra como explicación mecanística superior a la simple contabilidad energética ("cuántas calorías me quedan"):</p>
-<ol type="1">
-<li><strong>La hipótesis energética clásica</strong> sostiene que la fatiga por depleción de glucógeno ocurre simplemente porque no queda sustrato suficiente para resintetizar ATP al ritmo requerido. Esta hipótesis es incompleta: se ha demostrado repetidamente que la fatiga aparece con niveles de glucógeno muscular medidos en biopsia que, en teoría, todavía deberían ser energéticamente suficientes para sostener el ATP requerido.</li>
-<li><strong>La hipótesis actualizada (acoplamiento excitación-contracción)</strong>, respaldada por microscopía electrónica y estudios en fibra aislada (Ørtenblad, Nielsen y colaboradores; revisión de Vigh-Larsen et al., 2021), propone que el glucógeno <strong>no es solo combustible</strong>: los gránulos de glucógeno ubicados en los compartimentos <strong>intramiofibrilar</strong> e <strong>intermiofibrilar</strong> están físicamente asociados a la maquinaria de manejo de calcio del retículo sarcoplásmico.
-<ul>
-<li>La depleción del glucógeno <strong>intramiofibrilar</strong> se asocia específicamente con <strong>menor liberación de Ca²⁺</strong> desde el retículo sarcoplásmico (posiblemente por precipitación de fosfato de calcio dentro del RS cuando el suministro energético local a la SERCA y a los canales de liberación se compromete).</li>
-<li>La depleción del glucógeno <strong>intermiofibrilar</strong> se asocia con alteraciones en la <strong>recaptación de Ca²⁺</strong> (actividad de la SERCA) y en la actividad de la bomba Na⁺/K⁺-ATPasa, afectando la excitabilidad de la membrana.</li>
-<li>El resultado neto es una <strong>falla progresiva del acoplamiento excitación-contracción</strong> — el músculo recibe la señal nerviosa, pero es cada vez menos capaz de traducirla en liberación de Ca²⁺ y, por tanto, en generación de fuerza — que ocurre de forma <strong>localizada y heterogénea entre fibras individuales</strong>, no como un evento homogéneo de "todo el músculo se queda sin combustible a la vez".</li>
-</ul></li>
+<p>El punto clave conceptual: <strong>la tasa de producción de ATP y la capacidad total (duración) están en relación inversa</strong> entre sistemas. La glucólisis (con o sin oxígeno) puede producir ATP mucho más rápido que la β-oxidación de grasas, aunque el rendimiento total de ATP por gramo de sustrato sea menor que el de la grasa.</p>
+<h3 id="12-por-que-el-carbohidrato-es-el-sustrato-preferente-a-alta-intensidad">1.2 Por qué el carbohidrato es el sustrato preferente a alta intensidad</h3>
+<p>Hay al menos tres razones bioenergéticas, no solo una preferencia:</p>
+<ol>
+<li><strong>Velocidad de producción de ATP</strong>: la glucólisis (aeróbica o anaeróbica) puede igualar demandas de ATP muy superiores a las que la β-oxidación de grasas puede sostener; a intensidades ≥85% VO₂max, la oxidación de grasa se reduce prácticamente a cero (concepto de "crossover point": &gt;50% de la energía proviene de CHO ya desde ~60% VO₂max).</li>
+<li><strong>Rendimiento energético por litro de oxígeno consumido</strong>: oxidar carbohidrato produce más ATP por litro de O₂ que oxidar grasa (mayor cociente P/O), lo cual importa cuando el suministro de oxígeno —no solo el sustrato— es el factor limitante a alta intensidad.</li>
+<li><strong>Capacidad de producir ATP sin oxígeno</strong>: solo la vía glucolítica puede seguir produciendo ATP cuando la demanda supera momentáneamente la capacidad de suministro de O₂ (dominio de intensidad "severo").</li>
 </ol>
-<h3 id="por-qué-esto-explica-la-durabilidad-mejor-que-el--de-caída-de-potencia">Por qué esto explica la durabilidad mejor que el % de caída de potencia</h3>
-<ul>
-<li>La caída porcentual de potencia es una <strong>variable de salida</strong> (el resultado final observable), pero no dice nada sobre <strong>cuál</strong> de los múltiples mecanismos posibles (glucógeno subcelular, daño muscular, hipertermia, deshidratación, fatiga central) la está produciendo en un atleta específico.</li>
-<li>El estado del glucógeno subcelular, en cambio, es una <strong>variable de mecanismo</strong>: predice de forma directa y biológicamente plausible tanto el momento de aparición de la fatiga como su localización (qué fibras, qué grupo muscular), y es modificable de forma directa y predecible mediante la disponibilidad de carbohidratos (entrenamiento del glucógeno de base + ingesta exógena durante el esfuerzo).</li>
-<li>Esto explica por qué la relación entre "gramos de carbohidrato ingeridos" y "rendimiento" no es lineal ni total (ver curva dosis-respuesta abajo): la ingesta exógena puede enlentecer el vaciamiento del glucógeno hepático y del pool sanguíneo de glucosa, pero su capacidad de "recargar" selectivamente el glucógeno intramiofibrilar de fibras específicas durante el ejercicio es limitada — de ahí que la <strong>disponibilidad acumulada y bien gestionada antes y durante el esfuerzo</strong> (no solo la ingesta puntual) sea el verdadero determinante de la durabilidad.</li>
-</ul>
-<h3 id="la-curva-dosis-respuesta-de-carbohidrato-0-120-gh">La curva dosis-respuesta de carbohidrato (0-120 g/h)</h3>
-<p>El estudio multicéntrico de Smith et al. (<em>Med Sci Sports Exerc</em>, 2013) sigue siendo la referencia central: usando un diseño de dosis-respuesta con carbohidrato (proporción 1:1:1 de glucosa, maltodextrina y fructosa) en el rango de 0 a 120 g/h, encontró una <strong>relación curvilínea</strong>, con mejoras de rendimiento que se incrementan con la dosis pero muestran <strong>rendimientos decrecientes por encima de ~78-90 g/h</strong>.</p>
-<ul>
-<li>Las guías del ACSM (2016) recomiendan hasta ~90 g/h (de fuentes de transporte múltiple) para eventos &gt; 2,5-3 h.</li>
-<li>Revisiones más recientes (2024-2026) sugieren que, en poblaciones entrenadas y con "entrenamiento intestinal" adecuado, el límite superior útil podría extenderse de 90 a <strong>~120 g/h</strong>, ya que se ha demostrado que tanto la oxidación exógena como la oxidación total de carbohidrato pueden seguir aumentando a esas dosis (estudio de comparación 120 g/h vs. 90 g/h en proporción fructosa:maltodextrina, publicado en <em>Eur J Appl Physiol</em>), con posibles beneficios adicionales sobre variables de durabilidad y economía, más allá del simple retraso de la fatiga aguda por hipoglucemia.</li>
-<li>Es importante notar que la relación dosis-respuesta también depende del contexto: un estudio con dosis de solo glucosa en el rango 20-64 g/h encontró que <strong>~39-40 g/h parece ser el umbral mínimo</strong> para inducir efectos metabólicos suficientes para impactar el rendimiento, con pocos beneficios adicionales de subir de 40 a 64 g/h <strong>cuando se usa solo glucosa</strong> (recordar el límite de SGLT1 de §3.3) — reforzando que la fuente y combinación del carbohidrato importa tanto como la dosis total.</li>
-</ul>
-<h3 id="síntesis-de-la-hipótesis-central-del-módulo">Síntesis de la hipótesis central del módulo</h3>
-<blockquote>
-<p><strong>La durabilidad no es simplemente "cuánta potencia pierdes en porcentaje"; es la resistencia del sistema de acoplamiento excitación-contracción —dependiente en gran medida del estado del glucógeno subcelular en las fibras activamente reclutadas— al deterioro progresivo durante el trabajo prolongado.</strong> La ingesta de carbohidrato exógeno (particularmente en combinaciones de transportadores múltiples y a dosis adecuadas, §3.3) actúa principalmente ahorrando glucógeno endógeno (hepático y, en menor medida, muscular) y manteniendo la glucemia, retrasando así el momento en que los compartimentos críticos de glucógeno muscular alcanzan el umbral crítico de depleción asociado a la falla del manejo de Ca²⁺. Por eso dos protocolos que producen la "misma caída de potencia" en un test estandarizado pueden reflejar estados de reserva de glucógeno completamente distintos, y por eso optimizar la disponibilidad de carbohidratos (crónica + aguda) es una palanca más directa sobre la durabilidad real que perseguir únicamente el número de vatios perdidos en un test de fatiga.</p>
-</blockquote>
-<hr/>
-<h2 id="35-periodización-estratégica-integración-práctica-y-el-debate-burke-vs-noakes-2024-2026">3.5 Periodización estratégica: integración práctica y el debate Burke vs. Noakes (2024-2026)</h2>
-<h3 id="integración-práctica-de-todo-lo-anterior-en-un-plan-de-periodización-de-carbohidratos">Integración práctica de todo lo anterior en un plan de periodización de carbohidratos</h3>
-<p>Siguiendo el marco de consenso de Burke, Hawley, Jeukendrup, Morton, Stellingwerff &amp; Maughan (<em>Int J Sport Nutr Exerc Metab</em>, 2018) sobre periodización nutricional:</p>
-<ol type="1">
-<li><strong>Bloques de base/preparación general</strong>: mayor margen para incorporar sesiones "train low" selectivas (30-50 % del volumen), buscando maximizar la señalización mitocondrial (§3.2), siempre que la calidad del entrenamiento clave no se vea comprometida.</li>
-<li><strong>Bloques específicos/pre-competitivos</strong>: transición hacia disponibilidad alta y consistente de carbohidratos, sincronizada con las sesiones de mayor intensidad/especificidad, para permitir la calidad de estímulo neuromuscular y metabólico que replica la demanda competitiva.</li>
-<li><strong>Semana de competencia</strong>: carga de glucógeno (aumento de la ingesta de carbohidrato junto con reducción del volumen de entrenamiento en los 1-3 días previos) para maximizar el reservorio de glucógeno muscular e hepático de partida.</li>
-<li><strong>Durante la competencia/sesión clave</strong>: ingesta de carbohidratos exógenos con transportadores múltiples, ajustada a la duración e intensidad del evento (§3.3), priorizando el "entrenamiento intestinal" previo para tolerar las dosis planificadas sin malestar gastrointestinal.</li>
-</ol>
-<h3 id="el-debate-burke-vs-noakes-2024-actualizado-2026-american-journal-of-clinical-nutrition">El debate Burke vs. Noakes (2024, actualizado 2026, <em>American Journal of Clinical Nutrition</em>)</h3>
-<p>Este debate formal, publicado por Louise Burke y Timothy Noakes, sintetiza la discusión científica más actual sobre si una dieta baja en carbohidratos y alta en grasa (LCHF) perjudica el rendimiento de resistencia, en contraste con el enfoque de alta disponibilidad de carbohidratos (HCLF) descrito en este módulo.</p>
-<p><strong>Postura de Noakes:</strong></p>
-<ul>
-<li>Sostiene que, tras un período de adaptación adecuado (4-6 semanas), los atletas pueden rendir de forma equivalente con dietas LCHF y HCLF en una variedad de pruebas de duración e intensidad.</li>
-<li>Argumenta que el cuerpo puede adaptarse a oxidar grasa a tasas muy altas, que la depleción de glucógeno muscular no causa necesariamente fatiga de forma directa, y que la hipoglucemia —más que el glucógeno per se— podría ser el mecanismo real detrás de parte de la fatiga atribuida al "muro" del glucógeno.</li>
-</ul>
-<p><strong>Postura de Burke:</strong></p>
-<ul>
-<li>Presenta un conjunto amplio de estudios (incluyendo su propia serie "Supernova" con caminadores de élite) mostrando que, si bien la adaptación LCHF sí incrementa la capacidad de oxidación de grasa, esto se acompaña de una <strong>reducción de la eficiencia del ejercicio</strong> (mayor costo de oxígeno por vatio producido) y, en varios de sus estudios, de un <strong>empeoramiento del rendimiento competitivo real</strong> tras la adaptación cetogénica, incluso cuando la capacidad aeróbica submáxima parecía preservada en laboratorio.</li>
-<li>Señala que añadir carbohidrato a una dieta LCHF de base mejora el rendimiento respecto a LCHF puro — lo cual, para Burke, socava la premisa original del enfoque LCHF (eliminar la dependencia de carbohidrato).</li>
-<li>Concluye que el consenso científico actual sigue favoreciendo estrategias que maximizan la disponibilidad de carbohidratos (periodizada, no necesariamente "siempre alta", ver §3.2) como el enfoque más robusto para optimizar el rendimiento de resistencia.</li>
-</ul>
-<p><strong>Puntos de acuerdo entre ambos autores</strong> (explícitamente documentados en la publicación de consenso del debate):</p>
-<ul>
-<li>Ambos coinciden en que la ingesta de carbohidratos <strong>durante</strong> el ejercicio mejora el rendimiento, independientemente de la dieta crónica de base.</li>
-<li>Ambos coinciden en que una dieta baja en carbohidratos aumenta la oxidación de grasa, y que este proceso requiere semanas de adaptación fisiológica real.</li>
-<li>Ambos coinciden en que el uso de sustrato durante el ejercicio de alta intensidad es un proceso complejo y multifactorial, no reducible a una sola variable.</li>
-</ul>
-<p><strong>Puntos de desacuerdo:</strong> principalmente la interpretación de si la mayor oxidación de grasa lograda con LCHF se traduce, en la práctica competitiva real, en un rendimiento equivalente (Noakes) o inferior (Burke) al de una estrategia de alta disponibilidad de carbohidratos, y el peso relativo que debe darse a estudios de laboratorio (RCT controlados, defendidos por Noakes) frente a estudios de campo con atletas de máximo nivel bajo condiciones "reales" (los estudios "Supernova" de Burke, que ella misma reconoce como no aleatorizados y con posibles factores de confusión).</p>
-<h3 id="síntesis-final-del-módulo-glucógeno--utilización--caída-de-potencia--durabilidad">Síntesis final del módulo: glucógeno → utilización → caída de potencia → durabilidad</h3>
-<p>Integrando el debate con la evidencia mecanística de §3.4, la síntesis más defendible con la evidencia actual es:</p>
-<ol type="1">
-<li>La disponibilidad de carbohidratos (glucógeno muscular, hepático y exógeno) determina la <strong>tasa de utilización de carbohidrato</strong> que el atleta puede sostener a una intensidad dada sin comprometer el manejo de Ca²⁺ a nivel subcelular.</li>
-<li>Cuando esa utilización supera lo que la disponibilidad puede sostener, ocurre un <strong>deterioro progresivo, heterogéneo entre fibras</strong>, del acoplamiento excitación-contracción — este es el mecanismo real detrás de la <strong>caída de potencia</strong> observada en tests de fatiga y en competencia.</li>
-<li>La <strong>durabilidad</strong> —la capacidad de conservar el rendimiento fresco durante el esfuerzo prolongado— es, por tanto, en gran medida una función de qué tan bien gestionada está la disponibilidad de carbohidratos en el tiempo, no solo de la genética o el VO₂max del atleta.</li>
-<li>Las estrategias LCHF pueden mejorar la eficiencia de la oxidación de grasa, lo cual teóricamente "ahorraría" glucógeno a baja-moderada intensidad, pero <strong>no resuelven el problema en el rango de intensidad donde ocurre el crossover hacia carbohidrato</strong> (§3.1) — que es precisamente donde se decide gran parte del rendimiento competitivo real en muchos deportes de resistencia.</li>
-<li>Por tanto, la estrategia con mejor sustento mecanístico y de evidencia combinada es la <strong>periodización de la disponibilidad de carbohidratos</strong> (train low selectivo para adaptación mitocondrial + alta disponibilidad y carbohidrato exógeno multi-transportador en torno a las sesiones/competencias clave), en lugar de posiciones dietéticas fijas y permanentes en cualquiera de los dos extremos (ni HCLF crónico sin periodizar, ni LCHF crónico).</li>
-</ol>
-<hr/>
-<h2 id="36-uso-de-la-fructosa-clave-en-ambientes-calurosos">3.6 Uso de la fructosa: clave en ambientes calurosos</h2>
-<h3 id="el-problema-fisiológico-del-calor">El problema fisiológico del calor</h3>
-<p>El ejercicio prolongado en ambientes calurosos acelera la utilización de glucógeno muscular (mayor demanda circulatoria hacia la piel para termorregulación, mayor temperatura muscular que acelera la cinética enzimática glucolítica, y mayor estrés cardiovascular general), lo que hace que el glucógeno —hepático y muscular— se agote <strong>más rápido</strong> que en condiciones termoneutras para una misma intensidad absoluta. Esto vuelve aún más crítica la gestión de la disponibilidad de carbohidratos descrita en §3.4.</p>
-<h3 id="por-qué-la-combinación-glucosafructosa-es-especialmente-valiosa-en-calor">Por qué la combinación glucosa+fructosa es especialmente valiosa en calor</h3>
-<ol type="1">
-<li><strong>Mayor entrega total de carbohidrato sin saturar la absorción</strong>: dado que el calor ya compromete el flujo sanguíneo esplácnico (redirigido hacia la piel), cualquier ineficiencia adicional en la absorción intestinal (como la saturación de SGLT1 con glucosa sola) es doblemente costosa. Usar el transportador GLUT5 en paralelo permite mantener tasas de entrega de carbohidrato más altas pese a esta competencia circulatoria.</li>
-<li><strong>Ahorro de glucógeno endógeno documentado específicamente en calor</strong>: estudios con mezclas de maltodextrina+fructosa durante ejercicio prolongado en calor han mostrado una <strong>reducción de la tasa de degradación de glucógeno muscular</strong> comparado con glucosa sola a la misma tasa de ingesta (Yaspelkis &amp; Ivy), lo que se traduce directamente en mejor preservación de la durabilidad según el mecanismo de §3.4.</li>
-<li><strong>Mayor disponibilidad de fluidos sin comprometer la oxidación</strong>: la combinación glucosa+fructosa se ha asociado con mayor disponibilidad de fluido corporal (medido con óxido de deuterio) comparado con glucosa sola a igual concentración, sin comprometer —de hecho, aumentando— la tasa de oxidación exógena de carbohidrato en ambientes calurosos, un balance particularmente favorable cuando la hidratación y la entrega de sustrato compiten por prioridad fisiológica.</li>
-<li><strong>Menor riesgo de malestar gastrointestinal a dosis altas</strong>: como se vio en §3.3, las mezclas de transportadores múltiples reducen las molestias digestivas (~26-47 %) frente a dosis equivalentes de un solo carbohidrato — relevante porque el calor por sí mismo ya predispone a mayor distrés gastrointestinal (por la redistribución de flujo sanguíneo esplácnico), por lo que minimizar esta carga adicional es más importante que en condiciones templadas.</li>
-</ol>
-<h3 id="consideración-práctica-final">Consideración práctica final</h3>
-<p>En protocolos de calor, la recomendación que emerge de la evidencia es priorizar aún más decididamente las mezclas glucosa:fructosa (o maltodextrina:fructosa) frente al uso de carbohidratos de transportador único, ajustando la dosis total dentro del rango de 60-90 (hasta 120) g/h según tolerancia entrenada, y sin perder de vista que en calor la <strong>reposición de fluidos y electrolitos</strong> debe gestionarse en paralelo a la de carbohidratos, ya que ambos sistemas (hídrico y glucémico) interactúan y comparten, en parte, la misma vía de absorción intestinal.</p>
-<hr/>
-<section class="refs"><h2 id="referencias-clave-de-este-módulo">Referencias clave de este módulo</h2>
-<ul>
-<li>Brooks GA, Mercier J. Balance of carbohydrate and lipid utilization during exercise: the "crossover" concept. <em>J Appl Physiol.</em> 1994.</li>
-<li>Hawley JA, Burke LM. Carbohydrate availability and training adaptation: effects on cell metabolism. <em>Exerc Sport Sci Rev.</em> 2010.</li>
-<li>Hawley JA, Morton JP. Ramping up the signal: promoting endurance training adaptation in skeletal muscle by nutritional manipulation. <em>Clin Exp Pharmacol Physiol.</em> 2014.</li>
-<li>Bartlett JD, Hawley JA, Morton JP. Carbohydrate availability and exercise training adaptation: too much of a good thing? <em>Eur J Sport Sci.</em> 2015.</li>
-<li>Impey SG, Hearris MA, Hammond KM, Bartlett JD, Louis J, Close GL, Morton JP. Fuel for the Work Required: A Theoretical Framework for Carbohydrate Periodization and the Glycogen Threshold Hypothesis. <em>Sports Medicine.</em> 2018.</li>
-<li>Vigh-Larsen JF, Ørtenblad N, Nielsen J. Muscle Glycogen Metabolism and High-Intensity Exercise Performance: A Narrative Review. <em>Sports Medicine.</em> 2021.</li>
-<li>Jentjens RLPG, Jeukendrup AE. High rates of exogenous carbohydrate oxidation from a mixture of glucose and fructose ingested during prolonged cycling exercise. <em>Br J Nutr.</em> 2005 (y estudio 2004a en <em>J Appl Physiol</em>).</li>
-<li>Jeukendrup AE. Carbohydrate and exercise performance: the role of multiple transportable carbohydrates. <em>Curr Opin Clin Nutr Metab Care.</em> 2010.</li>
-<li>Jeukendrup AE. Periodized Nutrition for Athletes / Training the Gut for Athletes. <em>Sports Medicine.</em> 2017.</li>
-<li>Smith JW, Pascoe DD, Passe DH, et al. Curvilinear Dose-Response Relationship of Carbohydrate (0-120 g·h⁻¹) and Performance. <em>Med Sci Sports Exerc.</em> 2013.</li>
-<li>Maunder E, Plews DJ, Kilding AE. Contextualising Maximal Fat Oxidation During Exercise / concepto de "durability". <em>Sports Medicine.</em> 2021.</li>
-<li>Jones AM. Durability: a new dimension of endurance performance. 2023 (marco conceptual retomado en revisiones 2024-2025).</li>
-<li>Burke LM, Noakes TD. Does a low-carbohydrate diet impede endurance sports performance? (Debate + consenso). <em>Am J Clin Nutr.</em> 2024, actualizado 2026.</li>
-<li>Yaspelkis BB, Ivy JL. Effect of carbohydrate supplements and water on exercise metabolism in the heat. Referenciado en estudios de Jeukendrup sobre oxidación exógena en calor, <em>J Appl Physiol.</em></li>
-</ul>
-</section>
-  </article>
-</div>
+<p>En conjunto, a intensidades cercanas o superiores al umbral de lactato, el carbohidrato (glucógeno muscular ~60% + glucosa sanguínea ~20%) puede aportar más del 80% del gasto energético total.</p>
+<h3 id="13-el-concepto-de-disponibilidad-de-carbohidratos-carbohydrate-availability">1.3 El concepto de "disponibilidad de carbohidratos" (carbohydrate availability)</h3>
+<p>Formalizado por Hawley, Stellingwerff, Burke y colaboradores, este concepto va más allá de "cuánto CHO como": se refiere a si el CHO está disponible <strong>en el compartimento correcto (hepático vs. muscular) y en el momento correcto</strong> para sostener la tasa de resíntesis de ATP que exige la intensidad del ejercicio. Las reservas corporales totales de CHO (~500 g entre glucógeno hepático, muscular y glucosa circulante) son finitas y pueden agotarse en aproximadamente 90 minutos de ejercicio de alta intensidad continua — de ahí que toda la periodización nutricional deportiva gire en torno a gestionar esta disponibilidad, no simplemente "cargar" carbohidratos de forma indiscriminada.</p>
 
-<nav class="pagenav">
-  <div class="pagenav-inner">
-    <a class="prev" href="modulo-2.html"><span class="lbl">← anterior</span>Regulación fisiológica y hormonal</a>
-    <a class="next" href="index.html"><span class="lbl">fin del curso →</span>Volver al índice</a>
-  </div>
-</nav>
+<h2 id="2-glucogeno-muscular-deplecion-cinetica-y-train-low-compete-high">2. Glucógeno muscular: depleción, cinética y "train low, compete high"</h2>
+<h3 id="21-deplecion-segun-intensidad-y-tipo-de-fibra">2.1 Depleción según intensidad y tipo de fibra</h3>
+<ul>
+<li>A mayor intensidad relativa (%VO₂max), mayor es la tasa de depleción de glucógeno muscular por unidad de tiempo.</li>
+<li>Las <strong>fibras tipo II (rápidas)</strong> se depletan preferentemente durante esfuerzos intermitentes de alta intensidad (sprints, intervalos), mientras que las <strong>fibras tipo I (lentas)</strong> muestran una depleción más progresiva y sostenida en ejercicio continuo de intensidad moderada-alta prolongada.</li>
+<li>El glucógeno <strong>no está distribuido de forma homogénea dentro de la fibra muscular</strong>: existen al menos tres pools subcelulares — subsarcolemal, intermiofibrilar e <strong>intramiofibrilar</strong> (este último, en estrecho contacto físico con las proteínas del acoplamiento excitación-contracción, es el que resulta crítico para la sección 4 de este módulo).</li>
+</ul>
+<h3 id="22-biogenesis-mitocondrial-y-la-hipotesis-del-umbral-de-glucogeno">2.2 Biogénesis mitocondrial y la "hipótesis del umbral de glucógeno"</h3>
+<p>Entrenar con glucógeno reducido ("train low") amplifica la señalización celular que promueve adaptaciones mitocondriales, a través de vías como AMPK (particularmente la isoforma AMPKα2), p38-MAPK y el coactivador transcripcional <strong>PGC-1α</strong> — el regulador maestro de la biogénesis mitocondrial. Trabajos de Bartlett et al. (2013) mostraron además una señalización de p53 potenciada con glucógeno bajo, relevante para la biogénesis mitocondrial.</p>
+<p>El trabajo de síntesis de Impey, Hearris, Hammond, Bartlett, Morton et al. (2018, <em>Sports Medicine</em>) propuso la <strong>"glycogen threshold hypothesis"</strong>: la señalización molecular asociada a estas adaptaciones se activa de forma especialmente marcada cuando el ejercicio comienza con glucógeno muscular por debajo de un umbral aproximado de <strong>250-300 mmol/kg de peso seco</strong>. Por encima de ese umbral, la adaptación es "normal"; por debajo, ocasionalmente, puede ser mayor.</p>
+<h3 id="23-train-low-compete-high-el-marco-de-bartlett-hawley-morton-2015">2.3 "Train low, compete high": el marco de Bartlett, Hawley &amp; Morton (2015)</h3>
+<p>La revisión seminal de Bartlett, Hawley y Morton (<em>Eur J Sport Sci</em>, 2015, <em>"Carbohydrate availability and exercise training adaptation: too much of a good thing?"</em>) sintetizó la evidencia de que entrenar deliberadamente con disponibilidad de CHO reducida en una fracción de las sesiones (modelos: doble sesión diaria, entrenamiento en ayunas, restricción de CHO post-ejercicio, "sleep-low") potencia marcadores moleculares de adaptación oxidativa — pero con una advertencia central que el título ya anticipa: <strong>demasiada restricción compromete la calidad e intensidad del propio entrenamiento</strong>, por lo que el modelo recomendado es <strong>"train low (smart), compete high"</strong>: aplicar la restricción de forma selectiva en sesiones de baja intensidad/calidad no comprometida, reservando alta disponibilidad de CHO para las sesiones clave y para la competencia.</p>
+<h3 id="24-el-resultado-paradojico-senalizacion-molecular-rendimiento-garantizado">2.4 El resultado paradójico: señalización molecular ≠ rendimiento garantizado</h3>
+<p>La revisión de Impey et al. (2018) documenta un hallazgo importante para mantener el rigor científico: aunque el "train low" aumenta la señalización celular (73% de 11 estudios), la expresión génica (75% de 12 estudios) y la actividad enzimática oxidativa (78% de 9 estudios), <strong>esto no siempre se traduce en mejoras de rendimiento</strong> — solo el 37% de los estudios revisados mostró mejoras reales de rendimiento, mientras el 63% no mostró cambios. Esta disociación entre adaptación celular y resultado funcional es una de las lecciones metodológicas más importantes de esta literatura y anticipa el debate que se tratará en la sección 5.</p>
 
+<h2 id="3-carbohidratos-exogenos-durante-el-ejercicio-transportadores-multiples">3. Carbohidratos exógenos durante el ejercicio: transportadores múltiples</h2>
+<h3 id="31-el-limite-de-la-glucosa-sola">3.1 El límite de la glucosa sola</h3>
+<p>Cuando se ingiere glucosa (o maltodextrina) sola durante el ejercicio, la tasa máxima de oxidación exógena se estabiliza en torno a <strong>1 g/min (60 g/h)</strong>, un límite consistente en múltiples estudios independientes. La evidencia converge en que este límite no está causado por el vaciamiento gástrico, ni por la capacidad hepática, ni por la captación muscular de glucosa (que puede ser mayor cuando la glucosa se infunde directamente en circulación) — sino por la <strong>saturación del transportador intestinal SGLT1</strong>.</p>
+<h3 id="32-por-que-glucosa-fructosa-supera-ese-limite">3.2 Por qué glucosa + fructosa supera ese límite</h3>
+<p>Como se estableció en el Módulo 1, la fructosa se absorbe por un transportador distinto e independiente (<strong>GLUT5</strong>), que no compite con SGLT1 por capacidad de transporte. Jentjens y Jeukendrup (2004) fueron los primeros en demostrar que combinar glucosa y fructosa permite alcanzar tasas de oxidación exógena muy por encima de 1 g/min (hasta ~1.75 g/min en algunos protocolos), y trabajos posteriores han confirmado incrementos de hasta un 75% en la tasa de oxidación frente al uso de un solo transportador. Un estudio de perfusión intestinal mostró que una bebida de glucosa+fructosa produce hasta un 65% más de absorción de CHO que una solución isoenergética de glucosa sola.</p>
+<h3 id="33-recomendaciones-practicas-basadas-en-dosis-y-duracion">3.3 Recomendaciones prácticas basadas en dosis y duración</h3>
+<table>
+<thead>
+<tr>
+<th>Duración del evento</th>
+<th>Dosis recomendada</th>
+<th>Tipo de CHO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-2.5 h</td>
+<td>30-60 g/h</td>
+<td>Cualquier fuente (glucosa, maltodextrina, sacarosa) — un solo transportador es suficiente</td>
+</tr>
+<tr>
+<td>&gt;2.5 h</td>
+<td>60-90 g/h</td>
+<td>Mezcla glucosa+fructosa (para saturar SGLT1 y sumar GLUT5)</td>
+</tr>
+<tr>
+<td>Ultra-resistencia con "gut training"</td>
+<td>Hasta 90-120 g/h</td>
+<td>Mezcla glucosa+fructosa, ratio explorado entre 2:1 y ~1:0.8</td>
+</tr>
+</tbody>
+</table>
+<p>Un matiz relevante y reciente: el ratio "clásico" recomendado de 2:1 (glucosa:fructosa) ha sido cuestionado por el trabajo de Rowlands y colaboradores, que sugiere que un ratio más cercano a la unidad (~0.8:1) podría ofrecer ventajas adicionales en comodidad gastrointestinal, eficiencia de absorción y rendimiento — un área de refinamiento activo, no una regla cerrada.</p>
+<p><strong>Nota importante para la síntesis posterior</strong>: la evidencia también muestra que aunque 120 g/h genera mayor oxidación exógena que 90 g/h, esto <strong>no se traduce automáticamente en un mayor ahorro del glucógeno endógeno</strong> (hepático o muscular) — una distinción crítica que se retoma en la sección 4.4.</p>
+
+<h2 id="4-fatiga-y-durabilidad-el-nucleo-de-la-hipotesis">4. Fatiga y durabilidad: el núcleo de la hipótesis</h2>
+<h3 id="41-el-mecanismo-de-ca2-por-que-el-glucogeno-intramiofibrilar-importa-tanto">4.1 El mecanismo de Ca²⁺: por qué el glucógeno intramiofibrilar importa tanto</h3>
+<p>El hallazgo mecanístico más importante para tu hipótesis proviene del grupo de Ørtenblad (Universidad del Sur de Dinamarca). Sus estudios (Ørtenblad et al., <em>J Physiol</em>, 2011; Ørtenblad, Westerblad &amp; Nielsen, <em>J Physiol</em>, 2013) muestran que:</p>
+<ul>
+<li>La liberación de Ca²⁺ desde el retículo sarcoplásmico (RS) —el paso que inicia el ciclo de puentes cruzados y por tanto la generación de fuerza— depende de un suministro energético local suficiente.</li>
+<li>Existen complejos glucogenolíticos <strong>anclados físicamente</strong> cerca de las proteínas clave del acoplamiento excitación-contracción (receptores de dihidropiridina, receptores de rianodina) en el pool de glucógeno <strong>intramiofibrilar</strong>.</li>
+<li>Cuando este pool específico de glucógeno se agota —incluso si otros pools (subsarcolemal) todavía tienen reservas— la tasa de liberación de Ca²⁺ del RS disminuye de forma medible, reduciendo directamente la capacidad contráctil del músculo.</li>
+</ul>
+<p><strong>Esto es clave</strong>: la fatiga relacionada con glucógeno no es (solo) "quedarse sin combustible para el ciclo de Krebs" en un sentido genérico — es una <strong>falla de señalización local específica</strong> en la maquinaria contráctil misma, independiente de cuánto ATP total quede disponible en la célula.</p>
+<h3 id="42-durabilidad-definicion-y-evidencia-de-caida-de-cpftp">4.2 Durabilidad: definición y evidencia de caída de CP/FTP</h3>
+<p>El concepto de <strong>"durabilidad"</strong> (Maunder et al.) se define como la resiliencia de un individuo al deterioro de sus características fisiológicas de rendimiento durante el ejercicio prolongado — es decir, no cuánto potencia tienes en fresco, sino <strong>cuánto de esa potencia conservas después de horas de trabajo acumulado</strong>. A diferencia de VO₂max, umbral de lactato o potencia crítica (que son "fotografías" de la capacidad en estado fresco), la durabilidad es una medida de la <em>trayectoria</em> de esa capacidad en el tiempo.</p>
+<p>Evidencia relevante:
+- Estudios de Clark et al. (2018-2019) documentaron una <strong>reducción de la potencia crítica (critical power)</strong> tras ejercicio prolongado de intensidad "heavy", y que la magnitud de esa reducción es <strong>sensible a la disponibilidad de carbohidratos</strong> durante el ejercicio.
+- Estudios sobre la transición de intensidad moderado-a-pesado muestran una reducción de la potencia en ese punto de transición tras ejercicio prolongado, asociada mecanísticamente a la depleción del glucógeno intramiofibrilar (que compromete fibras específicas, aumentando la carga mecánica/metabólica relativa sobre el pool de fibras aún funcionales).
+- La variabilidad individual es amplia: un estudio de Stevenson et al. (2022) reportó caídas de potencia en el segundo umbral ventilatorio de entre 9 W y 44 W entre atletas tras 2 horas de ciclismo de intensidad moderada — evidencia de que la "durabilidad" es un rasgo individual entrenable, no una constante fisiológica fija.
+- Trabajo aplicado reciente (Frontiers, 2025-2026) muestra que la durabilidad —definida como el mantenimiento del rendimiento tras una carga de trabajo dada— predice el éxito competitivo en ciclismo amateur mejor que las métricas tradicionales de "estado fresco".
+- Un hallazgo que <strong>matiza</strong> tu hipótesis de forma útil: en al menos un estudio, la capacidad de oxidación de grasa en estado fresco (peak fat oxidation, PFO) <strong>no se correlacionó</strong> con la durabilidad de la transición moderado-pesado — es decir, tener buena capacidad oxidativa de grasas no protege automáticamente contra la caída de potencia relacionada con glucógeno. Este es un dato importante: refuerza que el mecanismo central es específico del glucógeno (y su rol en la señal de Ca²⁺), no simplemente "cuánta grasa puedes quemar en su lugar".</p>
+<p><em>(Nota metodológica: los "benchmarks" de referencia rápida como "caída &lt;5% = élite, 5-10% = bueno, &gt;10-15% = limitante" circulan en literatura aplicada de coaching (por ejemplo, contenido divulgativo sobre ciclismo) y son útiles como heurística de campo, pero no provienen de un consenso formal en la literatura revisada por pares — conviene usarlos como orientación práctica, no como estándar fisiológico validado.)</em></p>
+<h3 id="43-curva-dosis-respuesta-de-cho-0-120-gh-y-su-relacion-con-durabilidad">4.3 Curva dosis-respuesta de CHO (0-120 g/h) y su relación con durabilidad</h3>
+<p>La evidencia de dosis-respuesta muestra un patrón de rendimientos decrecientes, no lineal:</p>
+<ul>
+<li>~<strong>40 g/h</strong> parece ser la dosis mínima capaz de inducir efectos metabólicos con impacto medible en el resultado de rendimiento (estudios en el rango 20-64 g/h muestran que por debajo de ese umbral el efecto metabólico y de rendimiento es mínimo).</li>
+<li>El rango <strong>60-90 g/h</strong> se asocia consistentemente con el mejor balance beneficio/tolerancia en eventos &gt;2.5 h, y es el rango recomendado por consensos de nutrición deportiva (ISSN, ACSM/AND/DC).</li>
+<li><strong>120 g/h</strong> demuestra mayor oxidación de CHO exógeno frente a 90 g/h, pero <strong>sin beneficio adicional demostrado en el ahorro de glucógeno endógeno</strong> (hepático o muscular) en al menos un estudio controlado reciente.</li>
+</ul>
+<h3 id="44-sintesis-de-tu-hipotesis-por-que-el-glucogeno-explica-mejor-la-durabilidad-que-la-caida-porcentual-de-potencia-aislada">4.4 Síntesis de tu hipótesis: por qué el glucógeno explica mejor la durabilidad que la caída porcentual de potencia aislada</h3>
+<p>Aquí es donde conectan todos los hilos de este módulo:</p>
+<ol>
+<li>La caída de potencia (%FTP, %CP) es una <strong>medida de salida (output)</strong> — el síntoma final observable.</li>
+<li>El estado del glucógeno —específicamente el <strong>pool intramiofibrilar</strong>— es el <strong>mecanismo causal proximal</strong>, porque determina directamente la capacidad de liberación de Ca²⁺ y por tanto la función contráctil (sección 4.1).</li>
+<li>La ingesta de CHO exógeno durante el ejercicio <strong>atenúa la caída de potencia crítica</strong> de forma dosis-dependiente hasta un punto (secciones 4.2-4.3), consistente con que está preservando indirectamente el glucógeno endógeno (particularmente hepático, ya que la mayoría de la evidencia de "ahorro" de glucógeno por CHO exógeno es más consistente a nivel hepático que muscular).</li>
+<li>Pero el hecho de que <strong>120 g/h no ahorre más glucógeno endógeno que 90 g/h</strong>, a pesar de oxidarse más CHO exógeno, sugiere que <strong>la variable relevante no es "cuánto CHO oxidas en total" sino "cuánto glucógeno específico (intramiofibrilar) te queda"</strong> — dos cosas relacionadas pero no idénticas.</li>
+<li>Por eso, medir solo el % de caída de potencia sin conocer el estado del glucógeno subyacente es observar el síntoma sin el mecanismo: dos atletas pueden mostrar la misma caída porcentual de potencia por razones fisiológicas distintas (uno por depleción de glucógeno intramiofibrilar y falla de Ca²⁺, otro por fatiga central, daño muscular, o deshidratación) — y solo el primero respondería de forma predecible a una estrategia de carbohidratos.</li>
+</ol>
+<p><strong>Esta es la hipótesis de trabajo que la evidencia actual respalda mecanísticamente (Ørtenblad + Clark/Stevenson + Maunder), aunque la cadena causal completa —glucógeno intramiofibrilar → Ca²⁺ → potencia → durabilidad medida en campo— sigue siendo un área de investigación activa y no un hecho cerrado.</strong></p>
+
+<h2 id="5-periodizacion-estrategica-el-debate-burke-vs-noakes-2024-2026">5. Periodización estratégica: el debate Burke vs. Noakes (2024-2026)</h2>
+<h3 id="51-el-contexto-del-debate">5.1 El contexto del debate</h3>
+<p>La serie <em>"AJCN Great Debates in Nutrition"</em> (editada por David Ludwig) publicó en 2024-2026 un intercambio formal entre <strong>Louise Burke</strong> (Australian Catholic University) y <strong>Timothy Noakes</strong> (University of Cape Town) sobre la pregunta: <em>¿una dieta baja en carbohidratos perjudica el rendimiento en deportes de resistencia?</em> Este debate es la continuación directa de un intercambio previo publicado en <em>Medicine &amp; Science in Sports &amp; Exercise</em> en 2024.</p>
+<h3 id="52-postura-de-noakes-no-perjudica-tras-adaptacion">5.2 Postura de Noakes ("No perjudica, tras adaptación")</h3>
+<ul>
+<li>Basa su argumento en una revisión de ensayos controlados aleatorizados (RCT) que muestran rendimiento equivalente entre dietas LCHF (low-carb high-fat) y HCLF (high-carb low-fat) <strong>una vez transcurrido un período de adaptación de 4-6 semanas</strong>.</li>
+<li>Sostiene que los atletas pueden adaptarse a oxidar grasa a tasas muy altas, y que la pregunta relevante no es "¿el CHO mejora el rendimiento agudo?" (algo que Noakes no niega) sino "¿la composición crónica habitual de la dieta —una vez adaptado— determina el rendimiento?", concluyendo que no.</li>
+</ul>
+<h3 id="53-postura-de-burke-si-perjudica-especialmente-en-alta-intensidad">5.3 Postura de Burke ("Sí perjudica, especialmente en alta intensidad")</h3>
+<ul>
+<li>Presenta un "dashboard visual" de estudios comparando LCHF vs. HCLF, dominado por sus propios estudios "Supernova" en marchistas de élite, que muestran que la adaptación cetogénica <strong>aumenta la oxidación de grasa pero deteriora la economía de carrera/marcha</strong> y no mejora (o empeora) el rendimiento real de competencia frente a dietas altas en CHO o con periodización de CHO.</li>
+<li>Argumenta que el mecanismo enzimático descrito en el Módulo 2 (inhibición de PDH vía PDK4) tiene una consecuencia funcional directa en eventos que requieren tramos de alta intensidad, incluso dentro de un evento predominantemente aeróbico.</li>
+</ul>
+<h3 id="54-puntos-de-friccion-metodologica-explicitos">5.4 Puntos de fricción metodológica explícitos</h3>
+<p>El propio documento de consenso del debate (2026) identifica como tensión central que los estudios "Supernova" de Burke —el pilar visual más fuerte de su argumento— <strong>no son ensayos controlados aleatorizados (RCT)</strong>, lo cual introduce el riesgo de confusores no controlados; Noakes señala esto explícitamente como debilidad. A su vez, Burke cuestiona la capacidad de los RCTs de laboratorio citados por Noakes para representar las condiciones reales de una competencia. Esta tensión —estudios de campo ricos en validez ecológica pero débiles en control experimental, vs. RCTs de laboratorio rigurosos pero de validez ecológica cuestionable— es una lección metodológica transferible a toda la ciencia del deporte, no solo a este debate específico.</p>
+<h3 id="55-sintesis-integradora-final-el-modelo-completo-del-curso">5.5 Síntesis integradora final: el modelo completo del curso</h3>
+<p>Uniendo los tres módulos y los cinco puntos de este módulo, el modelo mecanístico completo que este curso construye es:</p>
+<pre><code>Disponibilidad de CHO en la dieta/pre-ejercicio (Mód. 1)
+        ↓
+Regulación hormonal (insulina/glucagón/cortisol) determina
+   almacenamiento de glucógeno hepático y muscular (Mód. 2)
+        ↓
+Balance enzimático (PDH activa vs. inhibida por PDK4) determina
+   la CAPACIDAD máxima de oxidar ese glucógeno a alta tasa (Mód. 2 → 3)
+        ↓
+Intensidad y duración del ejercicio determinan la TASA de
+   utilización de ese glucógeno, específicamente del pool
+   intramiofibrilar (Mód. 3, §1-2)
+        ↓
+Depleción del glucógeno intramiofibrilar compromete la
+   liberación de Ca²⁺ del retículo sarcoplásmico (Mód. 3, §4.1)
+        ↓
+Esto se manifiesta como CAÍDA DE POTENCIA (CP/FTP) — el síntoma
+   observable, no la causa (Mód. 3, §4.2-4.4)
+        ↓
+La magnitud y trayectoria de esa caída = DURABILIDAD
+        ↓
+Estrategias de CHO exógeno (Mód. 3, §3) y de periodización de CHO
+   en el entrenamiento (train low/high, Mód. 3 §2 y debate Burke-Noakes
+   §5) son las palancas prácticas para modular todo el sistema
+</code></pre>
+<p><strong>Conclusión práctica de periodización</strong>: el marco "fuel for the work required" (Impey/Morton) — proveer CHO en función de la demanda real de cada sesión, no de una cantidad fija diaria — permite aplicar restricción de CHO de forma selectiva y estratégica en sesiones de baja prioridad para estimular biogénesis mitocondrial, mientras se protege con alta disponibilidad de CHO las sesiones de alta intensidad y la competencia, evitando el extremo de restricción crónica que —como muestra el debate Burke-Noakes y el mecanismo de PDK4/PDH del Módulo 2— compromete estructuralmente la capacidad de generar potencia alta quemando lo que en esos momentos es, biológica y mecánicamente, el combustible insustituible.</p>
+
+<h2 id="referencias-clave-de-este-modulo">Referencias clave de este módulo</h2>
+<ul>
+<li>Hawley JA, Leckey JJ. <em>Carbohydrate Dependence During Prolonged, Intense Endurance Exercise.</em> Sports Med, 2015.</li>
+<li>Leckey JJ, Hawley JA. <em>The Dependence on Carbohydrate Fueling for Successful High-Intensity Endurance Performance.</em> GSSI Sports Science Exchange.</li>
+<li>Impey SG, Hearris MA, Hammond KM, Bartlett JD, Louis J, Close GL, Morton JP. <em>Fuel for the Work Required: A Theoretical Framework for Carbohydrate Periodization and the Glycogen Threshold Hypothesis.</em> Sports Med, 2018.</li>
+<li>Bartlett JD, Hawley JA, Morton JP. <em>Carbohydrate availability and exercise training adaptation: too much of a good thing?</em> Eur J Sport Sci, 2015.</li>
+<li>Bartlett JD et al. <em>Reduced carbohydrate availability enhances exercise-induced p53 signalling.</em> Am J Physiol, 2013.</li>
+<li>Jentjens RLPG, Jeukendrup AE. <em>High rates of exogenous carbohydrate oxidation from a mixture of glucose and fructose.</em> Br J Nutr, 2005 / 2004.</li>
+<li>Currell K, Jeukendrup AE. <em>Superior endurance performance with ingestion of multiple transportable carbohydrates.</em> Med Sci Sports Exerc, 2008.</li>
+<li>Rowlands DS et al. Trabajos sobre ratio glucosa:fructosa (~0.8:1) y absorción/tolerancia GI.</li>
+<li>Ørtenblad N, Nielsen J, Boushel R, Söderlund K, Saltin B, Holmberg HC. <em>Role of glycogen availability in sarcoplasmic reticulum Ca²⁺ kinetics in human skeletal muscle.</em> J Physiol, 2011.</li>
+<li>Ørtenblad N, Westerblad H, Nielsen J. <em>Muscle glycogen stores and fatigue.</em> J Physiol, 2013.</li>
+<li>Clark IE et al. (2018-2019). Serie de estudios sobre reducción de potencia crítica con ejercicio prolongado y disponibilidad de CHO.</li>
+<li>Maunder E et al. Concepto y marco de "durability" en resistencia.</li>
+<li>Stevenson EJ et al. (2022). Variabilidad individual en caída de potencia en segundo umbral ventilatorio.</li>
+<li>PMC9488873 (2022). <em>Prolonged cycling reduces power output at the moderate-to-heavy intensity transition.</em></li>
+<li>Frontiers in Sports and Active Living (2025-2026). <em>Enhanced durability predicts success in amateur road cycling.</em></li>
+<li>Burke LM, Noakes TD. <em>Does a low-carbohydrate diet impede endurance sports performance?</em> AJCN Great Debates in Nutrition, 2026 (y antecedente en Med Sci Sports Exerc, 2024).</li>
+<li>Burke LM, Whitfield J. <em>Ketogenic diets are not beneficial for athletic performance: response to Noakes.</em> Med Sci Sports Exerc, 2024.</li>
+<li>Noakes TD. <em>Ketogenic diets are beneficial for athletic performance.</em> Med Sci Sports Exerc, 2024.</li>
+<li>Burke LM et al. <em>Ketogenic low-CHO, high-fat diet: the future of elite endurance sport?</em> J Physiol, 2021 (estudios Supernova).</li>
+</ul></article></div><div class="wrap"><div class="pagenav"><a href="modulo-2.html"><span class="dir">&larr; anterior</span><span class="lbl">Regulación fisiológica y hormonal</span></a><span></span></div></div>
+<footer class="site-footer"><div class="wrap">
+  Curso de estudio — Glucosa · AthleteTrainLab
+</div></footer>
 </body>
 </html>
