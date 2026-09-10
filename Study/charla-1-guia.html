@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La glucosa es más que azúcar — Guía de facilitación — hoja de ruta para presentar (60 min)</title>
+<meta name="description" content="Guía de facilitación — hoja de ruta para presentar (60 min)">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF6;
+  --paper-2:#F4F2EC;
+  --ink:#1B1C18;
+  --ink-soft:#4A4A43;
+  --ink-faint:#8B897E;
+  --line:#DEDACB;
+  --line-strong:#C9C4B0;
+  --accent:#B9820C;
+  --accent-ink:#7A5608;
+  --tint:#F7EFDC;
+  --tint-line:#E9D9AE;
+  --serif:'Newsreader', 'Iowan Old Style', 'Georgia', serif;
+  --mono:'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent); color:var(--paper);}
+a{color:var(--accent-ink); text-decoration-thickness:1px; text-underline-offset:3px;}
+a:hover{color:var(--accent);}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+img,svg{max-width:100%;}
+
+.wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px 28px;
+  border-bottom:1px solid var(--line);
+}
+.topbar .brand{
+  font-family:var(--mono); font-size:13px; letter-spacing:.02em;
+  color:var(--ink-soft); text-decoration:none;
+}
+.topbar .brand strong{color:var(--ink); font-weight:600;}
+.topbar .back{
+  font-family:var(--mono); font-size:13px;
+  color:var(--ink-soft); text-decoration:none;
+  display:flex; align-items:center; gap:6px;
+}
+.topbar .back:hover{color:var(--accent-ink);}
+.topbar .modtag{
+  font-family:var(--mono); font-size:13px; color:var(--accent-ink);
+  background:var(--tint); border:1px solid var(--tint-line);
+  padding:4px 10px; border-radius:3px;
+}
+
+/* ---------- hero (index) ---------- */
+.hero{
+  position:relative;
+  padding:64px 28px 40px;
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:1120px; margin:0 auto;
+  display:grid; grid-template-columns: 1.1fr 1fr; gap:40px; align-items:center;
+}
+.hero h1{
+  font-size:clamp(48px, 8vw, 84px);
+  line-height:0.98;
+  margin:0 0 20px;
+  font-weight:600;
+  letter-spacing:-0.01em;
+}
+.hero .lede{
+  font-size:20px; line-height:1.55; color:var(--ink-soft);
+  max-width:46ch; margin:0 0 26px;
+}
+.hero .meta{
+  font-family:var(--mono); font-size:13px; color:var(--ink-faint);
+  margin-bottom:10px;
+}
+.curve-wrap{position:relative;}
+.curve-wrap svg{width:100%; height:auto; display:block;}
+.curve-path{
+  fill:none; stroke:var(--ink); stroke-width:2.5;
+  stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:2000; stroke-dashoffset:2000;
+  animation:draw 2.1s cubic-bezier(.4,.1,.2,1) forwards;
+}
+.curve-marker circle{opacity:0; animation:pop .5s ease forwards;}
+.curve-marker text{opacity:0; animation:pop .5s ease forwards;}
+.curve-marker.m1 circle, .curve-marker.m1 text{animation-delay:.9s;}
+.curve-marker.m2 circle, .curve-marker.m2 text{animation-delay:1.3s;}
+.curve-marker.m3 circle, .curve-marker.m3 text{animation-delay:1.7s;}
+.grid-line{stroke:var(--line-strong); stroke-width:1;}
+.base-line{stroke:var(--ink-faint); stroke-width:1; stroke-dasharray:4 5;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes pop{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){
+  .curve-path{animation:none; stroke-dashoffset:0;}
+  .curve-marker circle, .curve-marker text{animation:none; opacity:1;}
+}
+@media (max-width: 860px){
+  .hero-inner{grid-template-columns:1fr;}
+}
+
+.intro-copy{
+  max-width:68ch; margin:0 auto; padding:8px 28px 56px;
+  font-size:18px; color:var(--ink-soft);
+}
+.intro-copy p{margin:0 0 16px;}
+
+/* ---------- module index blocks ---------- */
+.modules{ border-top:1px solid var(--line); }
+.modblock{
+  border-bottom:1px solid var(--line);
+  padding:40px 0;
+  display:grid; grid-template-columns: 100px 1fr; gap:28px;
+}
+.modblock .num{
+  font-family:var(--mono); font-size:15px; padding-top:6px;
+}
+.modblock h2{
+  font-size:30px; margin:0 0 4px; font-weight:600; line-height:1.15;
+}
+.modblock .sub{
+  font-family:var(--mono); font-size:13px; margin:0 0 14px;
+}
+.modblock p.desc{
+  max-width:62ch; color:var(--ink-soft); margin:0 0 16px; font-size:17px;
+}
+.modblock ul.topics{
+  margin:0 0 20px; padding:0; list-style:none;
+  display:flex; flex-wrap:wrap; gap:8px 10px;
+}
+.modblock ul.topics li{
+  font-family:var(--mono); font-size:12.5px;
+  border:1px solid var(--line-strong); border-radius:3px;
+  padding:4px 9px; color:var(--ink-soft);
+}
+.modblock .enter{
+  font-weight:600; font-size:16px; text-decoration:underline;
+  text-decoration-thickness:1px; text-underline-offset:4px;
+}
+.modblock[data-m="1"] .num,.modblock[data-m="1"] .enter,.modblock[data-m="1"] .sub{color:#7A5608;}
+.modblock[data-m="2"] .num,.modblock[data-m="2"] .enter,.modblock[data-m="2"] .sub{color:#332750;}
+.modblock[data-m="3"] .num,.modblock[data-m="3"] .enter,.modblock[data-m="3"] .sub{color:#7A2313;}
+@media (max-width:640px){
+  .modblock{grid-template-columns:1fr; gap:10px;}
+}
+
+/* ---------- module page header ---------- */
+.modhead{
+  padding:56px 28px 32px;
+  background:var(--tint);
+  border-bottom:1px solid var(--tint-line);
+}
+.modhead-inner{max-width:760px; margin:0 auto;}
+.modhead .kicker{font-family:var(--mono); font-size:13px; color:var(--accent-ink); margin-bottom:14px;}
+.modhead h1{font-size:clamp(32px,5vw,48px); line-height:1.08; margin:0 0 10px; font-weight:600;}
+.modhead .sub{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-soft); margin:0;}
+
+.objective{
+  max-width:760px; margin:34px auto 0; padding:20px 24px;
+  border-left:3px solid var(--accent);
+  background:var(--paper);
+  font-size:16px; color:var(--ink-soft);
+}
+.objective p{margin:0;}
+
+/* ---------- layout: toc + article ---------- */
+.page-grid{
+  max-width:1040px; margin:0 auto; padding:44px 28px 90px;
+  display:grid; grid-template-columns:200px minmax(0,760px); gap:48px;
+  align-items:start;
+}
+.toc{position:sticky; top:24px;}
+.toc-label{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin:0 0 12px;}
+.toc ol{list-style:none; margin:0; padding:0; counter-reset:none;}
+.toc li{margin-bottom:10px;}
+.toc a{
+  display:block; font-size:13.5px; line-height:1.4;
+  color:var(--ink-soft); text-decoration:none; border-left:2px solid transparent;
+  padding-left:10px;
+}
+.toc a:hover{color:var(--accent-ink); border-left-color:var(--accent);}
+
+article.content h2{
+  font-size:25px; margin:52px 0 16px; font-weight:600; line-height:1.25;
+  scroll-margin-top:24px;
+}
+article.content h3{
+  font-size:18px; margin:30px 0 10px; font-weight:600;
+  font-family:var(--mono); text-transform:none; color:var(--ink);
+}
+article.content p{margin:0 0 16px; max-width:70ch;}
+article.content ul, article.content ol{margin:0 0 18px; padding-left:22px; max-width:70ch;}
+article.content li{margin-bottom:6px;}
+article.content strong{font-weight:700;}
+article.content em{font-style:italic;}
+article.content hr{border:none; border-top:1px solid var(--line); margin:44px 0;}
+article.content code{
+  font-family:var(--mono); font-size:.86em; background:var(--tint);
+  padding:1px 5px; border-radius:3px;
+}
+
+article.content table{
+  width:100%; border-collapse:collapse; margin:20px 0 28px; font-size:15px;
+}
+article.content caption{caption-side:top; text-align:left;}
+article.content th, article.content td{
+  border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;
+}
+article.content thead th{
+  font-family:var(--mono); font-weight:600; font-size:12.5px;
+  color:var(--accent-ink); border-bottom:2px solid var(--accent);
+  padding-bottom:9px;
+}
+article.content tbody tr:hover{background:var(--tint);}
+
+section.refs{
+  margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
+}
+section.refs h2{
+  font-family:var(--mono); font-size:14px; font-weight:600;
+  color:var(--ink-faint); margin:0 0 18px; text-transform:none;
+}
+section.refs ul{padding-left:0; list-style:none; margin:0;}
+section.refs li{
+  font-size:14px; color:var(--ink-soft); margin-bottom:12px; padding-left:20px;
+  text-indent:-20px; max-width:66ch;
+}
+
+@media (max-width:860px){
+  .page-grid{grid-template-columns:1fr;}
+  .toc{position:static; margin-bottom:8px;}
+  .toc-panel{border:1px solid var(--line); border-radius:4px; padding:14px 16px;}
+}
+
+/* ---------- footer nav ---------- */
+.pagenav{
+  border-top:1px solid var(--line);
+  padding:28px 28px 60px;
+}
+.pagenav-inner{
+  max-width:1040px; margin:0 auto;
+  display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+}
+.pagenav a{
+  font-family:var(--mono); font-size:13.5px; text-decoration:none; color:var(--ink-soft);
+  display:flex; flex-direction:column; gap:4px;
+}
+.pagenav a .lbl{color:var(--ink-faint); font-size:11px;}
+.pagenav a:hover{color:var(--accent-ink);}
+.pagenav a.next{text-align:right; margin-left:auto;}
+
+footer.site{
+  border-top:1px solid var(--line);
+  padding:26px 28px 48px;
+  font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);
+}
+footer.site .wrap{max-width:1120px;}
+
+.res-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:20px; margin-top:20px;
+}
+.res-card{border:1px solid var(--line); padding:16px 18px; border-radius:2px;}
+.res-card h4{
+  font-family:var(--mono); font-size:12.5px; font-weight:600;
+  color:var(--accent-ink); margin:0 0 10px; text-transform:none;
+}
+.res-list{list-style:none; margin:0; padding:0;}
+.res-list li{margin-bottom:10px; font-size:14px; line-height:1.5;}
+.res-list a{word-break:break-word;}
+.res-link{
+  display:inline-block; margin-top:4px; font-family:var(--mono); font-size:12px;
+  color:var(--accent-ink); background:var(--tint); border:1px solid var(--tint-line);
+  padding:2px 7px; border-radius:3px;
+}
+.note-callout{
+  max-width:760px; margin:34px auto 0; padding:20px 24px;
+  border-left:3px solid var(--accent); background:var(--paper);
+  font-size:16px; color:var(--ink-soft);
+}
+.note-callout p{margin:0;}
+.crosslink{
+  display:inline-block; margin-top:6px; font-family:var(--mono); font-size:13px;
+  color:var(--accent-ink); text-decoration:underline; text-underline-offset:3px;
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <span class="brand"><strong>Glucosa</strong> — serie de charlas</span>
+  <span class="modtag">charla 01 / guía de facilitación</span>
+</header>
+
+<section class="modhead">
+  <div class="modhead-inner">
+    <p class="kicker">charla 01 / guía de facilitación</p>
+    <h1>La glucosa es más que azúcar</h1>
+    <p class="sub">Guía de facilitación — hoja de ruta para presentar (60 min) — Duración objetivo: 60 minutos · Serie Glucosa y Metabolismo (1 de 3)</p>
+  </div>
+  <div class="objective note-callout">
+<p>Esta es tu hoja de ruta para el día de la charla. Los puntos están en formato telegráfico a propósito — ya estudiaste el contenido completo en el <strong>Documento Base</strong>; esto es solo el recordatorio de qué toca y cuándo.</p>
+</div>
+</section>
+
+<div class="page-grid">
+  <nav class="toc">
+    <p class="toc-label">índice</p>
+    <ol><li><a href="#vista-rápida-de-tiempos">Vista rápida de tiempos</a></li><li><a href="#1--apertura--6-min-000006">1 · Apertura — 6 min (0:00–0:06)</a></li><li><a href="#2--bloque-1--lo-fundamental--15-min-006021">2 · Bloque 1 — Lo fundamental — 15 min (0:06–0:21)</a></li><li><a href="#3---pausa--repaso--3-min-021024">3 · ⏸ PAUSA — Repaso — 3 min (0:21–0:24)</a></li><li><a href="#4--bloque-2--lo-nuevo-núcleo-de-la-charla--30-min-024054">4 · Bloque 2 — Lo nuevo (núcleo de la charla) — 30 min (0:24–0:54)</a></li><li><a href="#5--cierre--puente--3-min-054057">5 · Cierre + puente — 3 min (0:54–0:57)</a></li><li><a href="#6--preguntas--3-min-057100">6 · Preguntas — 3 min (0:57–1:00)</a></li><li><a href="#checklist-antes-de-la-charla">Checklist antes de la charla</a></li></ol>
+    <a class="crosslink" href="charla-1-documento-base.html">→ Ver el documento base</a>
+  </nav>
+  <article class="content">
+    
+
+
+
+<h2 id="vista-rápida-de-tiempos">Vista rápida de tiempos</h2>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Bloque</th>
+<th>Duración</th>
+<th>Acumulado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Apertura: historia, serie de 3 charlas, objetivo de hoy</td>
+<td>6 min</td>
+<td>0:06</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Bloque 1 — Lo fundamental</td>
+<td>15 min</td>
+<td>0:21</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>⏸ Pausa — repaso</strong></td>
+<td>3 min</td>
+<td>0:24</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Bloque 2 — Lo nuevo (núcleo de la charla)</td>
+<td>30 min</td>
+<td>0:54</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Cierre + puente a Charla 2 y 3</td>
+<td>3 min</td>
+<td>0:57</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Preguntas</td>
+<td>3 min</td>
+<td>1:00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Si vas corto de tiempo, recorta primero:</strong> §7 (uso según demanda) y §11 (síntesis ideal alimentario) — son los dos puntos más "de puente", no núcleo. <strong>Nunca recortes</strong> §5 (balance energético/REDs) — es el mensaje central de la charla.</p>
+<hr/>
+<h2 id="1--apertura--6-min-000006">1 · Apertura — 6 min (0:00–0:06)</h2>
+<ul>
+<li>Tu historia: amateur → entrenador → estudioso de fisiología. Lo que has visto de cerca en ambos extremos: alto rendimiento que se autolimita, amateurs con baja disponibilidad energética sin saberlo, por miedo a carbos/engordar.</li>
+<li>Una sola frase que resuma el problema: <em>el daño no viene de mala disciplina — viene de una idea incompleta de qué es la glucosa.</em></li>
+<li>Presentar la serie (30 seg cada una):
+<ul>
+<li>Charla 1 (hoy): qué es la glucosa, de dónde viene, cómo se guarda y entra al cuerpo — y por qué es señal, no solo energía.</li>
+<li>Charla 2: el motor hormonal completo — insulina, cortisol, eje HPA, qué pasa cuando se desregula.</li>
+<li>Charla 3: glucosa en el deporte de alto rendimiento — glucógeno, fatiga, durabilidad.</li>
+</ul></li>
+<li>Objetivo puntual de hoy (decirlo explícito, la audiencia lo agradece): <em>"la glucosa es más que azúcar — de dónde viene y cómo la usa tu cuerpo, no solo para energía sino para regularse a sí mismo."</em></li>
+</ul>
+<hr/>
+<h2 id="2--bloque-1--lo-fundamental--15-min-006021">2 · Bloque 1 — Lo fundamental — 15 min (0:06–0:21)</h2>
+<h3 id="21-qué-es-la-glucosa--3-min">2.1 Qué es la glucosa — 3 min</h3>
+<ul>
+<li>Molécula simple, 6 carbonos.</li>
+<li>Punto de convergencia de casi todo carbohidrato (~80% de lo que se absorbe termina siendo glucosa).</li>
+<li>Frase ancla: <em>"azúcar" y "carbohidrato" no son sinónimos — pero casi todo carbohidrato termina hablando el mismo idioma: glucosa.</em></li>
+</ul>
+<h3 id="22-dónde-se-guarda--3-min">2.2 Dónde se guarda — 3 min</h3>
+<ul>
+<li>Glucógeno = "batería de corto plazo".</li>
+<li>Hígado (~80-100 g) → para todo el cuerpo.</li>
+<li>Músculo (más cantidad, variable) → solo para sí mismo, no lo comparte (falta una enzima).</li>
+<li><strong>No entrar todavía en cómo se usa</strong> — solo instalar que existe almacenamiento activo en dos lugares con propósitos distintos.</li>
+</ul>
+<h3 id="23-la-asimetría-hormonal--5-min-momento-fuerte-dale-espacio">2.3 La asimetría hormonal — 5 min (momento fuerte, dale espacio)</h3>
+<ul>
+<li>Preguntar a la audiencia antes de responder: <em>"¿cuántas hormonas creen que suben la glucosa? ¿Y cuántas la bajan?"</em></li>
+<li>Revelar: 6-7 hormonas suben (glucagón, cortisol, adrenalina, GH, tiroxina, ACTH) — <strong>solo 1 baja</strong> (insulina).</li>
+<li>El porqué evolutivo: hipoglucemia = amenaza inmediata (cerebro depende de glucosa) → múltiples frenos de emergencia redundantes. Hiperglucemia moderada = tolerable a corto plazo → un solo mecanismo, pero eficiente.</li>
+<li>Gancho: por eso la diabetes tipo 1 es tan seria — falla la única vía sin respaldo.</li>
+</ul>
+<h3 id="24-cómo-entra-la-glucosa-al-cuerpo--4-min">2.4 Cómo entra la glucosa al cuerpo — 4 min</h3>
+<ul>
+<li>5 pasos rápidos: boca/estómago (poco pasa) → intestino delgado (se rompe a azúcares simples) → absorción por transportadores específicos → sangre → hígado primero (filtra).</li>
+<li>Mención breve (sin profundizar, se retoma en Charla 3): glucosa y fructosa usan "puertas" distintas.</li>
+<li>Frase ancla: <em>no es un evento instantáneo y descontrolado — es un recorrido físico real, con filtros.</em></li>
+</ul>
+<hr/>
+<h2 id="3---pausa--repaso--3-min-021024">3 · ⏸ PAUSA — Repaso — 3 min (0:21–0:24)</h2>
+<p>Método sugerido: preguntas rápidas a la sala (mano alzada o respuesta a coro), tú confirmas.</p>
+<ol type="1">
+<li>¿La glucosa es lo mismo que el azúcar de mesa? → <em>No, es el producto final de casi todo carbohidrato.</em></li>
+<li>¿Dónde se guarda, y por qué hay dos lugares? → <em>Hígado (para todos), músculo (solo para sí mismo).</em></li>
+<li>¿Cuántas hormonas suben la glucosa vs. cuántas la bajan? → <em>Varias suben, solo la insulina baja.</em></li>
+<li>¿Por dónde entra la glucosa a la sangre? → <em>Intestino delgado, con el hígado como primer filtro.</em></li>
+</ol>
+<p>Frase de transición hacia el bloque 2: <em>"con esto ya tienen el mapa básico. Ahora viene la parte que, honestamente, yo mismo subestimé durante años."</em></p>
+<hr/>
+<h2 id="4--bloque-2--lo-nuevo-núcleo-de-la-charla--30-min-024054">4 · Bloque 2 — Lo nuevo (núcleo de la charla) — 30 min (0:24–0:54)</h2>
+<h3 id="41-glucosainsulina-y-el-balance-energético-total--9-min--el-corazón-de-la-charla-no-recortar">4.1 Glucosa/insulina y el balance energético total — 9 min ⭐ (el corazón de la charla, no recortar)</h3>
+<ul>
+<li>Reconocimiento personal: <em>"durante mucho tiempo le di más peso del que merecía a la respuesta de insulina, en lugar de ver el balance energético completo."</em></li>
+<li>Mencionar con respeto la teoría "carbohidrato-insulina" (Ludwig) — es popular y la audiencia probablemente la conoce.</li>
+<li>Contrapeso: estudios controlados en sala metabólica (Kevin Hall) no confirman que bajar insulina dé una "ventaja mágica" más allá del balance calórico total. Presentarlo como debate activo, no verdad absoluta.</li>
+<li>El giro (aquí conecta con tu historia): temerle a la insulina lleva a comer de menos → <strong>baja disponibilidad energética (LEA)</strong> → síndrome <strong>REDs</strong> (Comité Olímpico Internacional, consenso 2023).</li>
+<li>No es solo de élite ni solo de mujeres — también amateurs, también hombres.</li>
+<li>Consecuencias reales: huesos, hormonas, inmunidad, <strong>y rendimiento</strong> — el dato que cierra el círculo: bajar carbohidratos específicamente (no solo calorías) empeora y acelera el cuadro.</li>
+<li>Mensaje central de toda la charla, decirlo textual: <em>"el miedo a la glucosa, sin ver el balance completo, probablemente te hace más daño del que crees estar evitando."</em></li>
+</ul>
+<h3 id="42-respuesta-según-el-tipo-de-alimento--4-min">4.2 Respuesta según el tipo de alimento — 4 min</h3>
+<ul>
+<li>No es "simple vs. complejo" — es la matriz del alimento (fibra, grasa, proteína) lo que cambia la velocidad.</li>
+<li>Ejemplo memorable: jugo sin fibra vs. fruta entera, mismo azúcar, curva de glucosa muy distinta.</li>
+<li>La fructosa de la fruta no sube la glucemia de forma directa e inmediata — otro argumento contra el miedo genérico a "todo lo dulce".</li>
+</ul>
+<h3 id="43-uso-de-glucosa-según-la-demanda--3-min">4.3 Uso de glucosa según la demanda — 3 min</h3>
+<ul>
+<li>El cuerpo no decide por capricho — usa más grasa en reposo, más carbohidrato a mayor intensidad, porque el carbohidrato entrega energía más rápido cuando se necesita rápido.</li>
+<li>La cantidad "correcta" de carbohidrato no es un número fijo — depende de cuánto se mueve la persona.</li>
+<li>Anuncio: esto se desarrolla a fondo en la Charla 3 (glucógeno, periodización).</li>
+</ul>
+<h3 id="44-regulación-de-la-glucosa--anticipo--3-min">4.4 Regulación de la glucosa — anticipo — 3 min</h3>
+<ul>
+<li>Breve, no profundizar: ya vimos la asimetría insulina/resto. Ese sistema completo (incluido cortisol, hormona del estrés) es sensible al sueño, al estrés, al mal manejo del entrenamiento.</li>
+<li>Frase puente directa a Charla 2: <em>"la próxima charla es literalmente sobre esto — el motor completo, y qué pasa cuando se desregula."</em></li>
+</ul>
+<h3 id="45-la-fibra-y-su-importancia--4-min">4.5 La fibra y su importancia — 4 min</h3>
+<ul>
+<li>No es "un carbohidrato más" — es la parte que no digerimos, pero que cambia todo lo demás.</li>
+<li>Tres niveles de acción: enlentece la absorción, alimenta a la microbiota, esa fermentación regula apetito e insulina.</li>
+</ul>
+<h3 id="46-el-problema-de-la-fibra-baja--5-min-segundo-momento-fuerte">4.6 El problema de la fibra baja — 5 min (segundo momento fuerte)</h3>
+<ul>
+<li>Dieta baja en carbohidratos → casi siempre también baja en fibra (mismas fuentes).</li>
+<li>La microbiota, sin fibra, no desaparece — cambia de alimento: empieza a comerse la mucosa protectora del intestino (Desai et al., <em>Cell</em> 2016).</li>
+<li>Esto adelgaza la barrera intestinal — más vulnerable a inflamación y patógenos.</li>
+<li>El dato que responde justo a tu intuición: estudio 2024 muestra que la riqueza bacteriana <strong>no se recupera rápido</strong> al volver a comer normal — semanas de rezago, aunque otros marcadores sí se recuperan antes.</li>
+<li>Frase ancla: <em>"cortar carbohidratos no es un evento neutro que se revierte solo — el intestino paga una cuenta real."</em></li>
+</ul>
+<h3 id="47-síntesis--el-ideal-alimentario--2-min">4.7 Síntesis — el ideal alimentario — 2 min</h3>
+<ul>
+<li>Carbohidrato en su matriz natural &gt; refinado/líquido.</li>
+<li>Combinar con proteína/grasa.</li>
+<li>Variedad de fuentes de fibra.</li>
+<li>La cantidad correcta depende del contexto — no existe una regla de "menos siempre es mejor".</li>
+</ul>
+<hr/>
+<h2 id="5--cierre--puente--3-min-054057">5 · Cierre + puente — 3 min (0:54–0:57)</h2>
+<p>Mensaje de cierre sugerido (adaptar a tu voz):</p>
+<blockquote>
+<p><em>"Hoy vimos que la glucosa es mucho más que azúcar de mesa. El cuerpo la guarda activamente, la protege con un sistema de regulación asimétrico, y temerle sin ver el balance completo probablemente te hace más daño del que crees estar evitando. La próxima charla abrimos el motor completo de esa regulación — las hormonas, el cortisol, el estrés — y qué pasa quiere se desregula de verdad."</em></p>
+</blockquote>
+<p>Anunciar fecha/lugar de la Charla 2 si ya está definida.</p>
+<hr/>
+<h2 id="6--preguntas--3-min-057100">6 · Preguntas — 3 min (0:57–1:00)</h2>
+<p>Si nadie pregunta de inmediato, ten lista una pregunta "rompehielo" propia: <em>"¿alguien aquí ha sentido miedo de comer carbohidrato antes de entrenar? ¿Qué pasó?"</em> — casi siempre abre la conversación.</p>
+<hr/>
+<h2 id="checklist-antes-de-la-charla">Checklist antes de la charla</h2>
+<ul class="task-list">
+<li><label><input type="checkbox"/>Repasar el Documento Base completo al menos una vez el día anterior.</label></li>
+<li><label><input type="checkbox"/>Tener listas las 4 preguntas de repaso de la pausa (impresas o en pantalla).</label></li>
+<li><label><input type="checkbox"/>Decidir el formato de la pausa: ¿mano alzada, respuesta a coro, o algo interactivo (app de preguntas)?</label></li>
+<li><label><input type="checkbox"/>Preparar 1-2 visuales si vas a usar diapositivas: la tabla de hormonas (asimetría) y la comparación jugo vs. fruta entera son las de mayor impacto visual.</label></li>
+<li><label><input type="checkbox"/>Confirmar fecha tentativa de la Charla 2 para anunciarla en el cierre.</label></li>
+<li><label><input type="checkbox"/>Practicar en voz alta la transición de la pausa hacia el Bloque 2 — es el momento donde la charla cambia de tono (de "base" a "lo que yo mismo subestimé").</label></li>
+</ul>
+
+  </article>
+</div>
+
+<nav class="pagenav">
+  <div class="pagenav-inner">
+    <a class="prev" href="charla-1-documento-base.html"><span class="lbl">documento relacionado</span>Ver el documento base</a>
+  </div>
+</nav>
+
+</body>
+</html>

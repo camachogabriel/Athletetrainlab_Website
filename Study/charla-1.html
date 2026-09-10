@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La glucosa es más que azúcar — Documento base — para estudiar y como referencia con fuentes</title>
+<meta name="description" content="Documento base — para estudiar y como referencia con fuentes">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF6;
+  --paper-2:#F4F2EC;
+  --ink:#1B1C18;
+  --ink-soft:#4A4A43;
+  --ink-faint:#8B897E;
+  --line:#DEDACB;
+  --line-strong:#C9C4B0;
+  --accent:#B9820C;
+  --accent-ink:#7A5608;
+  --tint:#F7EFDC;
+  --tint-line:#E9D9AE;
+  --serif:'Newsreader', 'Iowan Old Style', 'Georgia', serif;
+  --mono:'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent); color:var(--paper);}
+a{color:var(--accent-ink); text-decoration-thickness:1px; text-underline-offset:3px;}
+a:hover{color:var(--accent);}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+img,svg{max-width:100%;}
+
+.wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px 28px;
+  border-bottom:1px solid var(--line);
+}
+.topbar .brand{
+  font-family:var(--mono); font-size:13px; letter-spacing:.02em;
+  color:var(--ink-soft); text-decoration:none;
+}
+.topbar .brand strong{color:var(--ink); font-weight:600;}
+.topbar .back{
+  font-family:var(--mono); font-size:13px;
+  color:var(--ink-soft); text-decoration:none;
+  display:flex; align-items:center; gap:6px;
+}
+.topbar .back:hover{color:var(--accent-ink);}
+.topbar .modtag{
+  font-family:var(--mono); font-size:13px; color:var(--accent-ink);
+  background:var(--tint); border:1px solid var(--tint-line);
+  padding:4px 10px; border-radius:3px;
+}
+
+/* ---------- hero (index) ---------- */
+.hero{
+  position:relative;
+  padding:64px 28px 40px;
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:1120px; margin:0 auto;
+  display:grid; grid-template-columns: 1.1fr 1fr; gap:40px; align-items:center;
+}
+.hero h1{
+  font-size:clamp(48px, 8vw, 84px);
+  line-height:0.98;
+  margin:0 0 20px;
+  font-weight:600;
+  letter-spacing:-0.01em;
+}
+.hero .lede{
+  font-size:20px; line-height:1.55; color:var(--ink-soft);
+  max-width:46ch; margin:0 0 26px;
+}
+.hero .meta{
+  font-family:var(--mono); font-size:13px; color:var(--ink-faint);
+  margin-bottom:10px;
+}
+.curve-wrap{position:relative;}
+.curve-wrap svg{width:100%; height:auto; display:block;}
+.curve-path{
+  fill:none; stroke:var(--ink); stroke-width:2.5;
+  stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:2000; stroke-dashoffset:2000;
+  animation:draw 2.1s cubic-bezier(.4,.1,.2,1) forwards;
+}
+.curve-marker circle{opacity:0; animation:pop .5s ease forwards;}
+.curve-marker text{opacity:0; animation:pop .5s ease forwards;}
+.curve-marker.m1 circle, .curve-marker.m1 text{animation-delay:.9s;}
+.curve-marker.m2 circle, .curve-marker.m2 text{animation-delay:1.3s;}
+.curve-marker.m3 circle, .curve-marker.m3 text{animation-delay:1.7s;}
+.grid-line{stroke:var(--line-strong); stroke-width:1;}
+.base-line{stroke:var(--ink-faint); stroke-width:1; stroke-dasharray:4 5;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes pop{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){
+  .curve-path{animation:none; stroke-dashoffset:0;}
+  .curve-marker circle, .curve-marker text{animation:none; opacity:1;}
+}
+@media (max-width: 860px){
+  .hero-inner{grid-template-columns:1fr;}
+}
+
+.intro-copy{
+  max-width:68ch; margin:0 auto; padding:8px 28px 56px;
+  font-size:18px; color:var(--ink-soft);
+}
+.intro-copy p{margin:0 0 16px;}
+
+/* ---------- module index blocks ---------- */
+.modules{ border-top:1px solid var(--line); }
+.modblock{
+  border-bottom:1px solid var(--line);
+  padding:40px 0;
+  display:grid; grid-template-columns: 100px 1fr; gap:28px;
+}
+.modblock .num{
+  font-family:var(--mono); font-size:15px; padding-top:6px;
+}
+.modblock h2{
+  font-size:30px; margin:0 0 4px; font-weight:600; line-height:1.15;
+}
+.modblock .sub{
+  font-family:var(--mono); font-size:13px; margin:0 0 14px;
+}
+.modblock p.desc{
+  max-width:62ch; color:var(--ink-soft); margin:0 0 16px; font-size:17px;
+}
+.modblock ul.topics{
+  margin:0 0 20px; padding:0; list-style:none;
+  display:flex; flex-wrap:wrap; gap:8px 10px;
+}
+.modblock ul.topics li{
+  font-family:var(--mono); font-size:12.5px;
+  border:1px solid var(--line-strong); border-radius:3px;
+  padding:4px 9px; color:var(--ink-soft);
+}
+.modblock .enter{
+  font-weight:600; font-size:16px; text-decoration:underline;
+  text-decoration-thickness:1px; text-underline-offset:4px;
+}
+.modblock[data-m="1"] .num,.modblock[data-m="1"] .enter,.modblock[data-m="1"] .sub{color:#7A5608;}
+.modblock[data-m="2"] .num,.modblock[data-m="2"] .enter,.modblock[data-m="2"] .sub{color:#332750;}
+.modblock[data-m="3"] .num,.modblock[data-m="3"] .enter,.modblock[data-m="3"] .sub{color:#7A2313;}
+@media (max-width:640px){
+  .modblock{grid-template-columns:1fr; gap:10px;}
+}
+
+/* ---------- module page header ---------- */
+.modhead{
+  padding:56px 28px 32px;
+  background:var(--tint);
+  border-bottom:1px solid var(--tint-line);
+}
+.modhead-inner{max-width:760px; margin:0 auto;}
+.modhead .kicker{font-family:var(--mono); font-size:13px; color:var(--accent-ink); margin-bottom:14px;}
+.modhead h1{font-size:clamp(32px,5vw,48px); line-height:1.08; margin:0 0 10px; font-weight:600;}
+.modhead .sub{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-soft); margin:0;}
+
+.objective{
+  max-width:760px; margin:34px auto 0; padding:20px 24px;
+  border-left:3px solid var(--accent);
+  background:var(--paper);
+  font-size:16px; color:var(--ink-soft);
+}
+.objective p{margin:0;}
+
+/* ---------- layout: toc + article ---------- */
+.page-grid{
+  max-width:1040px; margin:0 auto; padding:44px 28px 90px;
+  display:grid; grid-template-columns:200px minmax(0,760px); gap:48px;
+  align-items:start;
+}
+.toc{position:sticky; top:24px;}
+.toc-label{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin:0 0 12px;}
+.toc ol{list-style:none; margin:0; padding:0; counter-reset:none;}
+.toc li{margin-bottom:10px;}
+.toc a{
+  display:block; font-size:13.5px; line-height:1.4;
+  color:var(--ink-soft); text-decoration:none; border-left:2px solid transparent;
+  padding-left:10px;
+}
+.toc a:hover{color:var(--accent-ink); border-left-color:var(--accent);}
+
+article.content h2{
+  font-size:25px; margin:52px 0 16px; font-weight:600; line-height:1.25;
+  scroll-margin-top:24px;
+}
+article.content h3{
+  font-size:18px; margin:30px 0 10px; font-weight:600;
+  font-family:var(--mono); text-transform:none; color:var(--ink);
+}
+article.content p{margin:0 0 16px; max-width:70ch;}
+article.content ul, article.content ol{margin:0 0 18px; padding-left:22px; max-width:70ch;}
+article.content li{margin-bottom:6px;}
+article.content strong{font-weight:700;}
+article.content em{font-style:italic;}
+article.content hr{border:none; border-top:1px solid var(--line); margin:44px 0;}
+article.content code{
+  font-family:var(--mono); font-size:.86em; background:var(--tint);
+  padding:1px 5px; border-radius:3px;
+}
+
+article.content table{
+  width:100%; border-collapse:collapse; margin:20px 0 28px; font-size:15px;
+}
+article.content caption{caption-side:top; text-align:left;}
+article.content th, article.content td{
+  border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;
+}
+article.content thead th{
+  font-family:var(--mono); font-weight:600; font-size:12.5px;
+  color:var(--accent-ink); border-bottom:2px solid var(--accent);
+  padding-bottom:9px;
+}
+article.content tbody tr:hover{background:var(--tint);}
+
+section.refs{
+  margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
+}
+section.refs h2{
+  font-family:var(--mono); font-size:14px; font-weight:600;
+  color:var(--ink-faint); margin:0 0 18px; text-transform:none;
+}
+section.refs ul{padding-left:0; list-style:none; margin:0;}
+section.refs li{
+  font-size:14px; color:var(--ink-soft); margin-bottom:12px; padding-left:20px;
+  text-indent:-20px; max-width:66ch;
+}
+
+@media (max-width:860px){
+  .page-grid{grid-template-columns:1fr;}
+  .toc{position:static; margin-bottom:8px;}
+  .toc-panel{border:1px solid var(--line); border-radius:4px; padding:14px 16px;}
+}
+
+/* ---------- footer nav ---------- */
+.pagenav{
+  border-top:1px solid var(--line);
+  padding:28px 28px 60px;
+}
+.pagenav-inner{
+  max-width:1040px; margin:0 auto;
+  display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+}
+.pagenav a{
+  font-family:var(--mono); font-size:13.5px; text-decoration:none; color:var(--ink-soft);
+  display:flex; flex-direction:column; gap:4px;
+}
+.pagenav a .lbl{color:var(--ink-faint); font-size:11px;}
+.pagenav a:hover{color:var(--accent-ink);}
+.pagenav a.next{text-align:right; margin-left:auto;}
+
+footer.site{
+  border-top:1px solid var(--line);
+  padding:26px 28px 48px;
+  font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);
+}
+footer.site .wrap{max-width:1120px;}
+
+.res-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:20px; margin-top:20px;
+}
+.res-card{border:1px solid var(--line); padding:16px 18px; border-radius:2px;}
+.res-card h4{
+  font-family:var(--mono); font-size:12.5px; font-weight:600;
+  color:var(--accent-ink); margin:0 0 10px; text-transform:none;
+}
+.res-list{list-style:none; margin:0; padding:0;}
+.res-list li{margin-bottom:10px; font-size:14px; line-height:1.5;}
+.res-list a{word-break:break-word;}
+.res-link{
+  display:inline-block; margin-top:4px; font-family:var(--mono); font-size:12px;
+  color:var(--accent-ink); background:var(--tint); border:1px solid var(--tint-line);
+  padding:2px 7px; border-radius:3px;
+}
+.note-callout{
+  max-width:760px; margin:34px auto 0; padding:20px 24px;
+  border-left:3px solid var(--accent); background:var(--paper);
+  font-size:16px; color:var(--ink-soft);
+}
+.note-callout p{margin:0;}
+.crosslink{
+  display:inline-block; margin-top:6px; font-family:var(--mono); font-size:13px;
+  color:var(--accent-ink); text-decoration:underline; text-underline-offset:3px;
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <span class="brand"><strong>Glucosa</strong> — serie de charlas</span>
+  <span class="modtag">charla 01 / documento base</span>
+</header>
+
+<section class="modhead">
+  <div class="modhead-inner">
+    <p class="kicker">charla 01 / documento base</p>
+    <h1>La glucosa es más que azúcar</h1>
+    <p class="sub">Documento base — para estudiar y como referencia con fuentes — Serie: Glucosa y Metabolismo (1 de 3) — Módulo nutricional</p>
+  </div>
+  <div class="objective note-callout">
+<p>Cómo usar esto: este documento es para que lo estudies y lo domines antes de la charla — tiene la profundidad completa, las fuentes y las aclaraciones que no vas a decir en voz alta palabra por palabra. El documento hermano, <strong>"Guía de Facilitación"</strong>, es el que llevas contigo el día de la charla: minutos, puntos clave en formato telegráfico, y las preguntas de repaso. Prepara con este, presenta con el otro.</p>
+</div>
+</section>
+
+<div class="page-grid">
+  <nav class="toc">
+    <p class="toc-label">índice</p>
+    <ol><li><a href="#0-el-porqué-marco-para-tu-apertura-no-un-guion">0. El porqué (marco para tu apertura, no un guion)</a></li><li><a href="#1-qué-es-la-glucosa">1. Qué es la glucosa</a></li><li><a href="#2-dónde-y-cómo-se-guarda-todavía-no-cómo-se-usa">2. Dónde y cómo se guarda (todavía no cómo se usa)</a></li><li><a href="#3-la-asimetría-hormonal-muchos-caminos-para-subir-la-glucosa-uno-solo-para-bajarla">3. La asimetría hormonal: muchos caminos para subir la glucosa, uno solo para bajarla</a></li><li><a href="#4-cómo-entra-la-glucosa-al-cuerpo">4. Cómo entra la glucosa al cuerpo</a></li><li><a href="#-pausa--revisión-de-lo-aprendido">⏸ PAUSA — Revisión de lo aprendido</a></li><li><a href="#5-la-respuesta-glucosainsulina-en-el-contexto-del-balance-energético-total">5. La respuesta glucosa/insulina en el contexto del balance energético total</a></li><li><a href="#6-la-respuesta-según-el-tipo-de-alimento">6. La respuesta según el tipo de alimento</a></li><li><a href="#7-el-uso-de-la-glucosa-según-la-demanda">7. El uso de la glucosa según la demanda</a></li><li><a href="#8-la-regulación-de-la-glucosa-anticipo-de-la-charla-2">8. La regulación de la glucosa (anticipo de la Charla 2)</a></li><li><a href="#9-la-fibra-y-su-importancia-en-la-dieta">9. La fibra y su importancia en la dieta</a></li><li><a href="#10-el-problema-de-la-fibra-baja-dietas-bajas-en-carbohidratos-y-salud-intestinal">10. El problema de la fibra baja: dietas bajas en carbohidratos y salud intestinal</a></li><li><a href="#11-lo-que-falta-sintetizando-el-ideal-alimentario">11. Lo que falta: sintetizando el "ideal alimentario"</a></li><li><a href="#cierre-y-puente-hacia-la-charla-2">Cierre y puente hacia la Charla 2</a></li><li><a href="#fuentes-y-recursos-de-apoyo">Fuentes y recursos de apoyo</a></li></ol>
+    <a class="crosslink" href="charla-1-guia-facilitacion.html">→ Ver la guía de facilitación</a>
+  </nav>
+  <article class="content">
+    
+
+
+
+<h2 id="0-el-porqué-marco-para-tu-apertura-no-un-guion">0. El porqué (marco para tu apertura, no un guion)</h2>
+<p>Esto no se lee en voz alta como texto — son los puntos que sostienen tu historia real. Tú la cuentas con tus palabras:</p>
+<ul>
+<li>Años como deportista amateur, entrenador, y estudioso de la fisiología del deporte.</li>
+<li>Lo que has visto una y otra vez: el rendimiento limitado no por falta de talento o de entrenamiento, sino por <strong>conocimiento equivocado de cómo funciona la glucosa</strong>.</li>
+<li>Dos caras del mismo problema, en polos opuestos del nivel deportivo:
+<ul>
+<li><strong>Deportistas de alto rendimiento</strong> que deterioran su propio rendimiento — no por comer de más, sino por gestionar mal (o temer) el combustible que su cuerpo realmente necesita.</li>
+<li><strong>Deportistas amateur</strong> que viven en un estado de <strong>baja disponibilidad energética sin saberlo</strong>, por miedo a los carbohidratos y a "engordar" — y terminan boicoteando su propia salud hormonal y su progreso.</li>
+</ul></li>
+<li>La idea que amarra todo: la mayoría de este daño no viene de mala voluntad ni de falta de disciplina — viene de una idea incompleta de qué es la glucosa y para qué la usa el cuerpo.</li>
+</ul>
+<h3 id="01-la-serie-completa-explicación-corta-para-dar-en-esta-charla">0.1 La serie completa (explicación corta para dar en esta charla)</h3>
+<p>Tres charlas, cada una construida sobre la anterior:</p>
+<ol type="1">
+<li><strong>Charla 1 — Glucosa y nutrición (hoy).</strong> Qué es la glucosa, de dónde viene, cómo se guarda, cómo entra al cuerpo, y por qué no es solo "energía" sino también una señal que el cuerpo regula activamente.</li>
+<li><strong>Charla 2 — Fisiología y regulación hormonal.</strong> El sistema completo detrás de esa regulación: insulina, glucagón, cortisol, el eje hipotálamo-hipófisis-adrenal, y qué pasa cuando ese sistema se desregula (incluyendo dietas bajas en carbohidratos mal gestionadas).</li>
+<li><strong>Charla 3 — Glucosa en el deporte de alto rendimiento.</strong> Glucógeno muscular, fatiga, durabilidad, cuánto carbohidrato usar durante el ejercicio y por qué — la aplicación directa a rendimiento.</li>
+</ol>
+<h3 id="02-objetivo-puntual-de-esta-charla">0.2 Objetivo puntual de esta charla</h3>
+<p>Que la audiencia salga entendiendo tres cosas, y solo tres:</p>
+<ol type="1">
+<li>La glucosa <strong>no es "azúcar" en el sentido coloquial</strong> — es el producto final de casi todos los carbohidratos que comes, sin importar su forma.</li>
+<li>El cuerpo no solo la <strong>usa</strong>, primero la <strong>guarda y la regula activamente</strong> — y esa regulación es asimétrica y tiene una lógica evolutiva.</li>
+<li>El miedo a los carbohidratos y a la insulina, sin entender el balance energético completo, es en sí mismo una fuente de daño — probablemente mayor que el que la gente cree estar evitando.</li>
+</ol>
+<hr/>
+<h1 id="parte-1--lo-fundamental-antes-de-la-pausa">PARTE 1 — LO FUNDAMENTAL (antes de la pausa)</h1>
+<h2 id="1-qué-es-la-glucosa">1. Qué es la glucosa</h2>
+<p>La glucosa es una molécula simple —un azúcar de 6 carbonos (C₆H₁₂O₆)— pero es el punto de convergencia de <strong>casi todos</strong> los carbohidratos que comes. Cuando digieres almidón de arroz, lactosa de un yogur, o sacarosa de un postre, el resultado final que llega a tu intestino son mayormente tres azúcares simples: glucosa (~80 %), fructosa y galactosa — y el hígado convierte la mayoría de la fructosa y galactosa en glucosa también.</p>
+<p><strong>El punto para la audiencia:</strong> cuando hablamos de "azúcar en la sangre", casi siempre hablamos de glucosa, sin importar si el carbohidrato que comiste tenía sabor dulce o no. El arroz, la papa, la avena, el pan — todo termina, en gran parte, como glucosa circulando en tu sangre. "Azúcar" y "carbohidrato" no son sinónimos, pero casi todo carbohidrato termina hablando el mismo idioma químico.</p>
+<p><em>(Fuente: Hantzidiamantis, Awosika &amp; Lappin, "Physiology, Glucose", StatPearls, 2024.)</em></p>
+<h2 id="2-dónde-y-cómo-se-guarda-todavía-no-cómo-se-usa">2. Dónde y cómo se guarda (todavía no cómo se usa)</h2>
+<p>Antes de hablar de uso, hay que hablar de almacenamiento — porque la mayoría de la gente no sabe que el cuerpo <strong>guarda</strong> glucosa de forma activa, no solo la deja circulando.</p>
+<ul>
+<li>La forma de almacenamiento se llama <strong>glucógeno</strong>: una molécula ramificada hecha de muchas glucosas unidas, como una "batería de corto plazo" de carbohidrato.</li>
+<li>Se guarda principalmente en dos lugares:
+<ul>
+<li><strong>Hígado</strong> (~80-100 g en un adulto promedio): esta reserva existe para <strong>mantener la glucosa en la sangre</strong> entre comidas — es la reserva "para el cuerpo entero", incluido el cerebro.</li>
+<li><strong>Músculo</strong> (cantidad bastante mayor, variable con el entrenamiento y la dieta): esta reserva es <strong>egoísta</strong> — el músculo la guarda para sí mismo. Esto es clave y lo vas a repetir en la Charla 3: el músculo <strong>no puede</strong> devolver esa glucosa a la sangre para que la use otro tejido, porque le falta una enzima específica (glucosa-6-fosfatasa) que sí tiene el hígado.</li>
+</ul></li>
+<li>El exceso de energía que no cabe como glucógeno se convierte en grasa — pero eso es una historia de balance energético total, no una consecuencia automática de comer carbohidrato (retomamos esto en el punto 5).</li>
+</ul>
+<p><strong>Para la charla:</strong> no profundices en la utilización todavía — el objetivo de este punto es solo instalar la idea de "el cuerpo la guarda activamente en dos lugares con propósitos distintos", como preparación mental para el punto 3.</p>
+<h2 id="3-la-asimetría-hormonal-muchos-caminos-para-subir-la-glucosa-uno-solo-para-bajarla">3. La asimetría hormonal: muchos caminos para subir la glucosa, uno solo para bajarla</h2>
+<p>Este es un punto que casi nadie en la audiencia va a conocer, y es un gran "momento aha" antes de la pausa.</p>
+<p>El cuerpo tiene <strong>al menos seis o siete hormonas distintas</strong> capaces de subir la glucosa en sangre:</p>
+<ul>
+<li>Glucagón (páncreas)</li>
+<li>Cortisol (glándula adrenal)</li>
+<li>Epinefrina/adrenalina (glándula adrenal)</li>
+<li>Hormona de crecimiento (hipófisis)</li>
+<li>Tiroxina (tiroides)</li>
+<li>ACTH (hipófisis, de forma indirecta)</li>
+</ul>
+<p>Y tiene <strong>solo una</strong> hormona capaz de bajarla de forma significativa: <strong>la insulina</strong>.</p>
+<p><strong>¿Por qué esta asimetría?</strong> Tiene una lógica evolutiva simple y poderosa: una bajada fuerte de glucosa (hipoglucemia) es una amenaza <strong>inmediata</strong> para la supervivencia — el cerebro depende casi por completo de glucosa para funcionar, y una hipoglucemia severa puede causar convulsiones, pérdida de conciencia o muerte en minutos. Una subida moderada de glucosa, en cambio, es tolerable a corto plazo. Por eso el cuerpo invirtió, evolutivamente, en múltiples "frenos de emergencia" redundantes para subir la glucosa —por si uno falla, hay otros cinco— pero confió el trabajo de bajarla a un solo mecanismo, altamente eficiente cuando funciona bien: la insulina.</p>
+<p><strong>Gancho para la audiencia:</strong> esta asimetría es exactamente la razón por la que la diabetes tipo 1 (falla de la insulina) es una condición tan seria — no es que falte "una de siete" hormonas reguladoras, es que falla la <strong>única</strong> vía capaz de bajar la glucosa. No hay redundancia de respaldo para ese lado del sistema.</p>
+<p><em>(Fuente: tabla hormonal completa en Hantzidiamantis, Awosika &amp; Lappin, StatPearls 2024 — ver Documento Base del Módulo 2 para el detalle mecanístico completo de cada hormona, incluido cortisol y el eje HPA, que es el tema central de la Charla 2.)</em></p>
+<h2 id="4-cómo-entra-la-glucosa-al-cuerpo">4. Cómo entra la glucosa al cuerpo</h2>
+<p>El recorrido completo, en 5 pasos simples para la audiencia:</p>
+<ol type="1">
+<li><strong>Boca/estómago</strong>: la digestión del almidón empieza en la boca (amilasa salival) pero se detiene en el estómago (el ácido la desactiva). Aquí no pasa gran cosa todavía.</li>
+<li><strong>Intestino delgado</strong>: enzimas pancreáticas y del propio intestino terminan de romper los carbohidratos hasta azúcares simples individuales (glucosa, fructosa, galactosa).</li>
+<li><strong>Absorción</strong>: estos azúcares entran a las células del intestino a través de "puertas" específicas — transportadores de membrana. La glucosa y la galactosa usan uno (SGLT1); la fructosa usa otro completamente distinto e independiente (GLUT5). <em>(Este dato es más relevante para la Charla 3 — cuando hablemos de por qué mezclar glucosa y fructosa permite absorber más carbohidrato durante el ejercicio. Aquí solo se menciona de pasada.)</em></li>
+<li><strong>Hacia la sangre</strong>: desde la célula intestinal, los azúcares salen hacia el torrente sanguíneo.</li>
+<li><strong>Hígado primero</strong>: toda esa sangre pasa primero por el hígado antes de llegar al resto del cuerpo — el hígado "decide" cuánta glucosa retiene (para glucógeno) y cuánta deja pasar hacia el resto del cuerpo.</li>
+</ol>
+<p><strong>Punto para la audiencia:</strong> la glucosa no "aparece" en la sangre apenas comes — hay un recorrido físico real, con puertas específicas y un filtro (el hígado) antes de llegar a cualquier otro órgano. Esto ayuda a desmitificar la idea de que "comer azúcar" es un evento instantáneo y descontrolado.</p>
+<hr/>
+<h2 id="-pausa--revisión-de-lo-aprendido">⏸ PAUSA — Revisión de lo aprendido</h2>
+<p>Antes de seguir, haz una pausa real. Sugerencia de 3-4 preguntas rápidas para la audiencia (ver la Guía de Facilitación para el formato exacto):</p>
+<ol type="1">
+<li>¿La glucosa es lo mismo que "azúcar de mesa"? <em>(No — es el producto final común de casi todo carbohidrato, dulce o no.)</em></li>
+<li>¿Dónde guarda el cuerpo la glucosa, y por qué hay dos lugares distintos? <em>(Hígado — para todo el cuerpo; músculo — solo para sí mismo.)</em></li>
+<li>¿Cuántas hormonas suben la glucosa y cuántas la bajan? <em>(Varias suben — insulina es la única que baja de forma relevante.)</em></li>
+<li>¿Por dónde entra la glucosa a la sangre? <em>(Intestino delgado, vía transportadores específicos, con el hígado como primer filtro.)</em></li>
+</ol>
+<hr/>
+<h1 id="parte-2--lo-nuevo-el-corazón-de-la-charla">PARTE 2 — LO NUEVO (el corazón de la charla)</h1>
+<h2 id="5-la-respuesta-glucosainsulina-en-el-contexto-del-balance-energético-total">5. La respuesta glucosa/insulina en el contexto del balance energético total</h2>
+<p>Esta es, honestamente, la sección que más vas a querer desarrollar en tono personal — es donde reconoces que durante mucho tiempo subestimaste esta idea. Aquí tienes los puntos clave que pediste, con la evidencia detrás:</p>
+<h3 id="punto-clave-1--la-insulina-no-es-la-hormona-que-te-engorda-por-sí-sola">Punto clave 1 — La insulina no es "la hormona que te engorda" por sí sola</h3>
+<p>Existe una teoría popular (el "modelo carbohidrato-insulina de la obesidad") que dice que comer carbohidrato → sube la insulina → la insulina "encierra" la grasa en el tejido adiposo → engordas, independientemente de cuántas calorías comas en total. Es una teoría real, defendida por investigadores serios (como David Ludwig), y vale la pena mencionarla con respeto porque es una idea muy extendida en el público.</p>
+<p>Pero los estudios más controlados que existen —realizados en salas metabólicas, donde se mide <em>todo</em> lo que la persona come y gasta, sin margen de error de autorreporte— no han logrado confirmar las predicciones centrales de esa teoría. El investigador que más ha puesto a prueba este modelo, Kevin Hall (NIH), ha encontrado repetidamente que, cuando se igualan las calorías totales, <strong>no hay una ventaja metabólica mágica</strong> de bajar carbohidratos/insulina más allá de lo que explica el balance calórico mismo. La discusión científica sigue activa y no es unánime —Ludwig y su equipo han cuestionado la metodología de esos estudios—, así que preséntalo como lo que es: un debate real y vigente, no una verdad absoluta de ningún lado.</p>
+<p><strong>Lo que sí es sólido y no está en debate:</strong> la insulina es esencial y hace muchísimo trabajo real (regula la glucosa, permite que el músculo capte nutrientes, entre otras funciones) — el problema no es la insulina en sí, es tratarla como el único villano o héroe de la historia, ignorando el balance energético total.</p>
+<h3 id="punto-clave-2--el-miedo-produce-el-daño-que-se-quiere-evitar">Punto clave 2 — El miedo produce el daño que se quiere evitar</h3>
+<p>Aquí está el giro que conecta con tu historia personal: si el miedo a la insulina/carbohidratos lleva a alguien a comer sistemáticamente menos energía de la que su cuerpo necesita —sobre todo en alguien que entrena—, no está evitando un daño hipotético; está <strong>causando uno real y bien documentado</strong>: la <strong>baja disponibilidad energética</strong> (en inglés, <em>Low Energy Availability</em>, LEA).</p>
+<ul>
+<li><strong>Qué es:</strong> la energía que le queda al cuerpo para funcionar, después de restarle lo que gastó en entrenar, cae por debajo de lo que necesita para sostener sus procesos normales (hormonales, óseos, inmunes, reproductivos).</li>
+<li><strong>El síndrome asociado se llama REDs</strong> (<em>Relative Energy Deficiency in Sport</em> — Deficiencia Energética Relativa en el Deporte), definido formalmente por el Comité Olímpico Internacional, actualizado en su consenso de 2023.</li>
+<li><strong>No es solo un problema de deportistas de élite ni solo de mujeres</strong> — el consenso 2023 enfatiza específicamente que también afecta a hombres, a deportistas amateur, y a cualquier persona que hace ejercicio con regularidad, no solo a "atletas".</li>
+<li><strong>Consecuencias documentadas:</strong> deterioro de la salud ósea, disrupción hormonal, supresión inmune, problemas reproductivos — y, esto es clave para tu punto sobre el alto rendimiento, <strong>deterioro directo del rendimiento deportivo</strong>: peor respuesta al entrenamiento, más lesiones, peor estado de ánimo, peor capacidad de recuperación.</li>
+<li><strong>El dato que cierra el círculo con tu historia:</strong> el consenso 2023 agrega evidencia nueva de que la <strong>baja disponibilidad de carbohidratos específicamente</strong> (no solo la energía total) acelera y agrava este cuadro — es decir, no es solo "comer poco en general", es particularmente dañino restringir carbohidratos de forma severa y sostenida.</li>
+</ul>
+<p><strong>Este es el mensaje central de la charla:</strong> el miedo a la glucosa/insulina, sin el contexto del balance energético total, empuja a la gente —especialmente a quien entrena en serio— hacia un problema real y medible (REDs/LEA), para evitar un problema que, en la mayoría de los casos reales de personas activas, ni siquiera está bien demostrado que exista de la forma en que lo temen.</p>
+<h3 id="cómo-se-calcula-para-tu-propio-entendimiento-no-necesariamente-para-explicar-la-fórmula-en-la-charla">Cómo se calcula (para tu propio entendimiento, no necesariamente para explicar la fórmula en la charla)</h3>
+<p>Disponibilidad energética = (Energía que comes − Energía gastada en el ejercicio) ÷ Masa libre de grasa. Se expresa en kcal por kg de masa libre de grasa al día. El umbral clásico de riesgo es <strong>por debajo de ~30 kcal/kg de masa libre de grasa al día</strong>; arriba de ~45 se considera un rango saludable. No hace falta que la audiencia memorice la fórmula — el punto es que <strong>existe una forma objetiva de medir esto</strong>, no es solo una sensación subjetiva de "comer poco".</p>
+<hr/>
+<h2 id="6-la-respuesta-según-el-tipo-de-alimento">6. La respuesta según el tipo de alimento</h2>
+<p>Aquí retomas el contenido nutricional ya desarrollado en el Módulo 1 (documento del curso), en versión resumida y práctica para la charla:</p>
+<ul>
+<li>No todos los carbohidratos elevan la glucosa a la misma velocidad — importa la <strong>matriz</strong> del alimento (si viene con fibra, grasa, proteína) más que la etiqueta de "carbohidrato simple vs. complejo".</li>
+<li>Ejemplo práctico y memorable: un jugo de fruta sin fibra sube la glucosa mucho más rápido que la misma fruta entera, aunque el azúcar total sea parecido — la fibra y la estructura física del alimento cambian la velocidad de entrada de la glucosa a la sangre.</li>
+<li>La fructosa (de la fruta, por ejemplo) tiene una particularidad interesante: se metaboliza mayormente en el hígado y <strong>no eleva la glucemia de forma directa e inmediata</strong> como lo hace la glucosa — otro argumento para desmontar el miedo genérico a "todo lo que sepa dulce".</li>
+</ul>
+<h2 id="7-el-uso-de-la-glucosa-según-la-demanda">7. El uso de la glucosa según la demanda</h2>
+<blockquote>
+<p><strong>Nota de precisión para ti:</strong> el término específico "<em>Fuel for the Work Required</em>" que recordabas es el título de un paper de 2018 (Impey, Hearris, Hammond, Bartlett, Louis, Close &amp; Morton) sobre <strong>periodización de carbohidratos para deportistas de alto rendimiento</strong> — es contenido central de la <strong>Charla 3</strong>, no de esta. Úsalo ahí, con todo su desarrollo (glucógeno, entrenamiento con disponibilidad reducida, etc.).</p>
+<p>Para esta charla, el concepto equivalente pero al nivel correcto de profundidad es más simple y sirve igual de bien como idea-puente:</p>
+</blockquote>
+<p><strong>El cuerpo no "decide" cuánta glucosa moviliza por capricho — lo hace en función de la demanda metabólica real del momento.</strong> En reposo o actividad ligera, usa mayormente grasa. Al subir la intensidad del esfuerzo, cambia progresivamente hacia carbohidrato como combustible principal — no porque "el azúcar sea mala" o "buena", sino porque el carbohidrato es la fuente que el cuerpo puede convertir en energía <strong>más rápido</strong> cuando la demanda es alta. Esta idea —que profundizaremos mucho más en la Charla 3 con el "concepto de crossover" y el paper de periodización mencionado arriba— ya sirve aquí para instalar algo importante: <strong>la cantidad "correcta" de carbohidrato no es un número fijo y universal, depende de cuánto se lo está pidiendo tu cuerpo</strong>, y eso varía completamente entre una persona sedentaria y una persona que entrena varias horas por semana.</p>
+<h2 id="8-la-regulación-de-la-glucosa-anticipo-de-la-charla-2">8. La regulación de la glucosa (anticipo de la Charla 2)</h2>
+<p>No profundices aquí — es del todo el tema de la próxima charla. Suficiente con:</p>
+<ul>
+<li>Ya vimos que insulina baja y varias hormonas suben la glucosa (punto 3).</li>
+<li>Ese sistema completo —incluyendo el cortisol, la hormona del estrés, y el eje que la controla— es sorprendentemente sensible a cosas que la gente no conecta con "la glucosa": el sueño, el estrés psicológico, el entrenamiento mal gestionado.</li>
+<li>Frase puente sugerida: <em>"la próxima charla es literalmente sobre esto: el sistema completo de control, y qué pasa cuando se desregula — incluyendo qué le pasa a este sistema en dietas muy bajas en carbohidratos."</em></li>
+</ul>
+<h2 id="9-la-fibra-y-su-importancia-en-la-dieta">9. La fibra y su importancia en la dieta</h2>
+<ul>
+<li>La fibra no es "un carbohidrato más" — es la parte del carbohidrato que el cuerpo humano <strong>no puede digerir</strong>, pero que cambia radicalmente cómo se comporta todo lo demás que comiste con ella.</li>
+<li>Actúa en tres niveles: (1) enlentece físicamente la velocidad de absorción de la glucosa, (2) alimenta a la microbiota intestinal, que la fermenta y produce compuestos (ácidos grasos de cadena corta) con beneficios metabólicos reales, y (3) esa fermentación estimula hormonas que ayudan a regular el apetito y la propia respuesta de insulina.</li>
+<li>Mensaje para la audiencia: la fibra no es un tema aparte de "la glucosa" — es una de las variables más poderosas que existen para hacer que la misma cantidad de carbohidrato se comporte de forma completamente distinta en tu cuerpo.</li>
+</ul>
+<h2 id="10-el-problema-de-la-fibra-baja-dietas-bajas-en-carbohidratos-y-salud-intestinal">10. El problema de la fibra baja: dietas bajas en carbohidratos y salud intestinal</h2>
+<p>Este es un punto fuerte y con evidencia reciente muy citable — exactamente la intuición que ya tenías:</p>
+<ul>
+<li>Cuando alguien hace una dieta baja en carbohidratos, casi siempre —aunque no sea la intención— <strong>también baja drásticamente su fibra</strong>, porque las principales fuentes de fibra (granos, legumbres, tubérculos, mucha fruta) también son las principales fuentes de carbohidrato que se eliminan.</li>
+<li>La microbiota intestinal depende de la fibra como su principal fuente de alimento. Cuando la fibra escasea, un grupo de bacterias específicas <strong>no desaparece — cambia de fuente de alimento</strong>: empieza a "comerse" la capa de mucosa protectora que recubre el intestino (compuesta en gran parte por los mismos tipos de azúcares complejos que hay en la fibra), porque es el sustrato más parecido disponible.</li>
+<li>Esto <strong>adelgaza la barrera de mucosa</strong> que protege al intestino de patógenos e inflamación — un mecanismo demostrado experimentalmente (Desai et al., <em>Cell</em>, 2016).</li>
+<li>Y aquí está el dato que responde exactamente a tu observación: un estudio reciente (2024) mostró que esta pérdida de diversidad bacteriana causada por la restricción de fibra <strong>no se revierte del todo, ni rápido</strong>, al volver a comer normal — la riqueza bacteriana permanece reducida durante semanas después de reintroducir la fibra, aunque otros marcadores (como la función de barrera intestinal) sí se recuperan más rápido.</li>
+<li><strong>Conclusión práctica para la audiencia:</strong> cortar carbohidratos de forma agresiva no es un evento neutro que se revierte apenas "vuelves a comer normal" — el intestino paga un costo real, y parte de ese costo tarda en recuperarse.</li>
+</ul>
+<h2 id="11-lo-que-falta-sintetizando-el-ideal-alimentario">11. Lo que falta: sintetizando el "ideal alimentario"</h2>
+<p>Cierre rápido de la parte nutricional (ya cubierto con más detalle en el documento del Módulo 1 del curso — aquí solo la síntesis para la charla):</p>
+<ul>
+<li>Preferir carbohidratos en su matriz natural (con su propia fibra) sobre versiones refinadas o líquidas.</li>
+<li>Combinar carbohidrato con proteína y/o grasa en la misma comida.</li>
+<li>Priorizar variedad de fuentes de fibra, no una sola.</li>
+<li>Y, el mensaje que amarra toda la charla: <strong>la cantidad de carbohidrato "correcta" depende del contexto — cuánto te mueves, cuánto entrenas, cuánta energía gastas</strong> — no de una regla genérica de "menos es siempre mejor".</li>
+</ul>
+<hr/>
+<h2 id="cierre-y-puente-hacia-la-charla-2">Cierre y puente hacia la Charla 2</h2>
+<p>Sugerencia de mensaje final: <em>"Hoy vimos que la glucosa es mucho más que azúcar de mesa: es el resultado de casi todo lo que comes, el cuerpo la guarda activamente en dos lugares distintos, tiene un sistema de regulación asimétrico y muy protector, y que temerle sin entender el balance energético completo probablemente te hace más daño del que crees estar evitando. En la próxima charla vamos a abrir el motor completo de esa regulación: las hormonas, el cortisol, el estrés, y qué pasa cuando este sistema se desregula de verdad."</em></p>
+<hr/>
+<section class="resources"><h2 id="fuentes-y-recursos-de-apoyo">Fuentes y recursos de apoyo</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="res-grid"><div class="res-card"><h4>Fisiología básica de la glucosa</h4><ul class="res-list">
+<li>Hantzidiamantis PJ, Awosika AO, Lappin SL. <em>Physiology, Glucose</em>. StatPearls [Internet], actualizado 2024. <a class="res-a" href="https://www.ncbi.nlm.nih.gov/books/NBK545201/"><span class="res-link">↗ ncbi.nlm.nih.gov</span></a></li>
+</ul></div><div class="res-card"><h4>Baja disponibilidad energética / REDs</h4><ul class="res-list">
+<li>Mountjoy M et al. <em>2023 International Olympic Committee's (IOC) Consensus Statement on Relative Energy Deficiency in Sport (REDs)</em>. Br J Sports Med, 2023 (documento oficial completo, acceso libre). <a class="res-a" href="https://stillmed.olympics.com/media/Documents/Athletes/Medical-Scientific/Consensus-Statements/REDs/BJSM-IOC-consensus-statement-on-Relative-Energy-Deficiency-in-Sport-REDs.pdf"><span class="res-link">↗ stillmed.olympics.com</span></a></li>
+<li>IOC. <em>IOC publishes new Consensus Statement on Relative Energy Deficiency in Sport (REDs)</em>, 2023 (resumen oficial). <a class="res-a" href="https://www.olympics.com/ioc/news/ioc-publishes-new-consensus-statement-on-relative-energy-deficiency-in-sport-reds-to-protect-athlete-health"><span class="res-link">↗ olympics.com</span></a></li>
+<li>PINES. <em>2023 IOC Consensus Statement on REDs: What's new?</em> (resumen accesible). <a class="res-a" href="https://pinesnutrition.org/2023-ioc-consensus-statement-on-reds-whats-new/"><span class="res-link">↗ pinesnutrition.org</span></a></li>
+<li>Calcipedia. <em>Energy Availability Calculator</em> (explicación práctica de la fórmula y umbrales). <a class="res-a" href="https://www.calcipedia.org/calculators/energy-availability-calculator/"><span class="res-link">↗ calcipedia.org</span></a></li>
+<li>Keay N. <em>Personal Energy Availability Questionnaire (PEAQ)</em> — herramienta gratuita de autoevaluación de riesgo de baja disponibilidad energética, basada en investigación publicada (útil para compartir con la audiencia después de la charla). <a class="res-a" href="https://nickykeayfitness.com/2025/04/12/personal-energy-availability-questionnaire-peaq/"><span class="res-link">↗ nickykeayfitness.com</span></a></li>
+</ul></div><div class="res-card"><h4>Modelo carbohidrato-insulina / balance energético</h4><ul class="res-list">
+<li>Hall KD. <em>A review of the carbohydrate-insulin model of obesity</em>. Eur J Clin Nutr. <a class="res-a" href="https://undark.org/wp-content/uploads/2017/02/HallEJCN2017-1.pdf"><span class="res-link">↗ undark.org</span></a></li>
+<li>Ludwig DS et al. <em>Scientific discourse in the era of open science: a response to Hall et al. regarding the Carbohydrate-Insulin Model</em>. <a class="res-a" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6892734/"><span class="res-link">↗ ncbi.nlm.nih.gov</span></a></li>
+</ul></div><div class="res-card"><h4>Fibra, dietas bajas en carbohidratos y microbiota</h4><ul class="res-list">
+<li>Desai MS et al. <em>A Dietary Fiber-Deprived Gut Microbiota Degrades the Colonic Mucus Barrier and Enhances Pathogen Susceptibility</em>. Cell, 2016. <a class="res-a" href="https://www.cell.com/fulltext/S0092-8674(16)31464-7"><span class="res-link">↗ cell.com</span></a></li>
+<li>Neumann M et al. <em>Temporary dietary fiber depletion prompts rapid and lasting gut microbiota restructuring in mice</em>. Microbiology Spectrum, 2024. <a class="res-a" href="https://journals.asm.org/doi/10.1128/spectrum.01517-24"><span class="res-link">↗ journals.asm.org</span></a></li>
+<li>Jaagura M et al. <em>Low-carbohydrate high-fat weight reduction diet induces changes in human gut microbiota</em>. MicrobiologyOpen, 2021. <a class="res-a" href="https://onlinelibrary.wiley.com/doi/10.1002/mbo3.1194"><span class="res-link">↗ onlinelibrary.wiley.com</span></a></li>
+</ul></div><div class="res-card"><h4>Adelanto Charla 3 (uso de glucosa según demanda / periodización)</h4><ul class="res-list">
+<li>Impey SG, Hearris MA, Hammond KM, Bartlett JD, Louis J, Close GL, Morton JP. <em>Fuel for the Work Required: A Theoretical Framework for Carbohydrate Periodization and the Glycogen Threshold Hypothesis</em>. Sports Medicine, 2018. <a class="res-a" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5889771/"><span class="res-link">↗ ncbi.nlm.nih.gov</span></a></li>
+</ul></div><div class="res-card"><h4>Adelanto Charla 2 (regulación hormonal / eje HPA)</h4><ul class="res-list">
+<li>Kaur J, Gandhi J, Sharma S. <em>Physiology, Cortisol</em>. StatPearls [Internet], actualizado 2025. <a class="res-a" href="https://www.ncbi.nlm.nih.gov/books/NBK538239/"><span class="res-link">↗ ncbi.nlm.nih.gov</span></a></li>
+<li>Nussey S, Whitehead S. <em>Endocrinology: An Integrated Approach</em>, Cap. 1. NCBI Bookshelf. <a class="res-a" href="https://www.ncbi.nlm.nih.gov/books/NBK20/"><span class="res-link">↗ ncbi.nlm.nih.gov</span></a></li>
+</ul></div></div></section>
+  </article>
+</div>
+
+<nav class="pagenav">
+  <div class="pagenav-inner">
+    <a class="prev" href="charla-1-guia-facilitacion.html"><span class="lbl">documento relacionado</span>Ver la guía de facilitación</a>
+  </div>
+</nav>
+
+</body>
+</html>
