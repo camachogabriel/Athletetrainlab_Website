@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D0F1A;
+      font-family: 'Montserrat', sans-serif;
+      position: relative;
+    }
+
+    /* ── Background texture ── */
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px);
+      background-size: 54px 54px;
+    }
+
+    /* Top-left green glow */
+    .glow-tl {
+      position: absolute;
+      top: -200px; left: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    /* Bottom-right orange glow */
+    .glow-br {
+      position: absolute;
+      bottom: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(240,165,0,0.09) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* ── Logo space — top right ── */
+    .logo-space {
+      position: absolute;
+      top: 48px; right: 48px;
+      width: 160px; height: 80px;
+      border: 2px dashed rgba(255,255,255,0.18);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.20);
+      font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    /* ── Main content ── */
+    .content {
+      position: absolute;
+      inset: 0;
+      padding: 64px 72px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Tag pill */
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #4ade80;
+      width: fit-content;
+      margin-bottom: 32px;
+      margin-top: 14px;
+    }
+    .tag-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+    }
+
+    /* Headline */
+    .headline {
+      font-size: 88px;
+      font-weight: 900;
+      line-height: 0.92;
+      color: #fff;
+      letter-spacing: -3px;
+      margin-bottom: 12px;
+      max-width: 700px;
+    }
+    .headline em {
+      font-style: italic;
+      color: #4ade80;
+    }
+    .subheadline {
+      font-size: 22px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+      max-width: 580px;
+      margin-bottom: 48px;
+      letter-spacing: -0.3px;
+    }
+    .subheadline strong { color: rgba(255,255,255,0.85); }
+
+    /* ── 3 category cards ── */
+    .cards-row {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .cat-card {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 26px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 20px 20px 0 0;
+    }
+    .cat-card.hydration::before { background: linear-gradient(90deg, #4ade80, #22c55e); }
+    .cat-card.solid::before { background: linear-gradient(90deg, #F0A500, #f59e0b); }
+    .cat-card.simple::before { background: linear-gradient(90deg, #5b9df5, #3b82f6); }
+
+    .cat-emoji { font-size: 34px; margin-bottom: 12px; display: block; }
+    .cat-name {
+      font-size: 17px; font-weight: 800; color: #fff;
+      margin-bottom: 6px; line-height: 1.2;
+    }
+    .cat-desc {
+      font-size: 13px; color: rgba(255,255,255,0.50); line-height: 1.5;
+    }
+    .cat-highlight {
+      margin-top: 14px; padding: 8px 12px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      font-size: 13px; font-weight: 700;
+    }
+    .cat-card.hydration .cat-highlight { color: #4ade80; }
+    .cat-card.solid .cat-highlight { color: #F0A500; }
+    .cat-card.simple .cat-highlight { color: #5b9df5; }
+
+    /* ── Bottom strip ── */
+    .bottom-strip {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Cost badge */
+    .cost-badge {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.20);
+      border-radius: 16px;
+      padding: 16px 26px;
+    }
+    .cost-badge-icon { font-size: 28px; }
+    .cost-badge-text { }
+    .cost-badge-main {
+      font-size: 22px; font-weight: 900; color: #4ade80; line-height: 1;
+    }
+    .cost-badge-sub {
+      font-size: 13px; color: rgba(255,255,255,0.50); margin-top: 3px; font-weight: 600;
+    }
+
+    /* Recipe count pills */
+    .stats-row {
+      display: flex;
+      gap: 14px;
+    }
+    .stat-pill {
+      text-align: center;
+      padding: 12px 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+    }
+    .stat-val {
+      font-size: 24px; font-weight: 900; color: #fff; display: block; line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px; color: rgba(255,255,255,0.40); font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; display: block;
+    }
+
+    /* URL bar */
+    .url-bar {
+      font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.30);
+      letter-spacing: 1px;
+    }
+
+    /* Decorative green line left */
+    .accent-line {
+      position: absolute;
+      left: 0; top: 160px; bottom: 160px;
+      width: 4px;
+      background: linear-gradient(180deg, transparent, #4ade80 30%, #22c55e 70%, transparent);
+      border-radius: 0 4px 4px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="accent-line"></div>
+
+  <!-- Logo space -->
+  <div class="logo-space">LOGO</div>
+
+  <div class="content">
+
+    <div class="tag-pill">
+      <span class="tag-dot"></span>
+      Nueva guía ATL
+    </div>
+
+    <div class="headline">
+      Nutrición<br>de <em>Campo</em>
+    </div>
+
+    <div class="subheadline">
+      Bebidas isotónicas, rice cakes y barritas caseras con las <strong>concentraciones exactas</strong> de los productos comerciales.
+    </div>
+
+    <!-- 3 Category Cards -->
+    <div class="cards-row">
+      <div class="cat-card hydration">
+        <span class="cat-emoji">💧</span>
+        <div class="cat-name">Hidratación</div>
+        <div class="cat-desc">Isotónica básica, con miel y bebida 2:1 para absorción máxima</div>
+        <div class="cat-highlight">6% carbos · 500 mg Na/L</div>
+      </div>
+      <div class="cat-card solid">
+        <span class="cat-emoji">🍙</span>
+        <div class="cat-name">Rice Cakes</div>
+        <div class="cat-desc">Salados y dulces — el combustible de los pros ahora en tu cocina</div>
+        <div class="cat-highlight">25–34 g carbos c/u</div>
+      </div>
+      <div class="cat-card simple">
+        <span class="cat-emoji">🌴</span>
+        <div class="cat-name">Barritas &amp; Geles</div>
+        <div class="cat-desc">Avena, dátiles, maní y miel — sin procesados, sin aditivos</div>
+        <div class="cat-highlight">15–25 g carbos c/u</div>
+      </div>
+    </div>
+
+    <!-- Bottom strip -->
+    <div class="bottom-strip">
+
+      <div class="cost-badge">
+        <div class="cost-badge-icon">💰</div>
+        <div class="cost-badge-text">
+          <div class="cost-badge-main">10× más económico</div>
+          <div class="cost-badge-sub">vs. geles y bebidas comerciales</div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-pill">
+          <span class="stat-val">8</span>
+          <span class="stat-label">Recetas</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-val">30</span>
+          <span class="stat-label">Alimentos ref.</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-val">100%</span>
+          <span class="stat-label">Natural</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="url-bar">athletetrainlab.com · Guías</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
